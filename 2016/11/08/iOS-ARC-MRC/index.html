@@ -1,0 +1,1085 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.useso.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iOS,ARC,MRC,内存管理,引用计数," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="简介Objective-C中提供了两种内存管理机制：MRC（MannulReference Counting）和 ARC(Automatic Reference Counting)，分别提供对内存的手动和自动管理，来满足不同的需求。iOS 5之前普遍使用MRC来管理内存。iOS 5之后，苹果推出ARC。现在普遍时候ARC来管理内存。">
+<meta name="keywords" content="iOS,ARC,MRC,内存管理,引用计数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS内存管理">
+<meta property="og:url" content="http://yoursite.com/2016/11/08/iOS-ARC-MRC/index.html">
+<meta property="og:site_name" content="Leroy Blog">
+<meta property="og:description" content="简介Objective-C中提供了两种内存管理机制：MRC（MannulReference Counting）和 ARC(Automatic Reference Counting)，分别提供对内存的手动和自动管理，来满足不同的需求。iOS 5之前普遍使用MRC来管理内存。iOS 5之后，苹果推出ARC。现在普遍时候ARC来管理内存。">
+<meta property="og:updated_time" content="2016-11-19T11:31:06.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS内存管理">
+<meta name="twitter:description" content="简介Objective-C中提供了两种内存管理机制：MRC（MannulReference Counting）和 ARC(Automatic Reference Counting)，分别提供对内存的手动和自动管理，来满足不同的需求。iOS 5之前普遍使用MRC来管理内存。iOS 5之后，苹果推出ARC。现在普遍时候ARC来管理内存。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/11/08/iOS-ARC-MRC/"/>
+
+
+  <title> iOS内存管理 | Leroy Blog </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-86883336-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?5540f769221902cc8d617831ea88185f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Leroy Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">it is never too late to learn !</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                iOS内存管理
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-08T09:31:17+08:00" content="2016-11-08">
+              2016-11-08
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index">
+                    <span itemprop="name">iOS</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/11/08/iOS-ARC-MRC/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2016/11/08/iOS-ARC-MRC/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/11/08/iOS-ARC-MRC/" class="leancloud_visitors" data-flag-title="iOS内存管理">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>Objective-C中提供了两种内存管理机制：MRC（MannulReference Counting）和 ARC(Automatic Reference Counting)，分别提供对内存的手动和自动管理，来满足不同的需求。iOS 5之前普遍使用MRC来管理内存。iOS 5之后，苹果推出ARC。现在普遍时候ARC来管理内存。</p>
+<a id="more"></a>
+<h2 id="iOS内存分区"><a href="#iOS内存分区" class="headerlink" title="iOS内存分区"></a>iOS内存分区</h2><p>iOS的内存分区跟C语言类似：</p>
+<ul>
+<li><p><strong>栈区（stack）：</strong>存放的局部变量、先进后出、一旦出了作用域就会被销毁；函数跳转地址，现场保护等；程序猿不需要管理栈区变量的内存；栈区地址从高到低分配。</p>
+</li>
+<li><p><strong>堆区（heap）：</strong>堆区的内存分配使用的是alloc；需要程序猿管理内存；ARC的内存的管理，是编译器再编译的时候自动添加retain、release、autorelease；堆区的地址是从低到高分配。</p>
+</li>
+<li><p><strong>全局区/静态区（static）：</strong>包括两个部分：未初始化过 、初始化过；也就是说，（全局区/静态区）在内存中是放在一起的，初始化的全局变量和静态变量在一块区域，未初始化的全局变量和未初始化的静态变量在相邻的另一块区域；eg：int a;未初始化的。int a = 10;已初始化的。</p>
+</li>
+<li><p><strong>常量区：</strong>常量字符串就是放在这里。</p>
+</li>
+<li><p><strong>代码区：</strong>存放App二进制代码。</p>
+</li>
+</ul>
+<h2 id="引用计数"><a href="#引用计数" class="headerlink" title="引用计数"></a>引用计数</h2><p>在谈ARC和MRC之前我们先来谈谈引用计数</p>
+<p>引用计数（Reference Count）是一个简单而有效的管理对象生命周期的方式。当我们创建一个新对象的时候，它的引用计数为 1，当有一个新的指针指向这个对象时，我们将其引用计数加 1，当某个指针不再指向这个对象是，我们将其引用计数减 1，当对象的引用计数变为 0 时，说明这个对象不再被任何指针指向了，这个时候我们就可以将对象销毁，回收内存。由于引用计数简单有效，除了 Objective-C 和 Swift 语言外，微软的 COM（Component Object Model ）、C++11（C++11 提供了基于引用计数的智能指针 share_prt）等语言也提供了基于引用计数的内存管理方式。</p>
+<h2 id="MRC"><a href="#MRC" class="headerlink" title="MRC"></a>MRC</h2><p>MRC即我们通过人为的方式来控制引用计数器的增减，影响对象RetainCount值得方法有以下几种:</p>
+<ol>
+<li>new、alloc、copy、mutableCopy，这几种方法用来创建一个新的对象并且获得对象的所有权，此时RC的值默认为RetainCount=1；</li>
+<li>retain,对象调用retain方法，该对象的RetainCount+1;</li>
+<li>release，对象调用 release方法，该对象的RetainCount-1;</li>
+<li>dealloc，dealloc方法并不会影响RetainCount的值，但是当RetainCount的值为0时，系统会调用dealloc方法来销毁对象。</li>
+</ol>
+<p>在MRC模式下，如果一个对象被释放，它的RetainCount并不是立即变为0的<br>例如：<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">- (<span class="built_in">BOOL</span>)application:(<span class="built_in">UIApplication</span> *)application didFinishLaunchingWithOptions:(<span class="built_in">NSDictionary</span> *)launchOptions</div><div class="line">&#123;</div><div class="line">    <span class="built_in">NSObject</span> *object = [[<span class="built_in">NSObject</span> alloc] init];</div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"Reference Count = %u"</span>, [object retainCount]);</div><div class="line">    [object release];</div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"Reference Count = %u"</span>, [object retainCount]);</div><div class="line">    <span class="keyword">return</span> <span class="literal">YES</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>输出结果：<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Reference Count = <span class="number">1</span></div><div class="line">Reference Count = <span class="number">1</span></div></pre></td></tr></table></figure></p>
+<p>我们注意到，最后一次输出，引用计数并没有变成 0。这是为什么呢？因为该对象的内存已经被回收，而我们向一个已经被回收的对象发了一个 retainCount 消息，所以它的输出结果应该是不确定的，如果该对象所占的内存被复用了，那么就有可能造成程序异常崩溃。<br>那为什么在这个对象被回收之后，这个不确定的值是 1 而不是 0 呢？这是因为当最后一次执行 release 时，系统知道马上就要回收内存了，就没有必要再将 retainCount 减 1 了，因为不管减不减 1，该对象都肯定会被回收，而对象被回收后，它的所有的内存区域，包括 retainCount 值也变得没有意义。不将这个值从 1 变成 0，可以减少一次内存的写操作，加速对象的回收。</p>
+<p>MRC下内存管理有是个法则</p>
+<ul>
+<li>自己生成的对象，自己持有。</li>
+<li>非自己生成的对象，自己也能持有。</li>
+<li>不在需要自己持有对象的时候，释放。</li>
+<li>非自己持有的对象无需释放。</li>
+</ul>
+<h2 id="ARC"><a href="#ARC" class="headerlink" title="ARC"></a>ARC</h2><p>ARC 是苹果引入的一种自动内存管理机制，会根据引用计数自动监视对象的生存周期，实现方式是在编译时期自动在已有代码中插入合适的内存管理代码以及在 Runtime 做一些优化。</p>
+<p>ARC模式下，创建的新对象通常由以下几种关键字来限定</p>
+<ol>
+<li><strong>strong(默认值)，由</strong>strong修饰的为强指针，对象只要有强指针指向就不会被销毁；每当一个强指针指向一个对象，该对象的的RC+1；</li>
+<li><strong>weak,由</strong>weak修饰的为弱指针，弱指针所指向的对象并不会改变RC值，弱指针只表示是对对象的引用；当弱指针所指向的对象销毁时，该弱指针的值变为nil；</li>
+<li><strong>unsafe_unretained,</strong>unsafe_unretained修饰的对象指针所指向的对象也不会改变RC值，也只表示是对对象的引用；当所指向的对象销毁时，该指针的值不会变为nil，仍是保留原有的地址</li>
+</ol>
+<p>在ARC模式下，MRC中的retain、release等方法变的不可用，因为ARC是不需要我们手动管理内存的，一切由编译器完成。</p>
+<p>ARC虽然是自动管理引用计数，但是如果使用不当也会造成内存泄漏。<br>ARC下有以下几个内存泄漏的点：</p>
+<ul>
+<li><strong>Delegate</strong></li>
+<li><strong>Block</strong></li>
+<li><strong>NSTimer</strong></li>
+<li><strong>CoreFundation/CoreGraphics</strong></li>
+<li><strong>performSelector</strong></li>
+</ul>
+<p>Xcode 的 Instruments 工具集可以很方便的检测循环引用</p>
+<h2 id="属性关键字"><a href="#属性关键字" class="headerlink" title="属性关键字"></a>属性关键字</h2><p><strong>strong ：</strong>强引用，ARC中使用，与MRC中retain类似，使用之后，计数器+1。<br><strong>weak ：</strong>弱引用 ，ARC中使用，如果只想的对象被释放了，其指向nil，可以有效的避免野指针，其引用计数为1。<br><strong>readwrite : </strong>可读可写特性，需要生成getter方法和setter方法时使用。<br><strong>readonly : </strong>只读特性，只会生成getter方法 不会生成setter方法，不希望属性在类外改变。<br><strong>assign ：</strong>赋值特性，不涉及引用计数，弱引用，setter方法将传入参数赋值给实例变量，仅设置变量时使用。<br><strong>retain ：</strong>表示持有特性，setter方法将传入参数先保留，再赋值，传入参数的retaincount会+1。<br><strong>copy ：</strong>表示拷贝特性，setter方法将传入对象复制一份，需要完全一份新的变量时。<br><strong>nonatomic ：</strong>非原子操作，不加同步，多线程访问可提高性能，但是线程不安全的。决定编译器生成的setter getter是否是原子操作。<br><strong>atomic ：</strong>原子操作，同步的，表示多线程安全，与nonatomic相反。</p>
+<p>ARC下默认关键字</p>
+<ul>
+<li>对应基本数据类型默认关键字是<br><strong>atomic,readwrite,assign</strong></li>
+<li>对于普通的 Objective-C 对象<br><strong>atomic,readwrite,strong</strong></li>
+</ul>
+<p>既然说到了@property就说说@synthesize和@dynamic</p>
+<p>@property有两个对应的词，一个是 <strong>@synthesize</strong>，一个是 <strong>@dynamic</strong>。如果 @synthesize和 @dynamic都没写，那么默认的就是@syntheszie var = _var;</p>
+<p><strong>@synthesize</strong> 的语义是如果你没有手动实现 setter 方法和 getter 方法，那么编译器会自动为你加上这两个方法。</p>
+<p><strong>@dynamic</strong> 告诉编译器：属性的 setter 与 getter 方法由用户自己实现，不自动生成。（当然对于 readonly 的属性只需提供 getter 即可）。假如一个属性被声明为 @dynamic var，然后你没有提供 @setter方法和 @getter 方法，编译的时候没问题，但是当程序运行到 instance.var = someVar，由于缺 setter 方法会导致程序崩溃；或者当运行到 someVar = var 时，由于缺 getter 方法同样会导致崩溃。编译时没问题，运行时才执行相应的方法，这就是所谓的动态绑定。</p>
+<h2 id="ARC和MRC混编"><a href="#ARC和MRC混编" class="headerlink" title="ARC和MRC混编"></a>ARC和MRC混编</h2><ol>
+<li><p>在targets的build phases选项下Compile Sources下选择，不使用arc编译的文件，双击它，输入 -fno-objc-arc 即可（这个类就可以使用MRC模式）</p>
+</li>
+<li><p>MRC工程中也可以使用ARC的类。方法如下：<br>在targets的build phases选项下Compile Sources下选择要使用arc编译的文件，双击它，输入 -fobjc-arc 即可</p>
+</li>
+</ol>
+<h2 id="Autorelease-Pool"><a href="#Autorelease-Pool" class="headerlink" title="Autorelease Pool"></a>Autorelease Pool</h2><p>Autorelase Pool 提供了一种可以允许你向一个对象延迟发送release消息的机制。当你想放弃一个对象的所有权，同时又不希望这个对象立即被释放掉（例如在一个方法中返回一个对象时），Autorelease Pool 的作用就显现出来了。<br>谓的延迟发送release消息指的是，当我们把一个对象标记为autorelease时.这个对象的 retainCount 会+1，但是并不会发生 release。当这段语句所处的 autoreleasepool 进行 drain 操作时，所有标记了 autorelease 的对象的 retainCount 会被 -1。即 release 消息的发送被延迟到 pool 释放的时候了。<br>在ARC 环境下，苹果引入了 @autoreleasepool 语法，不再需要手动调用 autorelease 和 drain 等方法</p>
+<p>autoreleasepool 以一个队列数组的形式实现,主要通过下列三个函数完成.</p>
+<ul>
+<li>objc_autoreleasepoolPush</li>
+<li>objc_autoreleasepoolPop</li>
+<li>objc_autorelease<br>看函数名就可以知道，对 autorelease 分别执行 push，和 pop 操作。销毁对象时执行release操作。</li>
+</ul>
+<h4 id="Autorelease-Pool-的用处"><a href="#Autorelease-Pool-的用处" class="headerlink" title="Autorelease Pool 的用处"></a>Autorelease Pool 的用处</h4><p>在 ARC 下，我们并不需要手动调用 autorelease 有关的方法，甚至可以完全不知道 autorelease 的存在，就可以正确管理好内存。因为 Cocoa Touch 的 Runloop 中，每个 runloop circle 中系统都自动加入了 Autorelease Pool 的创建和释放。</p>
+<p>当我们需要创建和销毁大量的对象时，使用手动创建的 autoreleasepool 可以有效的避免内存峰值的出现。因为如果不手动创建的话，外层系统创建的 pool 会在整个 runloop circle 结束之后才进行 drain，手动创建的话，会在 block 结束之后就进行 drain 操作。详情请参考苹果官方文档。一个普遍被使用的例子如下</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">100000000</span>; i++)</div><div class="line">&#123;</div><div class="line">    <span class="keyword">@autoreleasepool</span></div><div class="line">    &#123;</div><div class="line">        <span class="built_in">NSString</span>* string = <span class="string">@"ab c"</span>;</div><div class="line">        <span class="built_in">NSArray</span>* array = [string componentsSeparatedByString:string];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>如果不使用 autoreleasepool ，需要在循环结束之后释放 100000000 个字符串，如果 使用的话，则会在每次循环结束的时候都进行 release 操作。</p>
+<h4 id="main-m-中-Autorelease-Pool-的解释"><a href="#main-m-中-Autorelease-Pool-的解释" class="headerlink" title="main.m 中 Autorelease Pool 的解释"></a>main.m 中 Autorelease Pool 的解释</h4><p>大家都知道在 iOS 程序的 main.m 文件中有类似这样的语句：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">char</span> * argv[]) &#123;</div><div class="line">    <span class="keyword">@autoreleasepool</span> &#123;</div><div class="line">        <span class="keyword">return</span> <span class="built_in">UIApplicationMain</span>(argc, argv, <span class="literal">nil</span>, <span class="built_in">NSStringFromClass</span>([AppDelegate <span class="keyword">class</span>]));</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>根据苹果官方文档， UIApplicationMain 函数是整个 app 的入口，用来创建 application 对象（单例）和 application delegate。尽管这个函数有返回值，但是实际上却永远不会返回，当按下 Home 键时，app 只是被切换到了后台状态。</p>
+<p>同时参考苹果关于 Lifecycle 的官方文档，UIApplication 自己会创建一个 main run loop，我们大致可以得到下面的结论：</p>
+<ol>
+<li>main.m 中的 UIApplicationMain 永远不会返回，只有在系统 kill 掉整个 app 时，系统会把应用占用的内存全部释放出来。</li>
+<li>因为(1)， UIApplicationMain 永远不会返回，这里的 autorelease pool 也就永远不会进入到释放那个阶段</li>
+<li>在 (2) 的基础上，假设有些变量真的进入了 main.m 里面这个 pool（没有被更内层的 pool 捕获），那么这些变量实际上就是被泄露的。这个 autorelease pool 等于是把这种泄露情况给隐藏起来了。</li>
+<li>UIApplication 自己会创建 main run loop，在 Cocoa 的 runloop 中实际上也是自动包含 autorelease pool 的，因此 main.m 当中的 pool 可以认为是没有必要的</li>
+</ol>
+<p>基于 AppKit 框架的 Mac OS 开发中， main.m 当中就是不存在 autorelease pool 的，也进一步验证了我们得到的结论。不过因为我们看不到更底层的代码，加上苹果的文档中不建议修改 main.m ，所以我们也没有理由就直接把它删掉（亲测，删掉之后不影响 App 运行，用 Instruments 也看不到泄露）。</p>
+<p>以上就是对内存管理的一些总结。</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="http://blog.devtang.com/2016/07/30/ios-memory-management/" target="_blank" rel="external">理解 iOS 的内存管理</a><br><a href="https://hit-alibaba.github.io/interview/iOS/ObjC-Basic/MM.html" target="_blank" rel="external">Objective-C内存管理</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag">#iOS</a>
+          
+            <a href="/tags/ARC/" rel="tag">#ARC</a>
+          
+            <a href="/tags/MRC/" rel="tag">#MRC</a>
+          
+            <a href="/tags/内存管理/" rel="tag">#内存管理</a>
+          
+            <a href="/tags/引用计数/" rel="tag">#引用计数</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/08/markdown-writing/" rel="next" title="Markdown语法格式指南">
+                <i class="fa fa-chevron-left"></i> Markdown语法格式指南
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/08/iOS-load-initialize/" rel="prev" title="iOS中的+load和+initialize">
+                iOS中的+load和+initialize <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/avatar.jpg"
+               alt="Leroy" />
+          <p class="site-author-name" itemprop="name">Leroy</p>
+          <p class="site-description motion-element" itemprop="description">iOS Coder</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">24</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">62</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/leroyli/leroyli.github.io" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://twitter.com/leroy0205lyz" target="_blank" title="Twitter">
+                  
+                    <i class="fa fa-fw fa-twitter"></i>
+                  
+                  Twitter
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.jianshu.com/users/0dd40fb19c90/latest_articles" target="_blank" title="Jianshu">
+                  
+                    <i class="fa fa-fw fa-heartbeat"></i>
+                  
+                  Jianshu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iOS内存分区"><span class="nav-number">2.</span> <span class="nav-text">iOS内存分区</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#引用计数"><span class="nav-number">3.</span> <span class="nav-text">引用计数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MRC"><span class="nav-number">4.</span> <span class="nav-text">MRC</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ARC"><span class="nav-number">5.</span> <span class="nav-text">ARC</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#属性关键字"><span class="nav-number">6.</span> <span class="nav-text">属性关键字</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ARC和MRC混编"><span class="nav-number">7.</span> <span class="nav-text">ARC和MRC混编</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Autorelease-Pool"><span class="nav-number">8.</span> <span class="nav-text">Autorelease Pool</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Autorelease-Pool-的用处"><span class="nav-number">8.0.1.</span> <span class="nav-text">Autorelease Pool 的用处</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#main-m-中-Autorelease-Pool-的解释"><span class="nav-number">8.0.2.</span> <span class="nav-text">main.m 中 Autorelease Pool 的解释</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number"></span> <span class="nav-text">参考</span></a></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Leroy</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<span id="busuanzi_container_site_pv">
+    &nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;总访问量: <span id="busuanzi_value_site_pv"></span>
+</span>
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+
+
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'leroyli';
+      var disqus_identifier = '2016/11/08/iOS-ARC-MRC/';
+      var disqus_title = "iOS内存管理";
+      var disqus_url = 'http://yoursite.com/2016/11/08/iOS-ARC-MRC/';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        var disqus_config = function () {
+            this.page.url = disqus_url;
+            this.page.identifier = disqus_identifier;
+            this.page.title = disqus_title;
+        };
+        run_disqus_script('embed.js');
+      
+    </script>
+  
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = false;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = decodeURIComponent(data.url);
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title >= 0 || index_content >= 0 ){
+                                isMatch = true;
+								if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            } 
+							
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("N2uOaAxOAgEj9jEQ93KMSujD-gzGzoHsz", "GcAlpiVkep6d8nmS2lx43qMM");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+
+</body>
+</html>
