@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="iOS,逆向,lldb,动态调试," />
 
 
 
@@ -84,15 +84,20 @@
 
 
 
-<meta name="description" content="iOS Coder">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Leroy Blog">
-<meta property="og:url" content="http://yoursite.com/archives/2016/11/page/3/index.html">
+<meta name="description" content="前言使用 lldb 调试需要准备 debugserver。使用 OSX 中的 lldb 远程连接 iOS 上的 debugserver，由 debugserver 作为 lldb 和 iOS 的中转，执行命令和返回结果。在默认情况下，iOS 上并没有安装 debugserver，只有在设备连接过一次 Xcode，安装了开发者插件后，debugserver 才会被 Xcode 安装到iOS的/Dev">
+<meta name="keywords" content="iOS,逆向,lldb,动态调试">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS逆向 lldb动态调试">
+<meta property="og:url" content="http://yoursite.com/2020/03/04/iOSRE-lldb/index.html">
 <meta property="og:site_name" content="Leroy Blog">
-<meta property="og:description" content="iOS Coder">
+<meta property="og:description" content="前言使用 lldb 调试需要准备 debugserver。使用 OSX 中的 lldb 远程连接 iOS 上的 debugserver，由 debugserver 作为 lldb 和 iOS 的中转，执行命令和返回结果。在默认情况下，iOS 上并没有安装 debugserver，只有在设备连接过一次 Xcode，安装了开发者插件后，debugserver 才会被 Xcode 安装到iOS的/Dev">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1719830-224868d2558f8c51.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1719830-c815d58a9d2f4685.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2020-03-04T07:00:32.990Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Leroy Blog">
-<meta name="twitter:description" content="iOS Coder">
+<meta name="twitter:title" content="iOS逆向 lldb动态调试">
+<meta name="twitter:description" content="前言使用 lldb 调试需要准备 debugserver。使用 OSX 中的 lldb 远程连接 iOS 上的 debugserver，由 debugserver 作为 lldb 和 iOS 的中转，执行命令和返回结果。在默认情况下，iOS 上并没有安装 debugserver，只有在设备连接过一次 Xcode，安装了开发者插件后，debugserver 才会被 Xcode 安装到iOS的/Dev">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/1719830-224868d2558f8c51.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -113,10 +118,10 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/2016/11/page/3/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/03/04/iOSRE-lldb/"/>
 
 
-  <title> 归档 | Leroy Blog </title>
+  <title> iOS逆向 lldb动态调试 | Leroy Blog </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -156,7 +161,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  page-archive  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
@@ -267,218 +272,204 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <span class="archive-move-on"></span>
-
-    <span class="archive-page-counter">
-      
-      
-      
-        
-      
-      嗯..! 目前共计 30 篇日志。 继续努力。
-    </span>
-
+  <div id="posts" class="posts-expand">
     
-
-      
-      
-      
-
-      
-        
-        <div class="collection-title">
-          <h2 class="archive-year motion-element" id="archive-year-2016">2016</h2>
-        </div>
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="//schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/11/07/CocoaPods-Use/" itemprop="url">
-              
-                <span itemprop="name">CocoaPods的安装和使用</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-11-07T14:08:43+08:00"
-              content="2016-11-07" >
-          11-07
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="//schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/11/07/hexo-more-PC/" itemprop="url">
-              
-                <span itemprop="name">在不同电脑上进行Hexo写作与同步</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-11-07T11:18:05+08:00"
-              content="2016-11-07" >
-          11-07
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="//schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/11/07/Hexo-GitHub-Pages/" itemprop="url">
-              
-                <span itemprop="name">使用Hexo+GitHub Pages搭建个人博客</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-11-07T09:02:14+08:00"
-              content="2016-11-07" >
-          11-07
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="//schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/11/07/github-ssh-key/" itemprop="url">
-              
-                <span itemprop="name">GitHub配置SSH Key</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-11-07T07:47:02+08:00"
-              content="2016-11-07" >
-          11-07
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="//schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/11/06/iOS-UIviewController/" itemprop="url">
-              
-                <span itemprop="name">iOS UIviewController控制器管理</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-11-06T18:25:16+08:00"
-              content="2016-11-06" >
-          11-06
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-  </section>
 
   
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/archives/2016/11/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/archives/2016/11/">1</a><a class="page-number" href="/archives/2016/11/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/archives/2016/11/page/4/">4</a><a class="extend next" rel="next" href="/archives/2016/11/page/4/"><i class="fa fa-angle-right"></i></a>
-  </nav>
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                iOS逆向 lldb动态调试
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2020-03-04T14:58:02+08:00" content="2020-03-04">
+              2020-03-04
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2020/03/04/iOSRE-lldb/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/03/04/iOSRE-lldb/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2020/03/04/iOSRE-lldb/" class="leancloud_visitors" data-flag-title="iOS逆向 lldb动态调试">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
 
 
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>使用 lldb 调试需要准备 debugserver。使用 OSX 中的 lldb 远程连接 iOS 上的 debugserver，由 debugserver 作为 lldb 和 iOS 的中转，执行命令和返回结果。在默认情况下，iOS 上并没有安装 debugserver，只有在设备连接过一次 Xcode，安装了开发者插件后，debugserver 才会被 Xcode 安装到iOS的/Developer/usr/bin/目录下。</p>
+<a id="more"></a>
+<h3 id="重签名debugserver"><a href="#重签名debugserver" class="headerlink" title="重签名debugserver"></a>重签名debugserver</h3><p>在 iOS 11 越狱之前，需要对 debugserver 进行重签名，在 iOS 11 上可以直接使用/Developer/usr/bin/debugserver，或者直接用 Xcode 对 iOS 上的 app 进行调试。iOS 11 之前用 Xcode 调试需要对 app 进行重签名，而 iOS 11 之后不需要重签名 app 也能调试了。</p>
+<p>iOS 11 之前重签名 debugserver 步骤：</p>
+<p>1.拷贝 debugserver 到本地计算机中：<code>scp root@iOSDeviceIP:/Developer/usr/bin/debugserver ~/debugserver</code>。</p>
+<p>2.然后用 ldid 添加权限。由于 ldid 不支持 fat 二进制文件，所以要给 debugserver 瘦身，通过 lipo 指定要支持的指令类型，例如：<code>lipo -thin arm64 ~/debugserver -output ~/debugserver</code>。</p>
+<p>3.给 debugserver 添加 task_for_pid 权限，保存以下内容为 ent.xml 文件：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">plist</span> <span class="attr">version</span>=<span class="string">"1.0"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">dict</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">key</span>&gt;</span>com.apple.springboard.debugapplications<span class="tag">&lt;/<span class="name">key</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">true</span>/&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">key</span>&gt;</span>get-task-allow<span class="tag">&lt;/<span class="name">key</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">true</span>/&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">key</span>&gt;</span>task_for_pid-allow<span class="tag">&lt;/<span class="name">key</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">true</span>/&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">key</span>&gt;</span>run-unsigned-code<span class="tag">&lt;/<span class="name">key</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">true</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dict</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">plist</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>复制代码<br>然后执行以下命令添加权限：<code>ldid -Sent.xml debugserver</code></p>
+<p>4.给 debugserver 重新签名，保存以下内容为 entitlements.plist 文件：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="php"><span class="meta">&lt;?</span>xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span><span class="meta">?&gt;</span></span></div><div class="line"> <span class="meta">&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/ PropertyList-1.0.dtd"&gt;</span></div><div class="line"> <span class="tag">&lt;<span class="name">plist</span> <span class="attr">version</span>=<span class="string">"1.0"</span>&gt;</span></div><div class="line"> <span class="tag">&lt;<span class="name">dict</span>&gt;</span></div><div class="line"> <span class="tag">&lt;<span class="name">key</span>&gt;</span>com.apple.springboard.debugapplications<span class="tag">&lt;/<span class="name">key</span>&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">true</span>/&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">key</span>&gt;</span>run-unsigned-code<span class="tag">&lt;/<span class="name">key</span>&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">true</span>/&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">key</span>&gt;</span>get-task-allow<span class="tag">&lt;/<span class="name">key</span>&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">true</span>/&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">key</span>&gt;</span>task_for_pid-allow<span class="tag">&lt;/<span class="name">key</span>&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">true</span>/&gt;</span></div><div class="line"> <span class="tag">&lt;/<span class="name">dict</span>&gt;</span> </div><div class="line"> <span class="tag">&lt;/<span class="name">plist</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>复制代码<br>然后运行以下命令给的 debugserver 签名：<code>codesign -s - --entitlements entitlements.plist -f debugserver</code></p>
+<p>5.重新拷贝 debugserver 回手机中：<code>scp ~/debugserver root@iOSDeviceIP:/usr/bin/debugserver</code></p>
+<p>6.第一次使用 debugserver 时需要为其添加可执行权限：<code>chmod +x /usr/bin/debugserver</code></p>
+<h3 id="lldb调试"><a href="#lldb调试" class="headerlink" title="lldb调试"></a>lldb调试</h3><p>准备好 debugserver 后，就可以调试任意第三方 app 了。</p>
+<ol>
+<li><p>SSH 到 iOS，使用 debugserver 来 attach 一个进程，要查看当前正在运行的进程，使用<code>ps -e</code>命令。比如我们要 attach 的进程号为 693，我们可以输入如下命令：<code>debugserver *:1234 -a 693</code></p>
+</li>
+<li><p>iOS 11 上<code>debugserver *:1234</code>中的<code>*:1234</code>要替换成<code>localhost:1234</code>。如果用的是 Electra 越狱，命令变成<code>/Developer/usr/bin/debugserver localhost:1234 -a 693</code>，如果用的是<a href="https://www.abcydia.com/read-16031.html" target="_blank" rel="external">unc0ver</a>越狱，则是<code>debugserver localhost:1234 -a 693</code>。同理，下文中的对应命令也要相应的替换</p>
+</li>
+<li><p>如果要用 debugserver 启动 app，而不是附加到已经启动的 app，则使用<code>debugserver *:1234 &lt;app二进制文件路径&gt;</code>，例如<code>debugserver *:1234 /var/containers/Bundle/Application/107F3307-2900-4720-B9BA-0C7792D89DF2/APP_TO_DEBUG.app/APP_TO_DEBUG</code></p>
+</li>
+<li><p>Mac 端打开终端，输入 lldb，回车，进入 lldb 界面，使用<code>process connect</code>命令连接客户端。 用 WiFi 连接到 iOS 设备时：<code>process connect connect://iOSDeviceIP:1234</code>。</p>
+</li>
+</ol>
+<p>如果要用 usbmux 连接，则先使用<code>iproxy 1234 1234</code>进行一次端口转发，再使用<code>process connect connect://localhost:1234</code>，即可用 USB 连接到 iOS 设备。</p>
+<p>回车后需要等待几分钟，时间有点久。</p>
+<p>连接成功后，即可用 lldb 命令进行调试。</p>
+<p><strong>SSH链接</strong></p>
+<p><code>iproxy 2222 22</code>  端口转发</p>
+<p>ssh -p 2222 <a href="mailto:root@127.0.0.1" target="_blank" rel="external">root@127.0.0.1</a>   连接设备</p>
+<p><strong>找到要调试的进程进行调试</strong></p>
+<p><code>ps -e</code>   查看进程</p>
+<p><code>debugserver 127.0.0.1:1234 -a 693</code>   attach进程</p>
+<p><code>iproxy 1234 1234</code>进行一次端口转发</p>
+<p><code>process connect connect://127.0.0.1:1234</code>  在lldb里执行</p>
+<p>下图是调试微信的例子，lldb附加成功之后就可以根据地址使用<code>b</code>(地址加到b指令之后)指令下断点，地址可以根据hopper分析获取<br><img src="https://upload-images.jianshu.io/upload_images/1719830-224868d2558f8c51.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="截屏2020-03-04下午2.32.14.png"></p>
+<p>下图是使用hopper分析喜马拉雅播放方法的地址，然后使用lldb下断点<br><img src="https://upload-images.jianshu.io/upload_images/1719830-c815d58a9d2f4685.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<h3 id="lldb常用命令"><a href="#lldb常用命令" class="headerlink" title="lldb常用命令"></a>lldb常用命令</h3><p>列出所有断点：<code>breakpoint list, br li</code><br>打开、关闭某个断点：<code>breakpoint enable, breakpoint disable, br dis, br del</code><br>打印参数：<code>frame variable, fr v</code><br>打印方法名和行数：<code>frame info</code><br>打印寄存器的值：<code>register read</code><br>修改寄存器的值：<code>register write rax 123</code><br>列出文件加载基地址：<code>image list</code><br>执行地址的加减运算：<code>p/x</code></p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="[https://juejin.im/post/5d2b7d3f6fb9a07ebb0562d6](https://juejin.im/post/5d2b7d3f6fb9a07ebb0562d6">iOS 逆向指南：动态分析</a><br>)</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag">#iOS</a>
+          
+            <a href="/tags/逆向/" rel="tag">#逆向</a>
+          
+            <a href="/tags/lldb/" rel="tag">#lldb</a>
+          
+            <a href="/tags/动态调试/" rel="tag">#动态调试</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/03/04/iOS-VM-Region/" rel="next" title="iOS 虚拟内存">
+                <i class="fa fa-chevron-left"></i> iOS 虚拟内存
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
 
 
           </div>
@@ -486,6 +477,17 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -505,8 +507,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/avatar.jpg"
@@ -585,6 +596,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重签名debugserver"><span class="nav-number">2.</span> <span class="nav-text">重签名debugserver</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lldb调试"><span class="nav-number">3.</span> <span class="nav-text">lldb调试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lldb常用命令"><span class="nav-number">4.</span> <span class="nav-text">lldb常用命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -692,11 +714,9 @@
 
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
 
 
   
@@ -714,9 +734,9 @@
 
     <script type="text/javascript">
       var disqus_shortname = 'leroyli';
-      var disqus_identifier = 'archives/2016/11/page/3/index.html';
-      var disqus_title = "";
-      var disqus_url = '';
+      var disqus_identifier = '2020/03/04/iOSRE-lldb/';
+      var disqus_title = "iOS逆向 lldb动态调试";
+      var disqus_url = 'http://yoursite.com/2020/03/04/iOSRE-lldb/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
@@ -727,6 +747,13 @@
       }
 
       run_disqus_script('count.js');
+      
+        var disqus_config = function () {
+            this.page.url = disqus_url;
+            this.page.identifier = disqus_identifier;
+            this.page.title = disqus_title;
+        };
+        run_disqus_script('embed.js');
       
     </script>
   
