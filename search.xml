@@ -29,7 +29,7 @@
 <h3 id="越狱设备Reveal2Loader"><a href="#越狱设备Reveal2Loader" class="headerlink" title="越狱设备Reveal2Loader"></a>越狱设备Reveal2Loader</h3><p>通过Cydia安装Reveal2Loader<br><img src="https://upload-images.jianshu.io/upload_images/1719830-584dfd30a8aaca75.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="WechatIMG52.jpeg"><br>安装之后可以设置对哪个APP开启reveal调试<br><img src="https://upload-images.jianshu.io/upload_images/1719830-8a9b11e9962be8b8.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="WechatIMG54.jpeg"><br><img src="https://upload-images.jianshu.io/upload_images/1719830-131b78c1f0ca9166.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="WechatIMG53.jpeg"></p>
 <p>开启某个APP后要重启springboard</p>
 <h3 id="Mac安装Reveal"><a href="#Mac安装Reveal" class="headerlink" title="Mac安装Reveal"></a>Mac安装Reveal</h3><p>去<a href="[https://revealapp.com/](https://revealapp.com/">Reveal</a>官网下载。可以填写邮件获得14天的试用</p>
-<h3 id="复制Mac上framework到越狱设备"><a href="#复制Mac上framework到越狱设备" class="headerlink" title="复制Mac上framework到越狱设备"></a>复制Mac上framework到越狱设备</h3><p>执行<code>scp -r /Users/[your directory]/Library/Application\ Support/Reveal/RevealServer/iOS/RevealServer.framework root@172.20.10.10:/Library/Frameworks</code>命令把Mac上的reveal framework复制到越狱设备</p>
+<h3 id="复制Mac上framework到越狱设备"><a href="#复制Mac上framework到越狱设备" class="headerlink" title="复制Mac上framework到越狱设备"></a>复制Mac上framework到越狱设备</h3><p>执行<code>scp -r /Users/[your dir]/Library/Application\ Support/Reveal/RevealServer/iOS/RevealServer.framework root@172.20.10.10:/Library/Frameworks</code>命令把Mac上的reveal framework复制到越狱设备</p>
 <p>然后就可以调试目标APP了，下图是微信的UI界面<br><img src="https://upload-images.jianshu.io/upload_images/1719830-bf9a78da03a9b81c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="截屏2020-03-04下午4.02.43.png"></p>
 ]]></content>
       <tags>
@@ -56,7 +56,7 @@
 <p>6.第一次使用debugserver时需要为其添加可执行权限：<code>chmod +x /usr/bin/debugserver</code></p>
 <h3 id="lldb调试"><a href="#lldb调试" class="headerlink" title="lldb调试"></a>lldb调试</h3><p>准备好debugserver后，就可以调试任意第三方app了。</p>
 <ol>
-<li><p>SSH到iOS，使用debugserver来attach 一个进程，要查看当前正在运行的进程，使用<code>ps -e</code>命令。比如我们要attach的进程号为 693，我们可以输入如下命令：<code>debugserver *:1234 -a 693</code></p>
+<li><p>SSH到iOS，使用debugserver来attach一个进程，要查看当前正在运行的进程，使用<strong>ps -e</strong>命令。比如我们要attach的进程号为 693，我们可以输入如下命令：<code>debugserver *:1234 -a 693</code></p>
 </li>
 <li><p>iOS11上<code>debugserver *:1234</code>中的<code>*:1234</code>要替换成<code>localhost:1234</code>。如果用的是Electra越狱，命令变成<code>/Developer/usr/bin/debugserver localhost:1234 -a 693</code>，如果用的是<a href="https://www.abcydia.com/read-16031.html" target="_blank" rel="noopener">unc0ver</a>越狱，则是<code>debugserver localhost:1234 -a 693</code>。同理，下文中的对应命令也要相应的替换</p>
 </li>
@@ -70,7 +70,7 @@
 <p>连接成功后，即可用lldb命令进行调试。</p>
 <p><strong>SSH链接</strong></p>
 <p><code>iproxy 2222 22</code>  端口转发</p>
-<p>ssh -p 2222 <a href="mailto:root@127.0.0.1" target="_blank" rel="noopener">root@127.0.0.1</a>   连接设备</p>
+<p><code>ssh -p 2222 root@127.0.0.1</code>   连接设备</p>
 <p><strong>找到要调试的进程进行调试</strong></p>
 <p><code>ps -e</code>   查看进程</p>
 <p><code>debugserver 127.0.0.1:1234 -a 693</code>   attach进程</p>
@@ -79,7 +79,7 @@
 <p>下图是调试微信的例子，lldb附加成功之后就可以根据地址使用<code>b</code>(地址加到b指令之后)指令下断点，地址可以根据hopper分析获取<br><img src="https://upload-images.jianshu.io/upload_images/1719830-224868d2558f8c51.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="截屏2020-03-04下午2.32.14.png"></p>
 <p>下图是使用hopper分析喜马拉雅播放方法的地址，然后使用lldb下断点<br><img src="https://upload-images.jianshu.io/upload_images/1719830-c815d58a9d2f4685.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
 <h3 id="lldb常用命令"><a href="#lldb常用命令" class="headerlink" title="lldb常用命令"></a>lldb常用命令</h3><p>列出所有断点：<code>breakpoint list, br li</code><br>打开、关闭某个断点：<code>breakpoint enable, breakpoint disable, br dis, br del</code><br>打印参数：<code>frame variable, fr v</code><br>打印方法名和行数：<code>frame info</code><br>打印寄存器的值：<code>register read</code><br>修改寄存器的值：<code>register write rax 123</code><br>列出文件加载基地址：<code>image list</code><br>执行地址的加减运算：<code>p/x</code></p>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="[https://juejin.im/post/5d2b7d3f6fb9a07ebb0562d6](https://juejin.im/post/5d2b7d3f6fb9a07ebb0562d6">iOS 逆向指南：动态分析</a><br>)</p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="[https://juejin.im/post/5d2b7d3f6fb9a07ebb0562d6](https://juejin.im/post/5d2b7d3f6fb9a07ebb0562d6">iOS 逆向指南：动态分析</a></p>
 ]]></content>
       <tags>
         <tag>iOS</tag>
