@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="iOS,逆向," />
 
 
 
@@ -84,15 +84,17 @@
 
 
 
-<meta name="description" content="iOS Coder">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Leroy Blog">
-<meta property="og:url" content="http://yoursite.com/tags/博客同步/index.html">
+<meta name="description" content="前言本文主要对iOS逆向所需要的工具或者基础做一个大概的总结，如果有什么遗漏或者错误，欢迎读者指出。想要进行逆向开发，首先就是要对APP进行砸壳，砸壳又需要越狱，当然也可以直接去一些平台下载砸壳后的APP进行逆向，砸壳后就需要对APP进行静态分析和动态分析，用reveal查看视图结构，用hopper查看汇编信息等等。">
+<meta name="keywords" content="iOS,逆向">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS 逆向学习">
+<meta property="og:url" content="http://yoursite.com/2020/03/04/iOS-逆向学习/index.html">
 <meta property="og:site_name" content="Leroy Blog">
-<meta property="og:description" content="iOS Coder">
+<meta property="og:description" content="前言本文主要对iOS逆向所需要的工具或者基础做一个大概的总结，如果有什么遗漏或者错误，欢迎读者指出。想要进行逆向开发，首先就是要对APP进行砸壳，砸壳又需要越狱，当然也可以直接去一些平台下载砸壳后的APP进行逆向，砸壳后就需要对APP进行静态分析和动态分析，用reveal查看视图结构，用hopper查看汇编信息等等。">
+<meta property="og:updated_time" content="2020-03-04T06:06:21.476Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Leroy Blog">
-<meta name="twitter:description" content="iOS Coder">
+<meta name="twitter:title" content="iOS 逆向学习">
+<meta name="twitter:description" content="前言本文主要对iOS逆向所需要的工具或者基础做一个大概的总结，如果有什么遗漏或者错误，欢迎读者指出。想要进行逆向开发，首先就是要对APP进行砸壳，砸壳又需要越狱，当然也可以直接去一些平台下载砸壳后的APP进行逆向，砸壳后就需要对APP进行静态分析和动态分析，用reveal查看视图结构，用hopper查看汇编信息等等。">
 
 
 
@@ -113,10 +115,10 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/博客同步/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/03/04/iOS-逆向学习/"/>
 
 
-  <title> 标签: 博客同步 | Leroy Blog </title>
+  <title> iOS 逆向学习 | Leroy Blog </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -156,7 +158,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
@@ -267,46 +269,175 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        博客同步
-        <small>标签</small>
-      </h2>
-    </div>
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                iOS 逆向学习
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2020-03-04T14:05:26+08:00" content="2020-03-04">
+              2020-03-04
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2020/03/04/iOS-逆向学习/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/03/04/iOS-逆向学习/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2020/03/04/iOS-逆向学习/" class="leancloud_visitors" data-flag-title="iOS 逆向学习">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
       
 
-  <article class="post post-type-normal" itemscope itemtype="//schema.org/Article">
-    <header class="post-header">
+      
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>本文主要对iOS逆向所需要的工具或者基础做一个大概的总结，如果有什么遗漏或者错误，欢迎读者指出。<br>想要进行逆向开发，首先就是要对APP进行砸壳，砸壳又需要越狱，当然也可以直接去一些平台下载砸壳后的APP进行逆向，砸壳后就需要对APP进行静态分析和动态分析，用reveal查看视图结构，用hopper查看汇编信息等等。</p>
+<a id="more"></a>
+<h3 id="越狱"><a href="#越狱" class="headerlink" title="越狱"></a>越狱</h3><p>iOS12可用unc0ver进行越狱，至于其他iOS版本可自己查阅相关资料<br>iOS12越狱可参考<a href="https://zhuanlan.zhihu.com/p/58097735" target="_blank" rel="external">https://zhuanlan.zhihu.com/p/58097735</a><br>iOS13之后可使用<a href="https://checkra.in/" target="_blank" rel="external">checkra.in</a></p>
+<h3 id="SSH"><a href="#SSH" class="headerlink" title="SSH"></a>SSH</h3><p>越狱后可以安装<strong>OpenSSH</strong>和<strong>adv-cmds</strong>方便电脑远程连接手机<br><strong>WiFi连接：</strong><br>先确保手机和电脑通处于一个Wifi环境，在手机的网络设置里面找到当前的IP地址<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ssh root@<span class="number">127.0</span><span class="number">.2</span><span class="number">.3</span></div></pre></td></tr></table></figure></p>
+<p>root用户的默认密码为：<strong>alpine</strong>，登录成功后可执行 <strong>passwd</strong> 修改密码<br><strong>USB连接：</strong><br>手机先usb连接电脑<br>首先安装<strong>usbmuxd</strong><br><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ <span class="keyword">brew </span><span class="keyword">install </span>usbmuxd</div></pre></td></tr></table></figure></p>
+<p>然后进行端口映射<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ iproxy <span class="number">2222</span> <span class="number">22</span></div></pre></td></tr></table></figure></p>
+<p>把当前连接设备的22端口映射到电脑的2222端口上<br>最后进行连接<br><figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ssh -p <span class="number">2222</span> root@<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span></div></pre></td></tr></table></figure></p>
+<p><strong>免密登录：</strong><br>先查看本地(MAC)之前是否已经生成过RSA公私钥，直接进入目录.ssh下查看，如果其中有id_rsa和id_rsa.pub即代表已有，无需重新生成<br>如果没有，直接使用如下命令生成新的<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> ssh-keygen</span></div></pre></td></tr></table></figure></p>
+<p>接着会出现一些问题，全部留空，直接回车即可。之后就可以发现目录.ssh下有了id_rsa和id_rsa.pub了<br>然后就是将本地公钥发到iPhone端<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ssh-<span class="keyword">copy</span>-<span class="built_in">id</span> root@localhost -p <span class="number">2222</span></div></pre></td></tr></table></figure></p>
+<h3 id="砸壳"><a href="#砸壳" class="headerlink" title="砸壳"></a>砸壳</h3><p>Appstore下载的应用都是加密的，可以使用otool查看是否加密<br><strong>otool -l ting | grep crypt</strong><br>使用<a href="http://www.alonemonkey.com/" target="_blank" rel="external">monkeyDev</a>大神的<a href="https://github.com/AloneMonkey/frida-ios-dump" target="_blank" rel="external">frida-ios-dump</a>可以实现一键砸壳，非常方便，具体使用方法可参考GitHub</p>
+<h3 id="class-dump"><a href="#class-dump" class="headerlink" title="class-dump"></a>class-dump</h3><p>class-dump 是一个工具，它利用了 Objective-C 语言的运行时特性，将存储在 Mach-O 文件中的头文件信息提取出来，并生成对应的 .h 文件。<br>安装class-dump：<br>可以在其<a href="https://link.juejin.im/?target=http%3A%2F%2Fstevenygard.com%2Fprojects%2Fclass-dump%2F" target="_blank" rel="external">class-dump 官网</a>下载，将里面的 class-dump 直接放在/usr/local/bin 目录，并给个可执行权限即可 如果/usr/local/bin没有添加到PATH,请自行添加<br>class-dump使用：<br>把砸壳后的ipa文件解压得到payload文件夹。文件夹里面就是.app文件，终端cd到.app文件，然后执行class-dump的命令<br>$class-dump -H WeChat -o ~/Desktop/wechatHeader</p>
+<h3 id="hopper"><a href="#hopper" class="headerlink" title="hopper"></a>hopper</h3><p>把砸壳后的可执行文件拖到hopper里面就可以查看对应的汇编代码，可以根据汇编进行自己的逻辑验证</p>
+<h3 id="逆向调试"><a href="#逆向调试" class="headerlink" title="逆向调试"></a>逆向调试</h3><p>使用<a href="http://www.alonemonkey.com/" target="_blank" rel="external">monkeyDev</a>大神的<a href="http://www.alonemonkey.com/2017/07/12/monkeydev-without-jailbreak/" target="_blank" rel="external">无须越狱、自动集成、只需要一个砸壳的应用</a>可以调试砸壳后的应用</p>
 
-      <h1 class="post-title">
+      
+    </div>
+
+    <div>
+      
         
-            <a class="post-title-link" href="/2016/11/09/hexo-add-repo-more-PC/" itemprop="url">
-              
-                <span itemprop="name">用repository对hexo进行版本控制</span>
-              
-            </a>
+
+      
+    </div>
+
+    <div>
+      
         
-      </h1>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-11-09T08:35:52+08:00"
-              content="2016-11-09" >
-          11-09
-        </time>
-      </div>
+      
+    </div>
 
-    </header>
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag">#iOS</a>
+          
+            <a href="/tags/逆向/" rel="tag">#逆向</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/03/04/unc0ver/" rel="next" title="unc0ver越狱">
+                <i class="fa fa-chevron-left"></i> unc0ver越狱
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </article>
 
 
-    
-  </div>
 
-  
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
 
 
           </div>
@@ -314,6 +445,17 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -333,8 +475,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/avatar.jpg"
@@ -413,6 +564,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#越狱"><span class="nav-number">2.</span> <span class="nav-text">越狱</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SSH"><span class="nav-number">3.</span> <span class="nav-text">SSH</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#砸壳"><span class="nav-number">4.</span> <span class="nav-text">砸壳</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#class-dump"><span class="nav-number">5.</span> <span class="nav-text">class-dump</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hopper"><span class="nav-number">6.</span> <span class="nav-text">hopper</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#逆向调试"><span class="nav-number">7.</span> <span class="nav-text">逆向调试</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -520,6 +682,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
 
   
 
@@ -536,9 +702,9 @@
 
     <script type="text/javascript">
       var disqus_shortname = 'leroyli';
-      var disqus_identifier = 'tags/博客同步/index.html';
-      var disqus_title = "";
-      var disqus_url = '';
+      var disqus_identifier = '2020/03/04/iOS-逆向学习/';
+      var disqus_title = "iOS 逆向学习";
+      var disqus_url = 'http://yoursite.com/2020/03/04/iOS-逆向学习/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
@@ -549,6 +715,13 @@
       }
 
       run_disqus_script('count.js');
+      
+        var disqus_config = function () {
+            this.page.url = disqus_url;
+            this.page.identifier = disqus_identifier;
+            this.page.title = disqus_title;
+        };
+        run_disqus_script('embed.js');
       
     </script>
   
