@@ -91,6 +91,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/11/07/CocoaPods-Use/index.html">
 <meta property="og:site_name" content="Leroy Blog">
 <meta property="og:description" content="CocoaPods简介在开发iOS项目时，经常会使用第三方开源库，手动引入流程复杂，并且库之间还存在依赖关系，更增加了手动管理的难度。开源库如果升级了，你也想用最新版本，还需要重新手动导入，这大大增加了工作量。但用了CocoaPods后，安装和升级都只是一句命令的事情，让你可以专于业务本身。CocoaPods项目的源码在Github上管理。该项目开始于2011年8月12日，经过多年发展，现在已经成">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2016-11-19T11:31:06.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CocoaPods的安装和使用">
@@ -350,29 +351,29 @@
 <h2 id="CocoaPods安装"><a href="#CocoaPods安装" class="headerlink" title="CocoaPods安装"></a>CocoaPods安装</h2><ul>
 <li><strong>安装Ruby</strong></li>
 </ul>
-<p>CocoaPods基于Ruby语言开发而成，因此安装CocoaPods前需要安装Ruby环境。幸运的是Mac系统默认自带Ruby环境，如果没有请自行查找安装。检测是否安装Ruby：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> gem -v</span></div></pre></td></tr></table></figure></p>
+<p>CocoaPods基于Ruby语言开发而成，因此安装CocoaPods前需要安装Ruby环境。幸运的是Mac系统默认自带Ruby环境，如果没有请自行查找安装。检测是否安装Ruby：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> gem -v</span></span><br></pre></td></tr></table></figure></p>
 <p>gem是一个管理Ruby库和程序的标准包，它通过Ruby Gem源来查找、安装、升级和卸载软件包，非常的便捷。</p>
 <ul>
 <li><strong>更换gem源</strong></li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> gem sources --remove https://rubygems.org/</span></div><div class="line"><span class="meta">$</span><span class="bash"> gem sources <span class="_">-a</span> https://ruby.taobao.org/</span></div></pre></td></tr></table></figure>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>gem sources --remove <span class="symbol">https:</span>/<span class="regexp">/rubygems.org/</span></span><br><span class="line"><span class="variable">$ </span>gem sources -a <span class="symbol">https:</span>/<span class="regexp">/ruby.taobao.org/</span></span><br></pre></td></tr></table></figure>
 <p>更换之后查看时候更换成功</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> gem sources <span class="_">-l</span></span></div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> gem sources -l</span></span><br></pre></td></tr></table></figure>
 <p>如果是淘宝的镜像则代表安装成功</p>
 <ul>
 <li><strong>安装CocoaPods</strong></li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> sudo gem install cocoapods</span></div><div class="line"><span class="meta">$</span><span class="bash"> pod setup</span></div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo gem install cocoapods</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> pod setup</span></span><br></pre></td></tr></table></figure>
 <p>pod setup在执行时，会输出Setting up CocoaPods master repo，但是会等待比较久的时间。这步其实是 Cocoapods 在将它的信息下载到 ~/.cocoapods目录下，如果你等太久，可以试着 cd 到那个目录，用du -sh *来查看下载进度。<br>安装完成后查看是否安装成功</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> pod --version</span></div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> pod --version</span></span><br></pre></td></tr></table></figure>
 <h2 id="CocoaPods使用"><a href="#CocoaPods使用" class="headerlink" title="CocoaPods使用"></a>CocoaPods使用</h2><ul>
 <li><strong>创建Podfile</strong></li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> vim Podfile</span></div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> vim Podfile</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li><strong>编辑Podfile</strong></li>
 </ul>
-<figure class="highlight delphi"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">platform</span> :ios, <span class="string">'9.3'</span></div><div class="line">use_frameworks!</div><div class="line"></div><div class="line">target <span class="string">'Test'</span> <span class="keyword">do</span></div><div class="line">pod <span class="string">'SDWebImage'</span>, <span class="string">'~&gt;3.7.6'</span></div><div class="line">pod <span class="string">'Masonry'</span>, <span class="string">'~&gt;1.0.0'</span></div><div class="line"></div><div class="line"><span class="keyword">end</span></div></pre></td></tr></table></figure>
+<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">platform</span> :ios, <span class="string">'9.3'</span></span><br><span class="line">use_frameworks!</span><br><span class="line"></span><br><span class="line">target <span class="string">'Test'</span> <span class="keyword">do</span></span><br><span class="line">pod <span class="string">'SDWebImage'</span>, <span class="string">'~&gt;3.7.6'</span></span><br><span class="line">pod <span class="string">'Masonry'</span>, <span class="string">'~&gt;1.0.0'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
 <p>platform 的意思是系统支持的最低版本<br>use_frameworks!不写也是可以的。不过最好写上</p>
 <p>target是你的工程名</p>
 <p>do开始  end结束</p>
@@ -380,13 +381,13 @@
 <li><strong>退出Podfile</strong></li>
 </ul>
 <p>先按ESC,然后执行</p>
-<figure class="highlight clojure"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">:wq</span></div></pre></td></tr></table></figure>
+<figure class="highlight clojure"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">:wq</span></span><br></pre></td></tr></table></figure>
 <p>然后你将编辑好的 Podfile 文件放到你的项目根目录中，执行如下命令即可：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> <span class="string">"your project home"</span></span></div><div class="line"><span class="meta">$</span><span class="bash"> pod install</span></div></pre></td></tr></table></figure>
-<p>其实Podfile也可以用文本编辑。感觉更方便点，编辑完注意保存就行了。<br>安装之后使用 CocoaPods 生成的 .xcworkspace 文件来打开工程，而不是以前的 .xcodeproj 文件。<br>每次更改了 Podfile 文件，你需要重新执行一次pod update命令。<br>如果想要查找第三方库，可使用<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> pod search 关键字</span></div></pre></td></tr></table></figure></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> <span class="string">"your project home"</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> pod install</span></span><br></pre></td></tr></table></figure>
+<p>其实Podfile也可以用文本编辑。感觉更方便点，编辑完注意保存就行了。<br>安装之后使用 CocoaPods 生成的 .xcworkspace 文件来打开工程，而不是以前的 .xcodeproj 文件。<br>每次更改了 Podfile 文件，你需要重新执行一次pod update命令。<br>如果想要查找第三方库，可使用<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> pod search 关键字</span></span><br></pre></td></tr></table></figure></p>
 <h2 id="关于-Podfile-lock"><a href="#关于-Podfile-lock" class="headerlink" title="关于 Podfile.lock"></a>关于 Podfile.lock</h2><p>当你执行pod install之后，除了 Podfile 外，CocoaPods 还会生成一个名为Podfile.lock的文件，Podfile.lock 应该加入到版本控制里面，不应该把这个文件加入到.gitignore中。因为Podfile.lock会锁定当前各依赖库的版本，之后如果多次执行pod install 不会更改版本，要pod update才会改Podfile.lock了。这样多人协作的时候，可以防止第三方库升级时造成大家各自的第三方库版本不一致。</p>
-<h2 id="不更新-podspec"><a href="#不更新-podspec" class="headerlink" title="不更新 podspec"></a>不更新 podspec</h2><p>CocoaPods 在执行pod install和pod update时，会默认先更新一次podspec索引。使用–no-repo-update参数可以禁止其做索引更新操作。如下所示：<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ pod install --<span class="keyword">no</span>-repo-<span class="keyword">update</span></div><div class="line">$ pod <span class="keyword">update</span> --<span class="keyword">no</span>-repo-<span class="keyword">update</span></div></pre></td></tr></table></figure></p>
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="http://blog.devtang.com/2014/05/25/use-cocoapod-to-manage-ios-lib-dependency/" target="_blank" rel="external">用CocoaPods做iOS程序的依赖管理</a></p>
+<h2 id="不更新-podspec"><a href="#不更新-podspec" class="headerlink" title="不更新 podspec"></a>不更新 podspec</h2><p>CocoaPods 在执行pod install和pod update时，会默认先更新一次podspec索引。使用–no-repo-update参数可以禁止其做索引更新操作。如下所示：<br><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ pod install --<span class="keyword">no</span>-repo-<span class="keyword">update</span></span><br><span class="line">$ pod <span class="keyword">update</span> --<span class="keyword">no</span>-repo-<span class="keyword">update</span></span><br></pre></td></tr></table></figure></p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="http://blog.devtang.com/2014/05/25/use-cocoapod-to-manage-ios-lib-dependency/" target="_blank" rel="noopener">用CocoaPods做iOS程序的依赖管理</a></p>
 
       
     </div>
@@ -534,7 +535,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">30</span>
+              <span class="site-state-item-count">31</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -551,7 +552,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">71</span>
+                <span class="site-state-item-count">72</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

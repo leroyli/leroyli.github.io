@@ -91,6 +91,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/11/05/Mac-ReactNative/index.html">
 <meta property="og:site_name" content="Leroy Blog">
 <meta property="og:description" content="React.js Conf 2015会议上，Facebook发布了React Native，可以基于目前大热的开源JavaScript库React.js来开发iOS和Android原生App。它的特点就是脱离传统Hybrid App的思路，基于HTML，CSS，JavaScript重新定义了一套规则。当然FaceBook也同时开源了Nuclide，它是一个针对ReactNative，web，以及原">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2016-11-19T11:31:06.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mac上ReactNative环境配置">
@@ -367,14 +368,14 @@
       
         <p>React.js Conf 2015会议上，Facebook发布了React Native，可以基于目前大热的开源JavaScript库React.js来开发iOS和Android原生App。它的特点就是脱离传统Hybrid App的思路，基于HTML，CSS，JavaScript重新定义了一套规则。当然FaceBook也同时开源了Nuclide，它是一个针对ReactNative，web，以及原生移动开发的IDE。它基于跨平台文本编辑器Atom构建。<br>从ReactNative出现到现在，已经有越来越多的开发者或者公司开始试水，使用React Native开发者可以更高效的开发移动应用，ReactNative的诞生就是为了能在保持原生良好的交互体验的同时又极大的提高开发效率。像携程、天猫等都已经开始集成ReactNative。<br>要使用ReactNative，首先肯定是要搭建环境，下面就来说说怎样在Mac上搭建ReactNative环境。</p>
 <p>全程基本都是在终端操作的：<br><a id="more"></a></p>
-<h2 id="安装Homebrew"><a href="#安装Homebrew" class="headerlink" title="安装Homebrew"></a>安装Homebrew</h2><figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="regexp">/usr/</span>bin<span class="regexp">/ruby -e "$(curl -fsSL https:/</span><span class="regexp">/raw.githubusercontent.com/</span>Homebrew<span class="regexp">/install/m</span>aster<span class="regexp">/install)"</span></div></pre></td></tr></table></figure>
-<h2 id="安装Node"><a href="#安装Node" class="headerlink" title="安装Node"></a>安装Node</h2><p>其实Node是用Homebrew安装的，所以第一步成功才能进行第二步<br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">brew install <span class="keyword">node</span><span class="title"></span></div></pre></td></tr></table></figure></p>
-<h2 id="安装React-Native-Command-Line-Tools"><a href="#安装React-Native-Command-Line-Tools" class="headerlink" title="安装React Native Command Line Tools"></a>安装React Native Command Line Tools</h2><figure class="highlight livescript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">npm</span> install -g react-<span class="keyword">native</span>-cli</div></pre></td></tr></table></figure>
-<h2 id="安装Watchman"><a href="#安装Watchman" class="headerlink" title="安装Watchman"></a>安装Watchman</h2><p>如果你是针对iOS开发的，那么这一步之前最好保证你已经安装了Xcode7.0及7.0以上的版本<br><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">brew </span><span class="keyword">install </span>watchman</div></pre></td></tr></table></figure></p>
-<h2 id="安装Flow"><a href="#安装Flow" class="headerlink" title="安装Flow"></a>安装Flow</h2><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">brew </span><span class="keyword">install </span>flow</div></pre></td></tr></table></figure>
-<p>至此环境配置就差不多了，剩下的就是创建一个基础的Demo工程了<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">react-<span class="keyword">native</span> init AwesomeProjectcd AwesomeProjectreact-<span class="keyword">native</span> run-ios</div></pre></td></tr></table></figure></p>
+<h2 id="安装Homebrew"><a href="#安装Homebrew" class="headerlink" title="安装Homebrew"></a>安装Homebrew</h2><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">/usr/</span>bin<span class="regexp">/ruby -e "$(curl -fsSL https:/</span><span class="regexp">/raw.githubusercontent.com/</span>Homebrew<span class="regexp">/install/m</span>aster<span class="regexp">/install)"</span></span><br></pre></td></tr></table></figure>
+<h2 id="安装Node"><a href="#安装Node" class="headerlink" title="安装Node"></a>安装Node</h2><p>其实Node是用Homebrew安装的，所以第一步成功才能进行第二步<br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install <span class="keyword">node</span><span class="title"></span></span><br></pre></td></tr></table></figure></p>
+<h2 id="安装React-Native-Command-Line-Tools"><a href="#安装React-Native-Command-Line-Tools" class="headerlink" title="安装React Native Command Line Tools"></a>安装React Native Command Line Tools</h2><figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">npm</span> install -g react-<span class="keyword">native</span>-cli</span><br></pre></td></tr></table></figure>
+<h2 id="安装Watchman"><a href="#安装Watchman" class="headerlink" title="安装Watchman"></a>安装Watchman</h2><p>如果你是针对iOS开发的，那么这一步之前最好保证你已经安装了Xcode7.0及7.0以上的版本<br><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">brew </span><span class="keyword">install </span>watchman</span><br></pre></td></tr></table></figure></p>
+<h2 id="安装Flow"><a href="#安装Flow" class="headerlink" title="安装Flow"></a>安装Flow</h2><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">brew </span><span class="keyword">install </span>flow</span><br></pre></td></tr></table></figure>
+<p>至此环境配置就差不多了，剩下的就是创建一个基础的Demo工程了<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">react-<span class="keyword">native</span> init AwesomeProjectcd AwesomeProjectreact-<span class="keyword">native</span> run-ios</span><br></pre></td></tr></table></figure></p>
 <p>上面这条指令是创建工程并在iOS模拟器上运行，当然你也可以找到工程文件找到里面的iOS文件夹找到Xcode工程运行。</p>
-<p>以上内容参考自<a href="http://facebook.github.io/react-native/docs/getting-started.html" target="_blank" rel="external">ReactNative官网</a></p>
+<p>以上内容参考自[ReactNative官网][1]<br>[1]:<a href="http://facebook.github.io/react-native/docs/getting-started.html" target="_blank" rel="noopener">http://facebook.github.io/react-native/docs/getting-started.html</a></p>
 
       
     </div>
@@ -512,7 +513,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">30</span>
+              <span class="site-state-item-count">31</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -529,7 +530,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">71</span>
+                <span class="site-state-item-count">72</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

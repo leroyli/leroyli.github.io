@@ -91,6 +91,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/11/09/ReactNative-LifeCycle/index.html">
 <meta property="og:site_name" content="Leroy Blog">
 <meta property="og:description" content="前言就像 iOS 开发中的 ViewController 一样，React Native（RN） 中的组件也有生命周期（Lifecycle）。所谓生命周期，就是一个对象从开始生成到最后消亡所经历的状态，理解生命周期，是合理开发的关键。">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2016/11/09/ReactNative-LifeCycle/lifecycle.jpg">
 <meta property="og:updated_time" content="2016-11-19T11:31:06.000Z">
 <meta name="twitter:card" content="summary">
@@ -368,7 +369,7 @@
 
       
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>就像 iOS 开发中的 ViewController 一样，React Native（RN） 中的组件也有生命周期（Lifecycle）。所谓生命周期，就是一个对象从开始生成到最后消亡所经历的状态，理解生命周期，是合理开发的关键。<br><a id="more"></a></p>
-<h2 id="周期阶段"><a href="#周期阶段" class="headerlink" title="周期阶段"></a>周期阶段</h2><p>RN 组件的生命周期整理如下图：<br><img src="/2016/11/09/ReactNative-LifeCycle/lifecycle.jpg" alt="lifecycle.jpg" title=""></p>
+<h2 id="周期阶段"><a href="#周期阶段" class="headerlink" title="周期阶段"></a>周期阶段</h2><p>RN 组件的生命周期整理如下图：<br><img src="/2016/11/09/ReactNative-LifeCycle/lifecycle.jpg"></p>
 <p>组件生命周期大致分为三个阶</p>
 <ul>
 <li><p>第一阶段：是组件第一次绘制阶段，如图中的上面虚线框内，在这里完成了组件的加载和初始化</p>
@@ -388,8 +389,8 @@
 <p><strong>componentWillUpdate</strong><br>如果组件状态或者属性改变，并且上面的 shouldComponentUpdate(…) 返回为 true，就会开始准更新组件，并调用 componentWillUpdate()</p>
 <p><strong>componentDidUpdate</strong><br>调用了 render() 更新完成界面之后，会调用 componentDidUpdate() 来得到通知</p>
 <p><strong>componentWillUnmount</strong><br>当组件要被从界面上移除的时候，就会调用 componentWillUnmount()<br>在这个函数中，可以做一些组件相关的清理工作，例如取消计时器、网络请求等</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>以上就是ReactNative组件的生命周期，由于刚接触不久，有些地方可能写的不太详细，后期会更新。<br>另外推荐一个学习ReactNative的地方<a href="https://github.com/leroyli/react-native-guide" target="_blank" rel="external">React-Native学习指南</a></p>
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="http://www.race604.com/react-native-component-lifecycle/#" target="_blank" rel="external">React Native 中组件的生命周期</a><br><a href="http://www.reactnativeexpress.com/lifecycle_api" target="_blank" rel="external">Life Cycle API</a></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>以上就是ReactNative组件的生命周期，由于刚接触不久，有些地方可能写的不太详细，后期会更新。<br>另外推荐一个学习ReactNative的地方<a href="https://github.com/leroyli/react-native-guide" target="_blank" rel="noopener">React-Native学习指南</a></p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="http://www.race604.com/react-native-component-lifecycle/#" target="_blank" rel="noopener">React Native 中组件的生命周期</a><br><a href="http://www.reactnativeexpress.com/lifecycle_api" target="_blank" rel="noopener">Life Cycle API</a></p>
 
       
     </div>
@@ -533,7 +534,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">30</span>
+              <span class="site-state-item-count">31</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -550,7 +551,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">71</span>
+                <span class="site-state-item-count">72</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

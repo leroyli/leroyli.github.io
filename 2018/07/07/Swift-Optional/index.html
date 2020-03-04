@@ -91,6 +91,7 @@
 <meta property="og:url" content="http://yoursite.com/2018/07/07/Swift-Optional/index.html">
 <meta property="og:site_name" content="Leroy Blog">
 <meta property="og:description" content="概述Swift是一门类型安全的语言。Swift的可选类型会进行编译检查，防止一些常见的运行时错误。在 Swift 中，当我们声明一个变量的时候，默认情况下是 非可选类型 (non-optional) ，也就是说，你必须指定一个不为 nil 的值。如果你硬是要把一个非可选类型的变量设为 nil ，那么编译器就会报错。">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2018-07-07T05:50:36.843Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swift可选类型详解">
@@ -368,12 +369,12 @@
         <h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>Swift是一门类型安全的语言。Swift的可选类型会进行编译检查，防止一些常见的运行时错误。在 Swift 中，当我们声明一个变量的时候，默认情况下是 非可选类型 (non-optional) ，也就是说，你必须指定一个不为 nil 的值。如果你硬是要把一个非可选类型的变量设为 nil ，那么编译器就会报错。</p>
 <a id="more"></a>
 <p>Swift中的nil，必须用可选类型接收。你可以给可选类型赋值为nil来表示他没有值，如果你声明一个可选常量或者变量但是没有赋值，它们会自动被设置为 nil ，也就是说可选类型可以为nil也可以有值，非可选类型不能为nil必须有值。Swift 的 nil 和 Objective-C 中的 nil 并不一样。在 Objective-C 中，nil 是一个指向不存在对象的指针。在 Swift 中，nil 不是指针——它是一个确定的值，用来表示值缺失。任何类型的可选状态都可以被设置为 nil，不只是对象类型。</p>
-<h3 id="强制解包"><a href="#强制解包" class="headerlink" title="强制解包"></a>强制解包</h3><p>当你确定可选类型一定包含值之后，你可以在可选的名字后面加一个感叹号<code>!</code>来解包获取值。这被称为可选值得强制解包（forced unwrapping）<br>例如:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var user_name: String?</div><div class="line">        ...</div><div class="line">        if user_name != nil &#123;</div><div class="line">            print(&quot;user_name:&quot;, user_name!)</div><div class="line">        &#125;</div></pre></td></tr></table></figure></p>
-<h3 id="可选绑定"><a href="#可选绑定" class="headerlink" title="可选绑定"></a>可选绑定</h3><p>使用可选绑定可以去辨别一个可选类型是否包含值，如果包含就把值赋给一个临时常量或变量<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">if let name = user_name &#123;</div><div class="line">            print(&quot;user_name:&quot;, name)</div><div class="line">        &#125;</div></pre></td></tr></table></figure></p>
-<p>在 if 条件语句中使用常量和变量来创建一个可选绑定，仅在 if 语句的第一个分支中才能获取到值。相反，在 guard 语句中使用常量和变量来创建一个可选绑定，仅在 guard 语句外且在语句后才能获取到值,guard和let是相反的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">guard let name = user_name else &#123;</div><div class="line">            return</div><div class="line">        &#125;</div></pre></td></tr></table></figure></p>
-<h3 id="隐式解析可选类型"><a href="#隐式解析可选类型" class="headerlink" title="隐式解析可选类型"></a>隐式解析可选类型</h3><p>有时候在程序架构中，第一次被赋值之后，可以确定一个可选类型总会有值。在这种情况下，每次访问时都不需要检查和解析可选类型的值，因为可以安全的确定它总会有值。这种类型的可选状态被定义为隐式解析可选类型（implicitly unwrapped optionals）。把想要用作可选的类型的后面的问号<code>?</code>改成感叹号<code>!</code>来声明一个隐式解析可选类型。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">let user_name: String! = &quot;user_name&quot;</div><div class="line">let default_name: String = user_name</div></pre></td></tr></table></figure></p>
+<h3 id="强制解包"><a href="#强制解包" class="headerlink" title="强制解包"></a>强制解包</h3><p>当你确定可选类型一定包含值之后，你可以在可选的名字后面加一个感叹号<code>!</code>来解包获取值。这被称为可选值得强制解包（forced unwrapping）<br>例如:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var user_name: String?</span><br><span class="line">        ...</span><br><span class="line">        if user_name != nil &#123;</span><br><span class="line">            print(&quot;user_name:&quot;, user_name!)</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="可选绑定"><a href="#可选绑定" class="headerlink" title="可选绑定"></a>可选绑定</h3><p>使用可选绑定可以去辨别一个可选类型是否包含值，如果包含就把值赋给一个临时常量或变量<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if let name = user_name &#123;</span><br><span class="line">            print(&quot;user_name:&quot;, name)</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></p>
+<p>在 if 条件语句中使用常量和变量来创建一个可选绑定，仅在 if 语句的第一个分支中才能获取到值。相反，在 guard 语句中使用常量和变量来创建一个可选绑定，仅在 guard 语句外且在语句后才能获取到值,guard和let是相反的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">guard let name = user_name else &#123;</span><br><span class="line">            return</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="隐式解析可选类型"><a href="#隐式解析可选类型" class="headerlink" title="隐式解析可选类型"></a>隐式解析可选类型</h3><p>有时候在程序架构中，第一次被赋值之后，可以确定一个可选类型总会有值。在这种情况下，每次访问时都不需要检查和解析可选类型的值，因为可以安全的确定它总会有值。这种类型的可选状态被定义为隐式解析可选类型（implicitly unwrapped optionals）。把想要用作可选的类型的后面的问号<code>?</code>改成感叹号<code>!</code>来声明一个隐式解析可选类型。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let user_name: String! = &quot;user_name&quot;</span><br><span class="line">let default_name: String = user_name</span><br></pre></td></tr></table></figure></p>
 <p>一个隐式解析可选类型其实就是一个普通的可选类型，但是可以被当做非可选类型来使用，并不需要每次都使用解析来获取可选值。你可以把隐式解析可选类型当做一个可以自动解析的可选类型。你要做的只是声明的时候把感叹号放到类型的结尾，而不是每次取值的时候在可选类型名字结尾放置一个!。如果一个变量之后可能变成nil的话请不要使用隐式解析可选类型。如果你需要在变量的生命周期中判断是否是nil的话，请使用普通可选类型。</p>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://xiaozhuanlan.com/topic/2789610453" target="_blank" rel="external">Swift Optionals/可选类型详解</a></p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://xiaozhuanlan.com/topic/2789610453" target="_blank" rel="noopener">Swift Optionals/可选类型详解</a></p>
 
       
     </div>
@@ -517,7 +518,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">30</span>
+              <span class="site-state-item-count">31</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -534,7 +535,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">71</span>
+                <span class="site-state-item-count">72</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

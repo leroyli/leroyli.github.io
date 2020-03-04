@@ -91,6 +91,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/11/05/iOS-more-project/index.html">
 <meta property="og:site_name" content="Leroy Blog">
 <meta property="og:description" content="软件开发过程中，设计模式很重要，从开发人员的角度来讲项目结构也很重要。如果项目结构足够清晰的话，对开发和维护都会有很大帮助。尤其是一些稍微复杂点的项目。iOS开发中，如果项目过大的话，使用多工程依赖会使整个工程的结构更加清晰。本文主要讨论如何在iOS开发中添加多工程依赖。">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2016/11/05/iOS-more-project/project1.png">
 <meta property="og:image" content="http://yoursite.com/2016/11/05/iOS-more-project/project2.png">
 <meta property="og:image" content="http://yoursite.com/2016/11/05/iOS-more-project/project3.png">
@@ -377,25 +378,25 @@
 
       
         <p>软件开发过程中，设计模式很重要，从开发人员的角度来讲项目结构也很重要。如果项目结构足够清晰的话，对开发和维护都会有很大帮助。尤其是一些稍微复杂点的项目。<br>iOS开发中，如果项目过大的话，使用多工程依赖会使整个工程的结构更加清晰。本文主要讨论如何在iOS开发中添加多工程依赖。<br><a id="more"></a><br>首先，要创建一个workspace工程，我是创建了一个singleview工程然后引入cocoapods</p>
-<img src="/2016/11/05/iOS-more-project/project1.png" alt="leroy organization" title="leroy organization">
+<img src="/2016/11/05/iOS-more-project/project1.png" title="leroy organization">
 <p>然后新建一个静态库工程</p>
-<img src="/2016/11/05/iOS-more-project/project2.png" alt="leroy organization" title="leroy organization">
+<img src="/2016/11/05/iOS-more-project/project2.png" title="leroy organization">
 <p>注意：这个静态库工程与第一个工程分开创建</p>
-<img src="/2016/11/05/iOS-more-project/project3.png" alt="leroy organization" title="leroy organization">
+<img src="/2016/11/05/iOS-more-project/project3.png" title="leroy organization">
 <p>BASE是基础工程，CommonUI是静态库工程</p>
 <p>下一步CommonUI拖进基础工程的文件夹</p>
-<img src="/2016/11/05/iOS-more-project/project4.png" alt="leroy organization" title="leroy organization">
+<img src="/2016/11/05/iOS-more-project/project4.png" title="leroy organization">
 <p>接着打开基础工程，Add Files to…，把CommonUI引入</p>
-<img src="/2016/11/05/iOS-more-project/project5.png" alt="leroy organization" title="leroy organization">
-<img src="/2016/11/05/iOS-more-project/project6.png" alt="leroy organization" title="leroy organization">
+<img src="/2016/11/05/iOS-more-project/project5.png" title="leroy organization">
+<img src="/2016/11/05/iOS-more-project/project6.png" title="leroy organization">
 <p>接下来是引入.a文件</p>
-<img src="/2016/11/05/iOS-more-project/project7.png" alt="leroy organization" title="leroy organization">
+<img src="/2016/11/05/iOS-more-project/project7.png" title="leroy organization">
 <p>然后是设置Header Path</p>
-<img src="/2016/11/05/iOS-more-project/project8.png" alt="leroy organization" title="leroy organization">
+<img src="/2016/11/05/iOS-more-project/project8.png" title="leroy organization">
 <p>再设置一下CommonUI的Header Path</p>
-<img src="/2016/11/05/iOS-more-project/project9.png" alt="leroy organization" title="leroy organization">
+<img src="/2016/11/05/iOS-more-project/project9.png" title="leroy organization">
 <p>最后为了保证编译顺序最好做如下设置</p>
-<img src="/2016/11/05/iOS-more-project/project10.png" alt="leroy organization" title="leroy organization">
+<img src="/2016/11/05/iOS-more-project/project10.png" title="leroy organization">
 <p>完成，现在就可以在BASE工程中导入CommonUI的头文件了，如果Xcode不提示直接强打就行了。<br>最后一步我是从别的帖子上看的，目前还不是很明白，如果有对着一块儿熟悉的，欢迎给出宝贵意见。写的不好，请大家见谅。</p>
 
       
@@ -540,7 +541,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">30</span>
+              <span class="site-state-item-count">31</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -557,7 +558,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">71</span>
+                <span class="site-state-item-count">72</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

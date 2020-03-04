@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="iOS,逆向,lldb,动态调试," />
+  <meta name="keywords" content="iOS,逆向,动态调试,lldb," />
 
 
 
@@ -85,12 +85,13 @@
 
 
 <meta name="description" content="前言使用 lldb 调试需要准备 debugserver。使用 OSX 中的 lldb 远程连接 iOS 上的 debugserver，由 debugserver 作为 lldb 和 iOS 的中转，执行命令和返回结果。在默认情况下，iOS 上并没有安装 debugserver，只有在设备连接过一次 Xcode，安装了开发者插件后，debugserver 才会被 Xcode 安装到iOS的/Dev">
-<meta name="keywords" content="iOS,逆向,lldb,动态调试">
+<meta name="keywords" content="iOS,逆向,动态调试,lldb">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS逆向 lldb动态调试">
 <meta property="og:url" content="http://yoursite.com/2020/03/04/iOSRE-lldb/index.html">
 <meta property="og:site_name" content="Leroy Blog">
 <meta property="og:description" content="前言使用 lldb 调试需要准备 debugserver。使用 OSX 中的 lldb 远程连接 iOS 上的 debugserver，由 debugserver 作为 lldb 和 iOS 的中转，执行命令和返回结果。在默认情况下，iOS 上并没有安装 debugserver，只有在设备连接过一次 Xcode，安装了开发者插件后，debugserver 才会被 Xcode 安装到iOS的/Dev">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1719830-224868d2558f8c51.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1719830-c815d58a9d2f4685.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:updated_time" content="2020-03-04T07:00:32.990Z">
@@ -355,9 +356,9 @@
 <p>iOS 11 之前重签名 debugserver 步骤：</p>
 <p>1.拷贝 debugserver 到本地计算机中：<code>scp root@iOSDeviceIP:/Developer/usr/bin/debugserver ~/debugserver</code>。</p>
 <p>2.然后用 ldid 添加权限。由于 ldid 不支持 fat 二进制文件，所以要给 debugserver 瘦身，通过 lipo 指定要支持的指令类型，例如：<code>lipo -thin arm64 ~/debugserver -output ~/debugserver</code>。</p>
-<p>3.给 debugserver 添加 task_for_pid 权限，保存以下内容为 ent.xml 文件：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">plist</span> <span class="attr">version</span>=<span class="string">"1.0"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">dict</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">key</span>&gt;</span>com.apple.springboard.debugapplications<span class="tag">&lt;/<span class="name">key</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">true</span>/&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">key</span>&gt;</span>get-task-allow<span class="tag">&lt;/<span class="name">key</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">true</span>/&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">key</span>&gt;</span>task_for_pid-allow<span class="tag">&lt;/<span class="name">key</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">true</span>/&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">key</span>&gt;</span>run-unsigned-code<span class="tag">&lt;/<span class="name">key</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">true</span>/&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dict</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">plist</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>3.给 debugserver 添加 task_for_pid 权限，保存以下内容为 ent.xml 文件：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">plist</span> <span class="attr">version</span>=<span class="string">"1.0"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dict</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">key</span>&gt;</span>com.apple.springboard.debugapplications<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">true</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">key</span>&gt;</span>get-task-allow<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">true</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">key</span>&gt;</span>task_for_pid-allow<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">true</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">key</span>&gt;</span>run-unsigned-code<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">true</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dict</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">plist</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 <p>复制代码<br>然后执行以下命令添加权限：<code>ldid -Sent.xml debugserver</code></p>
-<p>4.给 debugserver 重新签名，保存以下内容为 entitlements.plist 文件：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="php"><span class="meta">&lt;?</span>xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span><span class="meta">?&gt;</span></span></div><div class="line"> <span class="meta">&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/ PropertyList-1.0.dtd"&gt;</span></div><div class="line"> <span class="tag">&lt;<span class="name">plist</span> <span class="attr">version</span>=<span class="string">"1.0"</span>&gt;</span></div><div class="line"> <span class="tag">&lt;<span class="name">dict</span>&gt;</span></div><div class="line"> <span class="tag">&lt;<span class="name">key</span>&gt;</span>com.apple.springboard.debugapplications<span class="tag">&lt;/<span class="name">key</span>&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">true</span>/&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">key</span>&gt;</span>run-unsigned-code<span class="tag">&lt;/<span class="name">key</span>&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">true</span>/&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">key</span>&gt;</span>get-task-allow<span class="tag">&lt;/<span class="name">key</span>&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">true</span>/&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">key</span>&gt;</span>task_for_pid-allow<span class="tag">&lt;/<span class="name">key</span>&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">true</span>/&gt;</span></div><div class="line"> <span class="tag">&lt;/<span class="name">dict</span>&gt;</span> </div><div class="line"> <span class="tag">&lt;/<span class="name">plist</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>4.给 debugserver 重新签名，保存以下内容为 entitlements.plist 文件：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?</span>xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span><span class="meta">?&gt;</span></span></span><br><span class="line"> <span class="meta">&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/ PropertyList-1.0.dtd"&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">plist</span> <span class="attr">version</span>=<span class="string">"1.0"</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">dict</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">key</span>&gt;</span>com.apple.springboard.debugapplications<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">true</span>/&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">key</span>&gt;</span>run-unsigned-code<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">true</span>/&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">key</span>&gt;</span>get-task-allow<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">true</span>/&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">key</span>&gt;</span>task_for_pid-allow<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">true</span>/&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">dict</span>&gt;</span> </span><br><span class="line"> <span class="tag">&lt;/<span class="name">plist</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
 <p>复制代码<br>然后运行以下命令给的 debugserver 签名：<code>codesign -s - --entitlements entitlements.plist -f debugserver</code></p>
 <p>5.重新拷贝 debugserver 回手机中：<code>scp ~/debugserver root@iOSDeviceIP:/usr/bin/debugserver</code></p>
 <p>6.第一次使用 debugserver 时需要为其添加可执行权限：<code>chmod +x /usr/bin/debugserver</code></p>
@@ -365,7 +366,7 @@
 <ol>
 <li><p>SSH 到 iOS，使用 debugserver 来 attach 一个进程，要查看当前正在运行的进程，使用<code>ps -e</code>命令。比如我们要 attach 的进程号为 693，我们可以输入如下命令：<code>debugserver *:1234 -a 693</code></p>
 </li>
-<li><p>iOS 11 上<code>debugserver *:1234</code>中的<code>*:1234</code>要替换成<code>localhost:1234</code>。如果用的是 Electra 越狱，命令变成<code>/Developer/usr/bin/debugserver localhost:1234 -a 693</code>，如果用的是<a href="https://www.abcydia.com/read-16031.html" target="_blank" rel="external">unc0ver</a>越狱，则是<code>debugserver localhost:1234 -a 693</code>。同理，下文中的对应命令也要相应的替换</p>
+<li><p>iOS 11 上<code>debugserver *:1234</code>中的<code>*:1234</code>要替换成<code>localhost:1234</code>。如果用的是 Electra 越狱，命令变成<code>/Developer/usr/bin/debugserver localhost:1234 -a 693</code>，如果用的是<a href="https://www.abcydia.com/read-16031.html" target="_blank" rel="noopener">unc0ver</a>越狱，则是<code>debugserver localhost:1234 -a 693</code>。同理，下文中的对应命令也要相应的替换</p>
 </li>
 <li><p>如果要用 debugserver 启动 app，而不是附加到已经启动的 app，则使用<code>debugserver *:1234 &lt;app二进制文件路径&gt;</code>，例如<code>debugserver *:1234 /var/containers/Bundle/Application/107F3307-2900-4720-B9BA-0C7792D89DF2/APP_TO_DEBUG.app/APP_TO_DEBUG</code></p>
 </li>
@@ -377,7 +378,7 @@
 <p>连接成功后，即可用 lldb 命令进行调试。</p>
 <p><strong>SSH链接</strong></p>
 <p><code>iproxy 2222 22</code>  端口转发</p>
-<p>ssh -p 2222 <a href="mailto:root@127.0.0.1" target="_blank" rel="external">root@127.0.0.1</a>   连接设备</p>
+<p>ssh -p 2222 <a href="mailto:root@127.0.0.1" target="_blank" rel="noopener">root@127.0.0.1</a>   连接设备</p>
 <p><strong>找到要调试的进程进行调试</strong></p>
 <p><code>ps -e</code>   查看进程</p>
 <p><code>debugserver 127.0.0.1:1234 -a 693</code>   attach进程</p>
@@ -413,9 +414,9 @@
           
             <a href="/tags/逆向/" rel="tag">#逆向</a>
           
-            <a href="/tags/lldb/" rel="tag">#lldb</a>
-          
             <a href="/tags/动态调试/" rel="tag">#动态调试</a>
+          
+            <a href="/tags/lldb/" rel="tag">#lldb</a>
           
         </div>
       
@@ -431,6 +432,10 @@
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/03/04/iOSRE-Reveal/" rel="prev" title="iOS逆向 Reveal">
+                iOS逆向 Reveal <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -528,7 +533,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">30</span>
+              <span class="site-state-item-count">31</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -545,7 +550,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">71</span>
+                <span class="site-state-item-count">72</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

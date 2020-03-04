@@ -91,6 +91,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/11/09/hexo-add-repo-more-PC/index.html">
 <meta property="og:site_name" content="Leroy Blog">
 <meta property="og:description" content="前言如果要在不同的电脑写作和更新博客，就要对博客进行版本控制，我在另一篇文章中介绍了使用新的分支来进行版本控制，今天主要说说使用新的resository来对hexo进行版本控制。">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2016-11-19T11:31:06.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="用repository对hexo进行版本控制">
@@ -365,7 +366,7 @@
       
 
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>如果要在不同的电脑写作和更新博客，就要对博客进行版本控制，我在另一篇<a href="https://leroy0205.github.io/2016/11/07/hexo-more-PC/" target="_blank" rel="external">文章</a>中介绍了使用新的分支来进行版本控制，今天主要说说使用新的resository来对hexo进行版本控制。</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>如果要在不同的电脑写作和更新博客，就要对博客进行版本控制，我在另一篇<a href="https://leroy0205.github.io/2016/11/07/hexo-more-PC/" target="_blank" rel="noopener">文章</a>中介绍了使用新的分支来进行版本控制，今天主要说说使用新的resository来对hexo进行版本控制。</p>
 <a id="more"></a>
 <h2 id="新建仓库repository"><a href="#新建仓库repository" class="headerlink" title="新建仓库repository"></a>新建仓库repository</h2><p>假如A电脑是你最开始新建博客的电脑，B电脑是新电脑</p>
 <ol>
@@ -380,11 +381,11 @@
 <li><p>在根目录下的.gitignore文件添加：</p>
 </li>
 </ul>
-<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="string">/.deploy_git</span></div><div class="line"></div><div class="line"><span class="string">/public</span></div></pre></td></tr></table></figure>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">/.deploy_git</span></span><br><span class="line"></span><br><span class="line"><span class="string">/public</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li>依次执行以下指令，同步源文件至github</li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash">  git init</span></div><div class="line"><span class="meta"></span></div><div class="line">$<span class="bash">  git add .</span></div><div class="line"><span class="meta"></span></div><div class="line">$<span class="bash">  git commit -m <span class="string">""</span></span></div><div class="line"><span class="meta"></span></div><div class="line">$<span class="bash">  git remote add origin git@github.com:leroyli/blog.git</span></div><div class="line"><span class="meta"></span></div><div class="line">$<span class="bash">  git push -u origin master</span></div><div class="line"></div><div class="line">//此时可能会出错failed to push some refs to git  出现错误的主要原因是github中的README.md文件不在本地代码目录中，可以通过如下命令进行代码合并</div><div class="line"><span class="meta"></span></div><div class="line">$<span class="bash">  git pull --rebase origin master</span></div><div class="line"></div><div class="line">此时再执行语句</div><div class="line"><span class="meta"></span></div><div class="line">$<span class="bash">  git push -u origin master</span></div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash">  git init</span></span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash">  git add .</span></span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash">  git commit -m <span class="string">""</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash">  git remote add origin git@github.com:leroyli/blog.git</span></span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash">  git push -u origin master</span></span><br><span class="line"></span><br><span class="line">//此时可能会出错failed to push some refs to git  出现错误的主要原因是github中的README.md文件不在本地代码目录中，可以通过如下命令进行代码合并</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash">  git pull --rebase origin master</span></span><br><span class="line"></span><br><span class="line">此时再执行语句</span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash">  git push -u origin master</span></span><br></pre></td></tr></table></figure>
 <p>即可完成代码上传到github</p>
 <h2 id="新环境"><a href="#新环境" class="headerlink" title="新环境"></a>新环境</h2><ol>
 <li><p>安装Git，并配置github账号下的B电脑的.ssh</p>
@@ -394,29 +395,29 @@
 <li><p>使用npm指令安装Hexo</p>
 </li>
 </ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash">  npm install -g hexo-cli</span></div></pre></td></tr></table></figure>
-<ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash">  npm install -g hexo-cli</span></span><br></pre></td></tr></table></figure>
+<ol start="4">
 <li>使用Git bash随便选择一个文件夹,执行git clone</li>
 </ol>
-<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$  git <span class="keyword">clone</span> <span class="title">git</span>@github.com:leroyli/blog.git</div></pre></td></tr></table></figure>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$  git <span class="keyword">clone</span> <span class="title">git</span>@github.com:leroyli/blog.git</span><br></pre></td></tr></table></figure>
 <p>至此，两个电脑的hexo环境一致，Hexo博客源文件一致</p>
 <h2 id="已有环境"><a href="#已有环境" class="headerlink" title="已有环境"></a>已有环境</h2><ol>
 <li>建议先检查更新git pull，将本地博客源文件更新至最新版本</li>
 </ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash">  git pull</span></div></pre></td></tr></table></figure>
-<ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash">  git pull</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
 <li>然后可以新建或修改博客内容，进行预览等操作</li>
 </ol>
-<figure class="highlight clean"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$  hexo new <span class="string">"name"</span></div><div class="line"></div><div class="line">$  hexo server</div><div class="line"></div><div class="line">............</div><div class="line">............</div></pre></td></tr></table></figure>
-<ol>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$  hexo new <span class="string">"name"</span></span><br><span class="line"></span><br><span class="line">$  hexo server</span><br><span class="line"></span><br><span class="line"><span class="built_in">..</span><span class="built_in">..</span><span class="built_in">..</span><span class="built_in">..</span><span class="built_in">..</span><span class="built_in">..</span></span><br><span class="line"><span class="built_in">..</span><span class="built_in">..</span><span class="built_in">..</span><span class="built_in">..</span><span class="built_in">..</span><span class="built_in">..</span></span><br></pre></td></tr></table></figure>
+<ol start="3">
 <li>新建博客后，先同步Hexo源文件，将修改后的源文件同步至github:</li>
 </ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash">  git add .</span></div><div class="line"><span class="meta"></span></div><div class="line">$<span class="bash">  git commit -m <span class="string">"更新描述"</span></span></div><div class="line"><span class="meta"></span></div><div class="line">$<span class="bash">  git push origin master</span></div></pre></td></tr></table></figure>
-<ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash">  git add .</span></span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash">  git commit -m <span class="string">"更新描述"</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">$</span><span class="bash">  git push origin master</span></span><br></pre></td></tr></table></figure>
+<ol start="4">
 <li>然后再执行Hexo的生成文件和部署指令</li>
 </ol>
-<figure class="highlight verilog"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$  hexo <span class="keyword">generate</span></div><div class="line"></div><div class="line">$  hexo deploy</div></pre></td></tr></table></figure>
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="http://sufaith.com/2016/02/27/Hexo%E8%BF%81%E7%A7%BB/" target="_blank" rel="external">Hexo在两台电脑间的操作流程</a></p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$  hexo <span class="keyword">generate</span></span><br><span class="line"></span><br><span class="line">$  hexo deploy</span><br></pre></td></tr></table></figure>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="http://sufaith.com/2016/02/27/Hexo%E8%BF%81%E7%A7%BB/" target="_blank" rel="noopener">Hexo在两台电脑间的操作流程</a></p>
 
       
     </div>
@@ -562,7 +563,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">30</span>
+              <span class="site-state-item-count">31</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -579,7 +580,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">71</span>
+                <span class="site-state-item-count">72</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

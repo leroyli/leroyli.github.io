@@ -91,6 +91,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/11/08/markdown-writing/index.html">
 <meta property="og:site_name" content="Leroy Blog">
 <meta property="og:description" content="Markdown是什么Markdown是一种轻量级标记语言，它以纯文本形式(易读、易写、易更改)编写文档，并最终以HTML格式发布。Markdown也可以理解为将以MARKDOWN语言编写的语言转换成HTML内容的工具，最初是一个perl脚本Markdown.pl。简单来说，Markdown是一个兼顾可读性与易用性的轻量级标记体系。Markdown并不追求大而全，它只关心HTML里最常用的几个标记">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2016-11-19T11:31:06.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Markdown语法格式指南">
@@ -366,16 +367,16 @@
 
       
         <h2 id="Markdown是什么"><a href="#Markdown是什么" class="headerlink" title="Markdown是什么"></a>Markdown是什么</h2><p>Markdown是一种轻量级标记语言，它以纯文本形式(易读、易写、易更改)编写文档，并最终以HTML格式发布。<br>Markdown也可以理解为将以MARKDOWN语言编写的语言转换成HTML内容的工具，最初是一个perl脚本Markdown.pl。<br>简单来说，Markdown是一个兼顾可读性与易用性的轻量级标记体系。Markdown并不追求大而全，它只关心HTML里最常用的几个标记，对于一些不常用的标记它允许直接将HTML标记插入文本。<br><a id="more"></a></p>
-<h2 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h2><p>标题有两种形式<br><strong>使用=和-标记一级和二级标题</strong><br><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="section">一级标题</span></div><div class="line">=========</div><div class="line"><span class="section">二级标题</span></div><div class="line">---------</div></pre></td></tr></table></figure></p>
+<h2 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h2><p>标题有两种形式<br><strong>使用=和-标记一级和二级标题</strong><br><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">一级标题</span><br><span class="line">=========</span><br><span class="line">二级标题</span><br><span class="line">---------</span><br></pre></td></tr></table></figure></p>
 <p>效果：</p>
 <blockquote>
 <h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2></blockquote>
 <p><strong>使用#，可表示1-6级标题</strong></p>
-<figure class="highlight clean"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"># 一级标题</div><div class="line">## 二级标题</div><div class="line">### 三级标题</div><div class="line">#### 四级标题</div><div class="line">##### 五级标题</div><div class="line">###### 六级标题</div></pre></td></tr></table></figure>
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 一级标题</span><br><span class="line">## 二级标题</span><br><span class="line">### 三级标题</span><br><span class="line">#### 四级标题</span><br><span class="line">##### 五级标题</span><br><span class="line">###### 六级标题</span><br></pre></td></tr></table></figure>
 <p>效果：</p>
 <blockquote>
-<h1 id="一级标题-1"><a href="#一级标题-1" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题-1"><a href="#二级标题-1" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><h4 id="四级标题"><a href="#四级标题" class="headerlink" title="四级标题"></a>四级标题</h4><h5 id="五级标题"><a href="#五级标题" class="headerlink" title="五级标题"></a>五级标题</h5><h6 id="六级标题"><a href="#六级标题" class="headerlink" title="六级标题"></a>六级标题</h6></blockquote>
-<h2 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h2><p>使用*、+、或-标记无序列表,符号后记得加空格<br><figure class="highlight haml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">-<span class="ruby"> 文本<span class="number">1</span></span></div><div class="line">-<span class="ruby"> 文本<span class="number">2</span></span></div><div class="line">-<span class="ruby"> 文本<span class="number">3</span></span></div></pre></td></tr></table></figure></p>
+<h1 id="一级标题-1"><a href="#一级标题-1" class="headerlink" title="一级标题"></a>一级标题</h1></blockquote>
+<h2 id="二级标题-1"><a href="#二级标题-1" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><h4 id="四级标题"><a href="#四级标题" class="headerlink" title="四级标题"></a>四级标题</h4><h5 id="五级标题"><a href="#五级标题" class="headerlink" title="五级标题"></a>五级标题</h5><h6 id="六级标题"><a href="#六级标题" class="headerlink" title="六级标题"></a>六级标题</h6><h2 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h2><p>使用*、+、或-标记无序列表,符号后记得加空格<br><figure class="highlight haml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-<span class="ruby"> 文本<span class="number">1</span></span></span><br><span class="line"><span class="ruby">- 文本<span class="number">2</span></span></span><br><span class="line"><span class="ruby">- 文本<span class="number">3</span></span></span><br></pre></td></tr></table></figure></p>
 <p>效果：</p>
 <blockquote>
 <ul>
@@ -385,7 +386,7 @@
 </ul>
 </blockquote>
 <p>如果你希望有序列表，<br>也可以在文字前面加上 1. 2. 3. 就可以了</p>
-<figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="number">1.</span> 文本<span class="number">1</span></div><div class="line"><span class="number">2.</span> 文本<span class="number">2</span></div><div class="line"><span class="number">3.</span> 文本<span class="number">3</span></div></pre></td></tr></table></figure>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> 文本<span class="number">1</span></span><br><span class="line"><span class="number">2.</span> 文本<span class="number">2</span></span><br><span class="line"><span class="number">3.</span> 文本<span class="number">3</span></span><br></pre></td></tr></table></figure>
 <p>效果：</p>
 <blockquote>
 <ol>
@@ -395,7 +396,7 @@
 </ol>
 </blockquote>
 <h2 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h2><p>在段落的每行或者只在第一行使用符号&gt;,还可使用多个嵌套引用</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;</span><span class="bash"> 区块引用</span></div><div class="line"><span class="meta">&gt;</span><span class="bash">&gt; 嵌套引用</span></div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash"> 区块引用</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt; 嵌套引用</span></span><br></pre></td></tr></table></figure>
 <p>效果：</p>
 <blockquote>
 <p>区块引用</p>
@@ -403,14 +404,15 @@
 <p>嵌套引用</p>
 </blockquote>
 </blockquote>
-<h2 id="强调"><a href="#强调" class="headerlink" title="强调"></a>强调</h2><p>在强调内容两侧分别加上*<br><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="strong">*斜体*</span></div><div class="line">*<span class="strong">*粗体*</span><span class="strong">*</span></div></pre></td></tr></table></figure></p>
+<h2 id="强调"><a href="#强调" class="headerlink" title="强调"></a>强调</h2><p>在强调内容两侧分别加上*<br><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="strong">*斜体*</span></span><br><span class="line">*<span class="strong">*粗体*</span><span class="strong">*</span></span><br></pre></td></tr></table></figure></p>
 <blockquote>
 <p><em>斜体</em><br><strong>粗体</strong></p>
 </blockquote>
-<h2 id="代码块"><a href="#代码块" class="headerlink" title="代码块"></a>代码块</h2><p>需要引用代码时，如果引用的语句只有一段，不分行，可以用 ` 将语句包起来。<br>如果引用的语句为多行，可以将```置于这段代码的首行和末行。</p>
+<h2 id="代码块"><a href="#代码块" class="headerlink" title="代码块"></a>代码块</h2><p>需要引用代码时，如果引用的语句只有一段，不分行，可以用 <code>将语句包起来。
+如果引用的语句为多行，可以将``</code>置于这段代码的首行和末行。</p>
 <h2 id="链接和图片"><a href="#链接和图片" class="headerlink" title="链接和图片"></a>链接和图片</h2><p>在 Markdown 中，插入链接不需要其他按钮，你只需要使用<code>[显示文本](链接地址)</code>这样的语法即可</p>
 <p>在 Markdown 中，插入图片不需要其他按钮，你只需要使用<code>![](图片链接地址)</code>这样的语法即可</p>
-<p>以上就是一些常用的Markdown语法，应付写作应该足够了，希望能够帮助到大家。如果想了解更多，请参考<a href="http://wowubuntu.com/markdown/" target="_blank" rel="external">Markdown 语法说明</a></p>
+<p>以上就是一些常用的Markdown语法，应付写作应该足够了，希望能够帮助到大家。如果想了解更多，请参考<a href="http://wowubuntu.com/markdown/" target="_blank" rel="noopener">Markdown 语法说明</a></p>
 
       
     </div>
@@ -552,7 +554,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">30</span>
+              <span class="site-state-item-count">31</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -569,7 +571,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">71</span>
+                <span class="site-state-item-count">72</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

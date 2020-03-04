@@ -91,6 +91,7 @@
 <meta property="og:url" content="http://yoursite.com/2018/07/07/Swift-Permission/index.html">
 <meta property="og:site_name" content="Leroy Blog">
 <meta property="og:description" content="概述Swift 3中，新增了 fileprivate 和 open 权限，而在Swift4 中，对 fileprivate 和 private 的访问范围做出了调整。访问控制限制你在不同源文件和 module 之前代码和代码之前的访问。这个特性让你可以隐藏一些代码的实现，和明确一些可以访问和使用的接口。">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2018-07-07T05:54:58.811Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Swift访问控制权限">
@@ -381,7 +382,7 @@
 <h4 id="fileprivate"><a href="#fileprivate" class="headerlink" title="fileprivate"></a>fileprivate</h4><p>fileprivate 限制了只能在其定义的源文件里面使用。使用 fileprivate 权限以隐藏其实现细节。当其只在整个源文件中使用的时候，使用 fileprivate 修饰。</p>
 <h4 id="private"><a href="#private" class="headerlink" title="private"></a>private</h4><p>private 访问权限限制其只能在定义的范围内，和其在同一文件中的 extension 中使用。当其只在当个声明中使用的时候，使用 private 修饰。</p>
 <h3 id="使用原则"><a href="#使用原则" class="headerlink" title="使用原则"></a>使用原则</h3><p><strong>子类：</strong> 子类的访问级别不能高于父类，但是子类复写的父类方法的访问级别可以高于父类<br><strong>枚举：</strong> 枚举的每个值都和他们所属的枚举拥有相同的级别，并且并不能定义单独的访问级别。<br><strong>协议：</strong> 你可以给协议指定访问级别，并且对于协议的每一项来说，访问级别都和协议相同。并且你不能单独给协议中单独的方法等定义不同的访问级别。</p>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="http://clavis.me/iOS/Access-Control-of-Swift4/" target="_blank" rel="external">Swift4 访问控制权限</a></p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="http://clavis.me/iOS/Access-Control-of-Swift4/" target="_blank" rel="noopener">Swift4 访问控制权限</a></p>
 
       
     </div>
@@ -525,7 +526,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">30</span>
+              <span class="site-state-item-count">31</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -542,7 +543,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">71</span>
+                <span class="site-state-item-count">72</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -600,7 +601,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Modules-和-源文件"><span class="nav-number">2.</span> <span class="nav-text">Modules 和 源文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#访问级别"><span class="nav-number">3.</span> <span class="nav-text">访问级别</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#open-amp-public"><span class="nav-number">3.1.</span> <span class="nav-text">open & public</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#internal"><span class="nav-number">3.2.</span> <span class="nav-text">internal</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#fileprivate"><span class="nav-number">3.3.</span> <span class="nav-text">fileprivate</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#private"><span class="nav-number">3.4.</span> <span class="nav-text">private</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用原则"><span class="nav-number">4.</span> <span class="nav-text">使用原则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Modules-和-源文件"><span class="nav-number">2.</span> <span class="nav-text">Modules 和 源文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#访问级别"><span class="nav-number">3.</span> <span class="nav-text">访问级别</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#open-amp-public"><span class="nav-number">3.1.</span> <span class="nav-text">open &amp; public</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#internal"><span class="nav-number">3.2.</span> <span class="nav-text">internal</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#fileprivate"><span class="nav-number">3.3.</span> <span class="nav-text">fileprivate</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#private"><span class="nav-number">3.4.</span> <span class="nav-text">private</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用原则"><span class="nav-number">4.</span> <span class="nav-text">使用原则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
           </div>
         </section>

@@ -91,6 +91,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/11/07/github-ssh-key/index.html">
 <meta property="og:site_name" content="Leroy Blog">
 <meta property="og:description" content="SSH Key 介绍SSH提供了两种级别的安全验证第一种级别是基于密码的安全验证，知道账号和密码，就可以登陆到远程主机。Team的开发工作中，就是使用这种方式登陆编译服务器，或者开发机器。因为是在内网中，这种级别的安全验证已经足够了。第二种级别是基于Public-key cryptography (公开密匙加密）机制的安全验证.其优点在于无需共享的通用密钥，解密的私钥不发往任何用户。即使公钥在网上">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2016-11-19T11:31:06.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GitHub配置SSH Key">
@@ -369,15 +370,15 @@
 <h2 id="生成SSH-Key"><a href="#生成SSH-Key" class="headerlink" title="生成SSH Key"></a>生成SSH Key</h2><p>以下步骤都是要安装Git才能运行的。如果是mac用户，安装了xcode就会默认安装了Git。如果是win用户，请先安装Git，win环境安装有两种方式。一种是Git Bash，一种是Git Desktop。个人推荐使用Git Bash.因为Git Desktop是要在线下载安装的，速度很慢。</p>
 <ol>
 <li><p>设置username和email</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> git config --global user.name <span class="string">"Your Name"</span></span></div><div class="line"><span class="meta">$</span><span class="bash"> git config --global user.email <span class="string">"email@example.com"</span></span></div></pre></td></tr></table></figure>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git<span class="built_in"> config </span>--global user.name <span class="string">"Your Name"</span></span><br><span class="line">$ git<span class="built_in"> config </span>--global user.email <span class="string">"email@example.com"</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>创建SSH Key</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> ssh-keygen -t rsa -C <span class="string">"youremail@example.com"</span></span></div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ssh-keygen -t rsa -C <span class="string">"youremail@example.com"</span></span></span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <p>你需要把邮件地址换成你自己的邮件地址，然后一路回车，使用默认值即可.<br>如果一切顺利的话，可以在用户主目录里找到.ssh目录，里面有id_rsa和id_rsa.pub两个文件，这两个就是SSH Key的秘钥对，id_rsa是私钥，不能泄露出去，id_rsa.pub是公钥，可以放心地告诉任何人。</p>
-<h2 id="添加秘钥到ssh-agent（可选）"><a href="#添加秘钥到ssh-agent（可选）" class="headerlink" title="添加秘钥到ssh-agent（可选）"></a>添加秘钥到ssh-agent（可选）</h2><p>确保 ssh-agent 是可用的。ssh-agent是一种控制用来保存公钥身份验证所使用的私钥的程序，其实ssh-agent就是一个密钥管理器，运行ssh-agent以后，使用ssh-add将私钥交给ssh-agent保管，其他程序需要身份验证的时候可以将验证申请交给ssh-agent来完成整个认证过程。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># start the ssh-agent in the background</span></div><div class="line">    <span class="built_in">eval</span> <span class="string">"<span class="variable">$(ssh-agent -s)</span>"</span></div><div class="line">    Agent pid 59566</div></pre></td></tr></table></figure></p>
-<p>添加生成的SSH Key到ssh-agent<br><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ssh-<span class="keyword">add</span><span class="bash"> ~/.ssh/id_rsa</span></div></pre></td></tr></table></figure></p>
+<h2 id="添加秘钥到ssh-agent（可选）"><a href="#添加秘钥到ssh-agent（可选）" class="headerlink" title="添加秘钥到ssh-agent（可选）"></a>添加秘钥到ssh-agent（可选）</h2><p>确保 ssh-agent 是可用的。ssh-agent是一种控制用来保存公钥身份验证所使用的私钥的程序，其实ssh-agent就是一个密钥管理器，运行ssh-agent以后，使用ssh-add将私钥交给ssh-agent保管，其他程序需要身份验证的时候可以将验证申请交给ssh-agent来完成整个认证过程。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># start the ssh-agent in the background</span></span><br><span class="line">    <span class="built_in">eval</span> <span class="string">"<span class="variable">$(ssh-agent -s)</span>"</span></span><br><span class="line">    Agent pid 59566</span><br></pre></td></tr></table></figure></p>
+<p>添加生成的SSH Key到ssh-agent<br><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-<span class="keyword">add</span><span class="bash"> ~/.ssh/id_rsa</span></span><br></pre></td></tr></table></figure></p>
 <h2 id="提交公钥"><a href="#提交公钥" class="headerlink" title="提交公钥"></a>提交公钥</h2><p>登陆GitHub，打开“Account settings”，“SSH Keys”页面：<br>然后，点“Add SSH Key”，填上任意Title，在Key文本框里粘贴id_rsa.pub文件的内容。<br>最后点“Add Key”，你就应该看到已经添加的Key。</p>
 
       
@@ -520,7 +521,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">30</span>
+              <span class="site-state-item-count">31</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -537,7 +538,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">71</span>
+                <span class="site-state-item-count">72</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

@@ -91,6 +91,7 @@
 <meta property="og:url" content="http://yoursite.com/2020/03/04/unc0ver/index.html">
 <meta property="og:site_name" content="Leroy Blog">
 <meta property="og:description" content="前言iOS越狱（iOS Jailbreaking）是获取iOS设备的Root权限的技术手段，作为iOS开发者，了解越狱可以更好的做好iOS的攻防。">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1719830-13a758e599fce196.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1719830-f4b8464bbe88f2a6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1719830-87ff9b89f6111328.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
@@ -354,7 +355,7 @@
       
 
       
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p><strong>iOS越狱</strong>（<strong>iOS Jailbreaking</strong>）是获取<a href="https://zh.wikipedia.org/wiki/IOS%E8%AE%BE%E5%A4%87%E5%88%97%E8%A1%A8" title="IOS设备列表" target="_blank" rel="external">iOS设备</a>的<a href="https://zh.wikipedia.org/wiki/%E8%B6%85%E7%BA%A7%E7%94%A8%E6%88%B7" title="超级用户" target="_blank" rel="external">Root权限</a>的技术手段，作为iOS开发者，了解越狱可以更好的做好iOS的攻防。</p>
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p><strong>iOS越狱</strong>（<strong>iOS Jailbreaking</strong>）是获取<a href="https://zh.wikipedia.org/wiki/IOS%E8%AE%BE%E5%A4%87%E5%88%97%E8%A1%A8" title="IOS设备列表" target="_blank" rel="noopener">iOS设备</a>的<a href="https://zh.wikipedia.org/wiki/%E8%B6%85%E7%BA%A7%E7%94%A8%E6%88%B7" title="超级用户" target="_blank" rel="noopener">Root权限</a>的技术手段，作为iOS开发者，了解越狱可以更好的做好iOS的攻防。</p>
 <a id="more"></a>
 <h3 id="安装unc0ver"><a href="#安装unc0ver" class="headerlink" title="安装unc0ver"></a>安装unc0ver</h3><p>安装方式有<strong>个人自签名安装</strong>和<strong>企业证书版本安装</strong><br><strong>个人自签名安装</strong> 需要使用电脑，每次安装有效期7天，需要信任后使用，过期后需要重新签名安装。优点是，可以随时安装开发者发布的任意版本/最新版本unc0ver 越狱工具。<br>unc0ver的GitHub地址：<a href="[https://link.zhihu.com/?target=https%3A//github.com/pwn20wndstuff/Undecimus/releases](https://link.zhihu.com/?target=https%3A//github.com/pwn20wndstuff/Undecimus/releases">pwn20wnd</a><br>)<br>unc0ver支持的版本和设备在GitHub也有列出，可以自行参考<br>可以在GitHub上下载对应的ipa文件，然后在电脑上自行使用<a href="[http://www.cydiaimpactor.com](http://www.cydiaimpactor.com/">Cydia Impactor</a><br>) 进行安装。<br>安装方式很简单，手机usb链接电脑，电脑打开Cydia Impactor，把unc0ver的ipa拖进去就行了，然后输入自己的appid和密码进行签名，安装完成后手机去 <strong>设置-&gt;通用-&gt;描述文件</strong> 里信任一下证书<br><img src="https://upload-images.jianshu.io/upload_images/1719830-13a758e599fce196.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="impactor"></p>
 <p><strong>企业证书版本安装</strong>无需电脑，在线安装，安装后需要信任证书使用。每个企业证书理论上一年有效期，不过容易失效，失效后无法打开，需要等待网站签名后再次下载安装。优点是，无需电脑，缺点是容易证书失效，需要等待才能使用最新版本。<br>企业证书版可以去以下两个网站下载安装<br><a href="[app.ignition.fun/](https://link.zhihu.com/?target=https%3A//app.ignition.fun/">Ignition</a><br>) app.ignition.fun/<br><a href="[next.tweakboxapp.com](https://link.zhihu.com/?target=https%3A//next.tweakboxapp.com">Tweakboxapp</a><br>) next.tweakboxapp.com</p>
@@ -366,7 +367,7 @@
 <p><img src="https://upload-images.jianshu.io/upload_images/1719830-1589d6bcff4a8462.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Ad"></p>
 <p>然后就可以用Cydia添加源了并且安装自己想要的插件了<br><img src="https://upload-images.jianshu.io/upload_images/1719830-547ddbb52683c49e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="sources"></p>
 <p>如果越狱后想恢复到未越狱状态，可以用unc0ver还原，打开unc0ver的设置页面,把所有开关都关闭，只打开Restore RootFS, 然后回到unc0ver首页执行restore即可<br><img src="https://upload-images.jianshu.io/upload_images/1719830-d5bb783e78963abf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="re"></p>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://www.zhihu.com/people/ai-cheng-11-82" target="_blank" rel="external">艾橙君</a> - <a href="[https://zhuanlan.zhihu.com/p/58097735](https://zhuanlan.zhihu.com/p/58097735">unc0ver iOS 12.0 - 12.1.2 越狱指南</a><br>)</p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://www.zhihu.com/people/ai-cheng-11-82" target="_blank" rel="noopener">艾橙君</a> - <a href="[https://zhuanlan.zhihu.com/p/58097735](https://zhuanlan.zhihu.com/p/58097735">unc0ver iOS 12.0 - 12.1.2 越狱指南</a><br>)</p>
 
       
     </div>
@@ -508,7 +509,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">30</span>
+              <span class="site-state-item-count">31</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -525,7 +526,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">71</span>
+                <span class="site-state-item-count">72</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

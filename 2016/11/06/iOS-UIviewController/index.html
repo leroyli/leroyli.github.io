@@ -91,6 +91,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/11/06/iOS-UIviewController/index.html">
 <meta property="og:site_name" content="Leroy Blog">
 <meta property="og:description" content="在iOS 5.0以前，我们一般是这样使用UIViewController的：一个UIViewController的View可能有很多小的子view。这些子view很多时候被盖在最后，我们在最外层ViewController的viewDidLoad方法中，用addSubview增加了大量的子view。这些子view大多数不会一直处于界面上，只是在某些情况下才会出现。在iOS 5.0及以后，iOS为U">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2016-11-19T11:31:06.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS UIviewController控制器管理">
@@ -365,12 +366,12 @@
       
 
       
-        <p>在iOS 5.0以前，我们一般是这样使用UIViewController的：一个UIViewController的View可能有很多小的子view。这些子view很多时候被盖在最后，我们在最外层ViewController的viewDidLoad方法中，用addSubview增加了大量的子view。这些子view大多数不会一直处于界面上，只是在某些情况下才会出现。<br>在iOS 5.0及以后，iOS为UIViewController类添加了新的属性和方法：<br><a id="more"></a><br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>,<span class="keyword">readonly</span>) <span class="built_in">NSArray</span> *childViewControllers</div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)addChildViewController:(<span class="built_in">UIViewController</span> *)childController</div><div class="line">- (<span class="keyword">void</span>)removeFromParentViewController</div><div class="line">- (<span class="keyword">void</span>)transitionFromViewController：：：：：：</div><div class="line">- (<span class="keyword">void</span>)willMoveToParentViewController:(<span class="built_in">UIViewController</span> *)parent</div><div class="line">- (<span class="keyword">void</span>)didMoveToParentViewController:(<span class="built_in">UIViewController</span> *)parent</div></pre></td></tr></table></figure></p>
+        <p>在iOS 5.0以前，我们一般是这样使用UIViewController的：一个UIViewController的View可能有很多小的子view。这些子view很多时候被盖在最后，我们在最外层ViewController的viewDidLoad方法中，用addSubview增加了大量的子view。这些子view大多数不会一直处于界面上，只是在某些情况下才会出现。<br>在iOS 5.0及以后，iOS为UIViewController类添加了新的属性和方法：<br><a id="more"></a><br><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>,<span class="keyword">readonly</span>) <span class="built_in">NSArray</span> *childViewControllers</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)addChildViewController:(<span class="built_in">UIViewController</span> *)childController</span><br><span class="line">- (<span class="keyword">void</span>)removeFromParentViewController</span><br><span class="line">- (<span class="keyword">void</span>)transitionFromViewController：：：：：：</span><br><span class="line">- (<span class="keyword">void</span>)willMoveToParentViewController:(<span class="built_in">UIViewController</span> *)parent</span><br><span class="line">- (<span class="keyword">void</span>)didMoveToParentViewController:(<span class="built_in">UIViewController</span> *)parent</span><br></pre></td></tr></table></figure></p>
 <p>这样，就能够将一个页面中的UIViewController控制起来，而不是混乱的共用一个UIViewController.</p>
 <p>下面就分别来说说这几个方法:</p>
 <h2 id="addChildViewController"><a href="#addChildViewController" class="headerlink" title="addChildViewController"></a>addChildViewController</h2><p>向视图控制器容器中添加子视图控制器，当要添加的子视图控制器已经包含在视图控制器容器中，那么，相当于先从父视图控制器中删除，然后重新添加到父视图控制器中。</p>
 <h2 id="removeFromParentViewController"><a href="#removeFromParentViewController" class="headerlink" title="removeFromParentViewController"></a>removeFromParentViewController</h2><p>从父视图控制器中删除</p>
-<h2 id="transitionFromViewController"><a href="#transitionFromViewController" class="headerlink" title="transitionFromViewController"></a>transitionFromViewController</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)transitionFromViewController:(<span class="built_in">UIViewController</span> *)fromViewController</div><div class="line">                    toViewController:(<span class="built_in">UIViewController</span> *)toViewController</div><div class="line">                            duration:(<span class="built_in">NSTimeInterval</span>)duration</div><div class="line">                             options:(<span class="built_in">UIViewAnimationOptions</span>)options</div><div class="line">                          animations:(<span class="keyword">void</span> (^)(<span class="keyword">void</span>))animations</div><div class="line">                          completion:(<span class="keyword">void</span> (^)(<span class="built_in">BOOL</span> finished))completion;</div></pre></td></tr></table></figure>
+<h2 id="transitionFromViewController"><a href="#transitionFromViewController" class="headerlink" title="transitionFromViewController"></a>transitionFromViewController</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)transitionFromViewController:(<span class="built_in">UIViewController</span> *)fromViewController</span><br><span class="line">                    toViewController:(<span class="built_in">UIViewController</span> *)toViewController</span><br><span class="line">                            duration:(<span class="built_in">NSTimeInterval</span>)duration</span><br><span class="line">                             options:(<span class="built_in">UIViewAnimationOptions</span>)options</span><br><span class="line">                          animations:(<span class="keyword">void</span> (^)(<span class="keyword">void</span>))animations</span><br><span class="line">                          completion:(<span class="keyword">void</span> (^)(<span class="built_in">BOOL</span> finished))completion;</span><br></pre></td></tr></table></figure>
 <p>交换两个子视图控制器的位置（由于添加的顺序不同，所以子试图控制器在父视图控制器中存在层次关系）<br>各个参数的作用:<br><strong>fromViewController：</strong>当前显示的子试图控制器，将被替换为非显示状态<br><strong>toViewController：</strong>将要显示的子视图控制器<br><strong>duration：</strong>交换动画持续的时间，单位秒<br><strong>options：</strong>动画的方式<br><strong>animations：</strong>动画Block<br><strong>completion：</strong>完成后执行的Block</p>
 <h2 id="willMoveToParentViewController"><a href="#willMoveToParentViewController" class="headerlink" title="willMoveToParentViewController"></a>willMoveToParentViewController</h2><p>官方文档:(部分段落的引用会出现空隙，不过不影响阅读)</p>
 <blockquote>
@@ -543,7 +544,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">30</span>
+              <span class="site-state-item-count">31</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -560,7 +561,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">71</span>
+                <span class="site-state-item-count">72</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

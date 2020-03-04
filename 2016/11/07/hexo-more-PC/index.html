@@ -91,6 +91,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/11/07/hexo-more-PC/index.html">
 <meta property="og:site_name" content="Leroy Blog">
 <meta property="og:description" content="如果你有多台电脑，而且每台电脑你都有可能会写博客。那么这个时候就需要对Hexo进行版本控制了。版本控制的主要目的是方便在不同的电脑维护Hexo及写作。这里利用github的分支来保存hexo框架的相关文件(hexo配置、md、主题等文件)到github page仓库。这里假设已经在github上建好page仓库，也就是”yourname.github.io”名字的仓库，以及在自己电脑上已经搭建好g">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2016/11/07/hexo-more-PC/branch1.png">
 <meta property="og:image" content="http://yoursite.com/2016/11/07/hexo-more-PC/branch2.png">
 <meta property="og:updated_time" content="2016-11-19T11:31:06.000Z">
@@ -369,21 +370,21 @@
 
       
         <p>如果你有多台电脑，而且每台电脑你都有可能会写博客。那么这个时候就需要对Hexo进行版本控制了。<br>版本控制的主要目的是方便在不同的电脑维护Hexo及写作。这里利用github的分支来保存hexo框架的相关文件(hexo配置、md、主题等文件)到github page仓库。<br>这里假设已经在github上建好page仓库，也就是”yourname.github.io”名字的仓库，以及在自己电脑上已经搭建好git、hexo、nodejs环境<br><a id="more"></a></p>
-<h2 id="新建Hexo分支"><a href="#新建Hexo分支" class="headerlink" title="新建Hexo分支"></a>新建Hexo分支</h2><p>page仓库的master分支用来存放网站文件的，这是GitHub Page的要求，所以只好新建分支来保存Hexo原始文件，在下图的输入框输入分支名并按回车即完成分支创建。<br><img src="/2016/11/07/hexo-more-PC/branch1.png" alt="branch1.png" title=""></p>
-<h2 id="设置默认分支"><a href="#设置默认分支" class="headerlink" title="设置默认分支"></a>设置默认分支</h2><p>因为我们写博客更多的是更新这个分支，网站文件所在的master分支则由hexo d命令发布文章的时候进行推送，所以我们将hexo分支&gt;设置为默认分支，这样我们在新的电脑环境下git clone该仓库时，自动切到hexo`分支。按下图进行操作。<br><img src="/2016/11/07/hexo-more-PC/branch2.png" alt="branch2.png" title=""></p>
-<h2 id="配置hexo-deploy参数"><a href="#配置hexo-deploy参数" class="headerlink" title="配置hexo deploy参数"></a>配置hexo deploy参数</h2><figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">deploy</span>:</div><div class="line">  <span class="attribute">type</span>: git</div><div class="line">  <span class="attribute">repo</span>: <span class="attribute">https</span>:<span class="comment">//github.com/leroyli/leroyli.github.io.git</span></div><div class="line">  <span class="attribute">branch</span>: master</div></pre></td></tr></table></figure>
-<p>然后使用部署命令hexo g -d就会自动渲染Markdown文件生成静态文件并部署到yourname.github.io仓库的master分支上，这时再访问<a href="http://yourname.github.io" target="_blank" rel="external">http://yourname.github.io</a> 就可以看到博客页面了。<br>此时博客页面是部署保存了，但hexo配置、md、主题等文件还没有保存，在heox目录下使用以下命令将文件推送到hexo分支上</p>
-<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">git remote <span class="keyword">add</span><span class="bash"> origin https://github.com/yourname/yourname.github.io.git</span></div><div class="line">git <span class="keyword">add</span><span class="bash"> .</span></div><div class="line">git commit -m <span class="string">"提交描述"</span></div><div class="line">git push origin hexo</div></pre></td></tr></table></figure>
+<h2 id="新建Hexo分支"><a href="#新建Hexo分支" class="headerlink" title="新建Hexo分支"></a>新建Hexo分支</h2><p>page仓库的master分支用来存放网站文件的，这是GitHub Page的要求，所以只好新建分支来保存Hexo原始文件，在下图的输入框输入分支名并按回车即完成分支创建。<br><img src="/2016/11/07/hexo-more-PC/branch1.png"></p>
+<h2 id="设置默认分支"><a href="#设置默认分支" class="headerlink" title="设置默认分支"></a>设置默认分支</h2><p>因为我们写博客更多的是更新这个分支，网站文件所在的master分支则由hexo d命令发布文章的时候进行推送，所以我们将hexo分支&gt;设置为默认分支，这样我们在新的电脑环境下git clone该仓库时，自动切到hexo`分支。按下图进行操作。<br><img src="/2016/11/07/hexo-more-PC/branch2.png"></p>
+<h2 id="配置hexo-deploy参数"><a href="#配置hexo-deploy参数" class="headerlink" title="配置hexo deploy参数"></a>配置hexo deploy参数</h2><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">deploy</span>:</span><br><span class="line">  <span class="attribute">type</span>: git</span><br><span class="line">  <span class="attribute">repo</span>: <span class="attribute">https</span>:<span class="comment">//github.com/leroyli/leroyli.github.io.git</span></span><br><span class="line">  <span class="attribute">branch</span>: master</span><br></pre></td></tr></table></figure>
+<p>然后使用部署命令hexo g -d就会自动渲染Markdown文件生成静态文件并部署到yourname.github.io仓库的master分支上，这时再访问<a href="http://yourname.github.io" target="_blank" rel="noopener">http://yourname.github.io</a> 就可以看到博客页面了。<br>此时博客页面是部署保存了，但hexo配置、md、主题等文件还没有保存，在heox目录下使用以下命令将文件推送到hexo分支上</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git remote <span class="keyword">add</span><span class="bash"> origin https://github.com/yourname/yourname.github.io.git</span></span><br><span class="line"><span class="bash">git add .</span></span><br><span class="line"><span class="bash">git commit -m <span class="string">"提交描述"</span></span></span><br><span class="line"><span class="bash">git push origin hexo</span></span><br></pre></td></tr></table></figure>
 <p>下面来说说不同环境下的操作</p>
 <h2 id="已有环境"><a href="#已有环境" class="headerlink" title="已有环境"></a>已有环境</h2><p>如果在电脑上已经写过博客，那么可以在已有的工作目录下同步之前写的博客。<br>在你的仓库目录下右键’git bash shell’，起来bash命令行，然后</p>
-<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">git pull</span></div></pre></td></tr></table></figure>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">git pull</span></span><br></pre></td></tr></table></figure>
 <p>这样你的状态就更新了，之后就是 hexo命令写文章啦。。。<br>写完hexo g -d部署好后，使用</p>
-<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git <span class="keyword">add</span><span class="bash"> .</span></div><div class="line">git commit -m “change description”</div><div class="line">git push origin hexo</div></pre></td></tr></table></figure>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">add</span><span class="bash"> .</span></span><br><span class="line"><span class="bash">git commit -m “change description”</span></span><br><span class="line"><span class="bash">git push origin hexo</span></span><br></pre></td></tr></table></figure>
 <p>推送上去.</p>
 <h2 id="新环境"><a href="#新环境" class="headerlink" title="新环境"></a>新环境</h2><p>到了新的电脑上时，我们需要将项目先下载到本地，然后再进行hexo初始化。</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">git clone https://github.com/yourname/yourname.github.io.git</div><div class="line">cd yourname.github.io</div><div class="line">npm <span class="keyword">install</span> hexo</div><div class="line">npm <span class="keyword">install</span></div><div class="line">npm <span class="keyword">install</span> hexo-deployer-git –<span class="keyword">save</span></div></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/yourname/yourname.github.io.git</span><br><span class="line">cd yourname.github.io</span><br><span class="line">npm <span class="keyword">install</span> hexo</span><br><span class="line">npm <span class="keyword">install</span></span><br><span class="line">npm <span class="keyword">install</span> hexo-deployer-git –<span class="keyword">save</span></span><br></pre></td></tr></table></figure>
 <p>之后开始写博客，写好部署好之后，别忘记 git add , ….git push origin hexo…推上去</p>
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="http://www.rvclient.com/2016/05/21/hexo-everywhere/" target="_blank" rel="external">在不同的电脑维护Hexo和写作</a></p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="http://www.rvclient.com/2016/05/21/hexo-everywhere/" target="_blank" rel="noopener">在不同的电脑维护Hexo和写作</a></p>
 
       
     </div>
@@ -529,7 +530,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">30</span>
+              <span class="site-state-item-count">31</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -546,7 +547,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">71</span>
+                <span class="site-state-item-count">72</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

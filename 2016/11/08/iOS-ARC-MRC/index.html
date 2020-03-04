@@ -91,6 +91,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/11/08/iOS-ARC-MRC/index.html">
 <meta property="og:site_name" content="Leroy Blog">
 <meta property="og:description" content="简介Objective-C中提供了两种内存管理机制：MRC（MannulReference Counting）和 ARC(Automatic Reference Counting)，分别提供对内存的手动和自动管理，来满足不同的需求。iOS 5之前普遍使用MRC来管理内存。iOS 5之后，苹果推出ARC。现在普遍时候ARC来管理内存。">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2016-11-19T11:31:06.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS内存管理">
@@ -389,8 +390,8 @@
 <li>release，对象调用 release方法，该对象的RetainCount-1;</li>
 <li>dealloc，dealloc方法并不会影响RetainCount的值，但是当RetainCount的值为0时，系统会调用dealloc方法来销毁对象。</li>
 </ol>
-<p>在MRC模式下，如果一个对象被释放，它的RetainCount并不是立即变为0的<br>例如：<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">- (<span class="built_in">BOOL</span>)application:(<span class="built_in">UIApplication</span> *)application didFinishLaunchingWithOptions:(<span class="built_in">NSDictionary</span> *)launchOptions</div><div class="line">&#123;</div><div class="line">    <span class="built_in">NSObject</span> *object = [[<span class="built_in">NSObject</span> alloc] init];</div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"Reference Count = %u"</span>, [object retainCount]);</div><div class="line">    [object release];</div><div class="line">    <span class="built_in">NSLog</span>(<span class="string">@"Reference Count = %u"</span>, [object retainCount]);</div><div class="line">    <span class="keyword">return</span> <span class="literal">YES</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>输出结果：<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Reference Count = <span class="number">1</span></div><div class="line">Reference Count = <span class="number">1</span></div></pre></td></tr></table></figure></p>
+<p>在MRC模式下，如果一个对象被释放，它的RetainCount并不是立即变为0的<br>例如：<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">BOOL</span>)application:(<span class="built_in">UIApplication</span> *)application didFinishLaunchingWithOptions:(<span class="built_in">NSDictionary</span> *)launchOptions</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">NSObject</span> *object = [[<span class="built_in">NSObject</span> alloc] init];</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"Reference Count = %u"</span>, [object retainCount]);</span><br><span class="line">    [object release];</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"Reference Count = %u"</span>, [object retainCount]);</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">YES</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>输出结果：<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Reference Count = <span class="number">1</span></span><br><span class="line">Reference Count = <span class="number">1</span></span><br></pre></td></tr></table></figure></p>
 <p>我们注意到，最后一次输出，引用计数并没有变成 0。这是为什么呢？因为该对象的内存已经被回收，而我们向一个已经被回收的对象发了一个 retainCount 消息，所以它的输出结果应该是不确定的，如果该对象所占的内存被复用了，那么就有可能造成程序异常崩溃。<br>那为什么在这个对象被回收之后，这个不确定的值是 1 而不是 0 呢？这是因为当最后一次执行 release 时，系统知道马上就要回收内存了，就没有必要再将 retainCount 减 1 了，因为不管减不减 1，该对象都肯定会被回收，而对象被回收后，它的所有的内存区域，包括 retainCount 值也变得没有意义。不将这个值从 1 变成 0，可以减少一次内存的写操作，加速对象的回收。</p>
 <p>MRC下内存管理有是个法则</p>
 <ul>
@@ -441,10 +442,10 @@
 </ul>
 <h4 id="Autorelease-Pool-的用处"><a href="#Autorelease-Pool-的用处" class="headerlink" title="Autorelease Pool 的用处"></a>Autorelease Pool 的用处</h4><p>在 ARC 下，我们并不需要手动调用 autorelease 有关的方法，甚至可以完全不知道 autorelease 的存在，就可以正确管理好内存。因为 Cocoa Touch 的 Runloop 中，每个 runloop circle 中系统都自动加入了 Autorelease Pool 的创建和释放。</p>
 <p>当我们需要创建和销毁大量的对象时，使用手动创建的 autoreleasepool 可以有效的避免内存峰值的出现。因为如果不手动创建的话，外层系统创建的 pool 会在整个 runloop circle 结束之后才进行 drain，手动创建的话，会在 block 结束之后就进行 drain 操作。详情请参考苹果官方文档。一个普遍被使用的例子如下</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">100000000</span>; i++)</div><div class="line">&#123;</div><div class="line">    <span class="keyword">@autoreleasepool</span></div><div class="line">    &#123;</div><div class="line">        <span class="built_in">NSString</span>* string = <span class="string">@"ab c"</span>;</div><div class="line">        <span class="built_in">NSArray</span>* array = [string componentsSeparatedByString:string];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">100000000</span>; i++)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">@autoreleasepool</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">NSString</span>* string = <span class="string">@"ab c"</span>;</span><br><span class="line">        <span class="built_in">NSArray</span>* array = [string componentsSeparatedByString:string];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>如果不使用 autoreleasepool ，需要在循环结束之后释放 100000000 个字符串，如果 使用的话，则会在每次循环结束的时候都进行 release 操作。</p>
 <h4 id="main-m-中-Autorelease-Pool-的解释"><a href="#main-m-中-Autorelease-Pool-的解释" class="headerlink" title="main.m 中 Autorelease Pool 的解释"></a>main.m 中 Autorelease Pool 的解释</h4><p>大家都知道在 iOS 程序的 main.m 文件中有类似这样的语句：</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">char</span> * argv[]) &#123;</div><div class="line">    <span class="keyword">@autoreleasepool</span> &#123;</div><div class="line">        <span class="keyword">return</span> <span class="built_in">UIApplicationMain</span>(argc, argv, <span class="literal">nil</span>, <span class="built_in">NSStringFromClass</span>([AppDelegate <span class="keyword">class</span>]));</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">char</span> * argv[]) &#123;</span><br><span class="line">    <span class="keyword">@autoreleasepool</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">UIApplicationMain</span>(argc, argv, <span class="literal">nil</span>, <span class="built_in">NSStringFromClass</span>([AppDelegate <span class="keyword">class</span>]));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>根据苹果官方文档， UIApplicationMain 函数是整个 app 的入口，用来创建 application 对象（单例）和 application delegate。尽管这个函数有返回值，但是实际上却永远不会返回，当按下 Home 键时，app 只是被切换到了后台状态。</p>
 <p>同时参考苹果关于 Lifecycle 的官方文档，UIApplication 自己会创建一个 main run loop，我们大致可以得到下面的结论：</p>
 <ol>
@@ -455,7 +456,7 @@
 </ol>
 <p>基于 AppKit 框架的 Mac OS 开发中， main.m 当中就是不存在 autorelease pool 的，也进一步验证了我们得到的结论。不过因为我们看不到更底层的代码，加上苹果的文档中不建议修改 main.m ，所以我们也没有理由就直接把它删掉（亲测，删掉之后不影响 App 运行，用 Instruments 也看不到泄露）。</p>
 <p>以上就是对内存管理的一些总结。</p>
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="http://blog.devtang.com/2016/07/30/ios-memory-management/" target="_blank" rel="external">理解 iOS 的内存管理</a><br><a href="https://hit-alibaba.github.io/interview/iOS/ObjC-Basic/MM.html" target="_blank" rel="external">Objective-C内存管理</a></p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="http://blog.devtang.com/2016/07/30/ios-memory-management/" target="_blank" rel="noopener">理解 iOS 的内存管理</a><br><a href="https://hit-alibaba.github.io/interview/iOS/ObjC-Basic/MM.html" target="_blank" rel="noopener">Objective-C内存管理</a></p>
 
       
     </div>
@@ -603,7 +604,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">30</span>
+              <span class="site-state-item-count">31</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -620,7 +621,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">71</span>
+                <span class="site-state-item-count">72</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
