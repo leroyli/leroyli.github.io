@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="iOS,position,anchorPoint," />
+  <meta name="keywords" content="iOS,虚拟内存,VM region," />
 
 
 
@@ -84,20 +84,22 @@
 
 
 
-<meta name="description" content="前言相信很多刚接触CALayer的人都会遇到一下几个麻烦：1. 为什么修改anchorPoint会移动layer的位置？2. CALayer的position点是哪一点呢?3. anchorPoint与position有什么关系？今天我们就来讨论一下这些问题">
-<meta name="keywords" content="iOS,position,anchorPoint">
+<meta name="description" content="####虚拟内存简介什么是VM Regions呢？要知道这个首先要了解什么是虚拟内存。当我们向系统申请内存时，系统并不会给你返回物理内存的地址，而是给你一个虚拟内存地址。每个进程都拥有相同大小的虚拟地址空间，对于32位的进程，可以拥有4GB的虚拟内存，64位进程则更多，可达18EB。只有我们开始使用申请到的虚拟内存时，系统才会将虚拟地址映射到物理地址上，从而让程序使用真实的物理内存。">
+<meta name="keywords" content="iOS,虚拟内存,VM region">
 <meta property="og:type" content="article">
-<meta property="og:title" content="iOS 理解position和anchorPoint">
-<meta property="og:url" content="http://yoursite.com/2017/05/08/iOS-position-and-anchorPoint/index.html">
+<meta property="og:title" content="iOS 虚拟内存">
+<meta property="og:url" content="http://yoursite.com/2020/03/04/iOS-VM-Region/index.html">
 <meta property="og:site_name" content="Leroy Blog">
-<meta property="og:description" content="前言相信很多刚接触CALayer的人都会遇到一下几个麻烦：1. 为什么修改anchorPoint会移动layer的位置？2. CALayer的position点是哪一点呢?3. anchorPoint与position有什么关系？今天我们就来讨论一下这些问题">
-<meta property="og:image" content="http://yoursite.com/2017/05/08/iOS-position-and-anchorPoint/anchorpoint1.png">
-<meta property="og:image" content="http://yoursite.com/2017/05/08/iOS-position-and-anchorPoint/anchorpoint2.png">
-<meta property="og:updated_time" content="2017-05-08T09:43:17.000Z">
+<meta property="og:description" content="####虚拟内存简介什么是VM Regions呢？要知道这个首先要了解什么是虚拟内存。当我们向系统申请内存时，系统并不会给你返回物理内存的地址，而是给你一个虚拟内存地址。每个进程都拥有相同大小的虚拟地址空间，对于32位的进程，可以拥有4GB的虚拟内存，64位进程则更多，可达18EB。只有我们开始使用申请到的虚拟内存时，系统才会将虚拟地址映射到物理地址上，从而让程序使用真实的物理内存。">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1719830-efc833b3ac287a5f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1719830-874696f094468b59.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1719830-3a5cd9b9075f69cf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1719830-43358cb3164ef4e9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2020-03-04T06:08:42.064Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="iOS 理解position和anchorPoint">
-<meta name="twitter:description" content="前言相信很多刚接触CALayer的人都会遇到一下几个麻烦：1. 为什么修改anchorPoint会移动layer的位置？2. CALayer的position点是哪一点呢?3. anchorPoint与position有什么关系？今天我们就来讨论一下这些问题">
-<meta name="twitter:image" content="http://yoursite.com/2017/05/08/iOS-position-and-anchorPoint/anchorpoint1.png">
+<meta name="twitter:title" content="iOS 虚拟内存">
+<meta name="twitter:description" content="####虚拟内存简介什么是VM Regions呢？要知道这个首先要了解什么是虚拟内存。当我们向系统申请内存时，系统并不会给你返回物理内存的地址，而是给你一个虚拟内存地址。每个进程都拥有相同大小的虚拟地址空间，对于32位的进程，可以拥有4GB的虚拟内存，64位进程则更多，可达18EB。只有我们开始使用申请到的虚拟内存时，系统才会将虚拟地址映射到物理地址上，从而让程序使用真实的物理内存。">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/1719830-efc833b3ac287a5f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
 
@@ -118,10 +120,10 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/05/08/iOS-position-and-anchorPoint/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/03/04/iOS-VM-Region/"/>
 
 
-  <title> iOS 理解position和anchorPoint | Leroy Blog </title>
+  <title> iOS 虚拟内存 | Leroy Blog </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -293,7 +295,7 @@
             
             
               
-                iOS 理解position和anchorPoint
+                iOS 虚拟内存
               
             
           </h1>
@@ -305,38 +307,19 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2017-05-08T17:37:33+08:00" content="2017-05-08">
-              2017-05-08
+            <time itemprop="dateCreated" datetime="2020-03-04T14:07:22+08:00" content="2020-03-04">
+              2020-03-04
             </time>
           </span>
 
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/iOS/" itemprop="url" rel="index">
-                    <span itemprop="name">iOS</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
           
 
           
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2017/05/08/iOS-position-and-anchorPoint/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/05/08/iOS-position-and-anchorPoint/" itemprop="commentsCount"></span>
+                <a href="/2020/03/04/iOS-VM-Region/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/03/04/iOS-VM-Region/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -346,7 +329,7 @@
 
           
           
-             <span id="/2017/05/08/iOS-position-and-anchorPoint/" class="leancloud_visitors" data-flag-title="iOS 理解position和anchorPoint">
+             <span id="/2020/03/04/iOS-VM-Region/" class="leancloud_visitors" data-flag-title="iOS 虚拟内存">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -368,43 +351,20 @@
       
 
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>相信很多刚接触CALayer的人都会遇到一下几个麻烦：<br><strong>1. 为什么修改anchorPoint会移动layer的位置？</strong><br><strong>2. CALayer的position点是哪一点呢?</strong><br><strong>3. anchorPoint与position有什么关系？</strong><br>今天我们就来讨论一下这些问题</p>
+        <p>####虚拟内存简介<br>什么是VM Regions呢？要知道这个首先要了解什么是虚拟内存。当我们向系统申请内存时，系统并不会给你返回物理内存的地址，而是给你一个虚拟内存地址。每个进程都拥有相同大小的虚拟地址空间，对于32位的进程，可以拥有4GB的虚拟内存，64位进程则更多，可达18EB。只有我们开始使用申请到的虚拟内存时，系统才会将虚拟地址映射到物理地址上，从而让程序使用真实的物理内存。</p>
 <a id="more"></a>
-<h2 id="关系"><a href="#关系" class="headerlink" title="关系"></a>关系</h2><p>每一个UIView内部都默认关联着一个CALayer, UIView有frame、bounds和center三个属性，CALayer也有类似的属性，分别为frame、bounds、position、anchorPoint。frame和bounds比较好理解，bounds可以视为x坐标和y坐标都为0的frame，那<strong>position</strong>、<strong>anchorPoint</strong>是什么呢？先看看两者的原型，可知都是<strong>CGPoint</strong>点。</p>
-<p><strong>@property CGPoint position</strong><br><strong>@property CGPoint anchorPoint</strong></p>
-<h2 id="anchorPoint"><a href="#anchorPoint" class="headerlink" title="anchorPoint"></a>anchorPoint</h2><p>从一个例子开始入手吧，想象一下，把一张A4白纸用图钉订在书桌上，如果订得不是很紧的话，白纸就可以沿顺时针或逆时针方向围绕图钉旋转，这时候图钉就起着支点的作用。我们要解释的anchorPoint就相当于白纸上的图钉，它主要的作用就是用来作为变换的支点，旋转就是一种变换，类似的还有平移、缩放。</p>
-<p>继续扩展，很明显，白纸的旋转形态随图钉的位置不同而不同，图钉订在白纸的正中间与左上角时分别造就了两种旋转形态，这是由图钉（anchorPoint）的位置决定的。如何衡量图钉（anchorPoint）在白纸中的位置呢？在iOS中，anchorPoint点的值是用一种相对bounds的比例值来确定的，在白纸的左上角、右下角，anchorPoint分为为(0,0), (1, 1)，也就是说anchorPoint是在单元坐标空间(同时也是左手坐标系)中定义的。类似地，可以得出在白纸的中心点、左下角和右上角的anchorPoint为(0.5,0.5), (0,1), (1,0)。</p>
-<p>然后再来看下面两张图，注意图中分iOS与MacOS，因为两者的坐标系不相同，iOS使用左手坐标系，坐标原点在左上角，MacOS使用右手坐标系，原点在左下角，我们看iOS部分即可。 </p>
-<img src="/2017/05/08/iOS-position-and-anchorPoint/anchorpoint1.png" alt="anchorpoint1.png" title="">
-<p>图1.<br><img src="/2017/05/08/iOS-position-and-anchorPoint/anchorpoint2.png" alt="anchorpoint2.png" title=""><br>图2.</p>
-<p>像UIView有superView与subView的概念一样，CALayer也有superLayer与layer的概念，前面说到的白纸和图中的矩形可以理解为layer，书桌和图中矩形以外的坐标系可以理解成superLayer。如果各自以左上角为原点，则在图中有相对的两个坐标空间。</p>
-<h2 id="position"><a href="#position" class="headerlink" title="position"></a>position</h2><p>在图1中，anchorPoint有(0.5,0.5)和(0,0)两种情况，分别为矩形的中心点与原点。那么，这两个anchorPoint在superLayer中的实际位置分别为多少呢？简单计算一下就可以得到(100, 100)和(40, 60)，把这两个值分别与各自的position值比较，发现完全一致，该不会是巧合？</p>
-<p>这时候可以大胆猜测一下，position是不是就是anchorPoint在superLayer中的位置呢？答案是确定的，更确切地说，position是layer中的anchorPoint点在superLayer中的位置坐标。因此可以说, position点是相对suerLayer的，anchorPoint点是相对layer的，两者是相对不同的坐标空间的一个重合点。</p>
-<p>再来看看position的原始定义： The layer’s position in its superlayer’s coordinate space。<br>中文可以理解成为position是layer相对superLayer坐标空间的位置，很显然，这里的位置是根据anchorPoint来确定的。</p>
-<p>图2中是矩形沿不同的anchorPoint点旋转的形态，这就是类似于刚才讲的图钉订在白纸的正中间与左上角时分别造就了两种旋转形态。</p>
-<h2 id="anchorPoint、position、frame之间的关系"><a href="#anchorPoint、position、frame之间的关系" class="headerlink" title="anchorPoint、position、frame之间的关系"></a>anchorPoint、position、frame之间的关系</h2><p>anchorPoint的默认值为(0.5,0.5)，也就是anchorPoint默认在layer的中心点。默认情况下，使用addSublayer函数添加layer时，如果已知layer的frame值，根据上面的结论，那么position的值便可以用下面的公式计算：<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">position.x = frame.origin.x + <span class="number">0.5</span> * bounds.size.width；  </div><div class="line">position.y = frame.origin.y + <span class="number">0.5</span> * bounds.size.height；</div></pre></td></tr></table></figure></p>
-<p>里面的0.5是因为anchorPoint取默认值，更通用的公式应该是下面的：<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">position.x = frame.origin.x + anchorPoint.x * bounds.size.width；  </div><div class="line">position.y = frame.origin.y + anchorPoint.y * bounds.size.height；</div></pre></td></tr></table></figure></p>
-<p>下面再来看另外两个问题，如果单方面修改layer的position位置，会对anchorPoint有什么影响呢？修改anchorPoint又如何影响position呢？<br>根据代码测试，两者互不影响，受影响的只会是frame.origin，也就是layer坐标原点相对superLayer会有所改变。换句话说，frame.origin由position和anchorPoint共同决定，上面的公式可以变换成下面这样的<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">frame.origin.x = position.x - anchorPoint.x * bounds.size.width；  </div><div class="line">frame.origin.y = position.y - anchorPoint.y * bounds.size.height；</div></pre></td></tr></table></figure></p>
-<p>这就解释了为什么修改anchorPoint会移动layer，因为position不受影响，只能是frame.origin做相应的改变，因而会移动layer。</p>
-<h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><p>在Apple doc对frame的描述中有这么一句话：</p>
-<blockquote>
-<p><em>Layers have an implicit frame that is a function of the position, bounds, anchorPoint, and transform properties.</em></p>
-</blockquote>
-<p>可以看到我们推导的公式基本符合这段描述，只不过还缺少了transform，加上transform的话就比较复杂，这里就不展开讲了。</p>
-<p>Apple doc中还有一句描述是这样的：</p>
-<blockquote>
-<p><em>When you specify the frame of a layer, position is set relative to the anchor point. When you specify the position of the layer, bounds is set relative to the anchor point.</em></p>
-</blockquote>
-<p>大意是：当你设置图层的frame属性的时候，position根据锚点（anchorPoint）的值来确定，而当你设置图层的position属性的时候，bounds会根据锚点(anchorPoint)来确定。</p>
-<p>这段翻译的上半句根据前面的公式容易理解，后半句可能就有点令人迷惑了，当修改position时，bounds的width与height会随之修改吗？其实,position是点，bounds是矩形，根据锚点(anchorPoint)来确定的只是它们的位置，而不是内部属性。所以，上面这段英文这么翻译就容易理解了：</p>
-<p><strong>当你设置图层的frame属性的时候，position点的位置（也就是position坐标）根据锚点（anchorPoint）的值来确定，而当你设置图层的position属性的时候，bounds的位置（也就是frame的orgin坐标）会根据锚点(anchorPoint)来确定。</strong></p>
-<p>在实际情况中，可能还有这样一种需求，我需要修改anchorPoint，但又不想要移动layer也就是不想修改frame.origin，那么根据前面的公式，就需要position做相应地修改。简单地推导，可以得到下面的公式：</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">positionNew.x = positionOld.x + (anchorPointNew.x - anchorPointOld.x)  * bounds.size.width  </div><div class="line">positionNew.y = positionOld.y + (anchorPointNew.y - anchorPointOld.y)  * bounds.size.height</div></pre></td></tr></table></figure>
-<p>但是在实际使用没必要这么麻烦。修改anchorPoint而不想移动layer，在修改anchorPoint后再重新设置一遍frame就可以达到目的，这时position就会自动进行相应的改变。写成函数就是下面这样的：</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>) setAnchorPoint:(<span class="built_in">CGPoint</span>)anchorpoint forView:(<span class="built_in">UIView</span> *)view&#123;</div><div class="line">  <span class="built_in">CGRect</span> oldFrame = view.frame;</div><div class="line">  view.layer.anchorPoint = anchorpoint;</div><div class="line">  view.frame = oldFrame;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><strong>1. position是layer中的anchorPoint在superLayer中的位置坐标。</strong><br><strong>2. 互不影响原则：单独修改position与anchorPoint中任何一个属性都不影响另一个属性。</strong><br><strong>3. frame、position与anchorPoint有以下关系：</strong><br><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">frame.origin.x = position.x - anchorPoint.x * bounds.size.width；  </div><div class="line">frame.origin.y = position.y - anchorPoint.y * bounds.size.height；</div></pre></td></tr></table></figure></p>
-<p>第2条的互不影响原则还可以这样理解：<strong>position与anchorPoint是处于不同坐标空间中的重合点，修改重合点在一个坐标空间的位置不影响该重合点在另一个坐标空间中的位置。</strong></p>
-<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><p><a href="http://wonderffee.github.io/" target="_blank" rel="external">Wonderffee’s Blog</a>:<a href="http://wonderffee.github.io/blog/2013/10/13/understand-anchorpoint-and-position/" target="_blank" rel="external">彻底理解position与anchorPoint</a></p>
+<p>####内存分页<br>系统会对虚拟内存和物理内存进行分页，虚拟内存到物理内存的映射都是以页为最小粒度的。在OSX和早期的iOS系统中，物理和虚拟内存都按照4KB的大小进行分页。iOS近期的系统中，基于A7和A8处理器的系统，物理内存按照4KB分页，虚拟内存按照16KB分页。基于A9处理器的系统，物理和虚拟内存都是以16KB进行分页。系统将内存页分为三种状态。</p>
+<p><strong>活跃内存页（active pages）</strong>- 这种内存页已经被映射到物理内存中，而且近期被访问过，处于活跃状态。<br><strong>非活跃内存页（inactive pages）</strong>- 这种内存页已经被映射到物理内存中，但是近期没有被访问过。<br><strong>可用的内存页（free pages）</strong>- 没有关联到虚拟内存页的物理内存页集合。<br>当可用的内存页降低到一定的阀值时，系统就会采取低内存应对措施，在OSX中，系统会将非活跃内存页交换到硬盘上，而在iOS中，则会触发Memory Warning，如果你的App没有处理低内存警告并且还在后台占用太多内存，则有可能被杀掉。</p>
+<p>####VM Region<br>为了更好的管理内存页，系统将一组连续的内存页关联到一个VMObject上，VMObject主要包含下面的属性。<br><strong>Resident pages</strong> - 已经被映射到物理内存的虚拟内存页列表<br><strong>Size</strong> - 所有内存页所占区域的大小<br><strong>Pager</strong> - 用来处理内存页在硬盘和物理内存中交换问题<br><strong>Attributes</strong> - 这块内存区域的属性，比如读写的权限控制<br><strong>Shadow</strong> - 用作（copy-on-write）写时拷贝的优化<br><strong>Copy</strong> - 用作（copy-on-write）写时拷贝的优化<br>我们在Instruments的Anonymous VM里看到的每条记录都是一个VMObject或者也可以称之为VM Region</p>
+<p>###堆（heap）和 VM Region<br>Instruments中有一个VM Track模版，可以帮助我们清楚的了解heap和VM Region的关系<br>运行Profile，选择Allocation模版，进入后再添加VM Track模版<br><img src="https://upload-images.jianshu.io/upload_images/1719830-efc833b3ac287a5f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="s1"><br>下面是我自己写的一个测试用的工程，选择Regions Map选项可以看到内存分配的详细信息</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/1719830-874696f094468b59.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="s2"><br>我们在VM Track中可以看到，一个VM Region有4种size。<br><strong>Dirty Size</strong><br><strong>Swapped Size</strong><br><strong>Resident Size</strong><br><strong>Virtual Size</strong><br>Virtual Size顾名思义，就是虚拟内存大小，将一个VM Region的结束地址减去起始地址就是这个值。Resident Size指的是实际使用物理内存的大小。Swapped Size则是交换到硬盘上的大小，仅OSX可用。Dirty Size根据官方的解释我的理解是如果一个内存页想要被复用，必须将内容写到硬盘上的话，这个内存页就是Dirty的。下面是官方对Dirty Size的解释。secondary storage可以理解为硬盘。<br>The amount of memory currently being used that must be written to secondary storage before being reused.<br>所以一般来说app运行过程中在堆上动态分配的内存页都是Dirty的，加载动态库或者文件内存映射产生的内存页则是非Dirty的</p>
+<p>点击Address Range列的箭头可以看到更详细的内容，这里进入的是SMALL类型的<br><img src="https://upload-images.jianshu.io/upload_images/1719830-3a5cd9b9075f69cf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="s3"><br>总的来说，堆区会被划分成很多不同的VM Region，不同类型的内存分配根据需求进入不同的VM Region。除了MALLOC_LARGE和MALLOC_SMALL外，还有MALLOC_TINY， MALLOC metadata等等</p>
+<p>###VM Tracker列属性解析</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/1719830-43358cb3164ef4e9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="s4"><br><strong>% of Res</strong>， 当前Type的VM Regions总Resident Size占比<br><strong>Type</strong>，VM Regions的Type，All和Dirty算是统计性质的Type，<strong>TEXT表示代码段的内存映射，</strong>DATA表示数据段的内存映射。MALLOC_TINY，MALLOC_LARGE，CG Image等Type可以从VM Region的Extend Info中读取出来<br><strong># Regs</strong>，当前Type的VM Region总数<br><strong>Path</strong>，VM Region是从哪个文件映射过来，因为有些类似于__DATA和mapped file的内存块是从文件直接映射过来的。<br><strong>Resident Size</strong>，使用的物理内存量。<br><strong>Dirty Size</strong>，使用中的物理内存块如果不交换到硬盘保存状态就不能复用，那么就是Dirty的内存块，比如你主动malloc出来的内存块，如果不保留其中的状态就把它给别人用，那你肯定就无法恢复这个内存块的信息，所以它是Dirty的。如果是一个映射到内存的文件，就算使用它的内存块，还是可以重新从磁盘载入文件到内存的，所以是非Dirty的，比如最上面图中的mapped file那一行，你可以看到Dirty Size是0。<br><strong>Swapped Size</strong>, 在OSX中，不活跃的内存页可以被交换到硬盘，这是被交换的大小。在iOS中，只有非Dirty的内存页可以被交换，或者说是被卸载。<br><strong>Virtual Size</strong>，VM Regions所占虚拟内存的大小<br><strong>Res. %</strong>，Resident Size在Virtual Size中的占比</p>
+<p>###参考：<br><a href="[https://www.jianshu.com/p/553f34b03624](https://www.jianshu.com/p/553f34b03624"><a href="https://www.jianshu.com/p/553f34b03624" target="_blank" rel="external">https://www.jianshu.com/p/553f34b03624</a>
+</a><br>)<br><a href="[https://www.jianshu.com/p/f82e2b378455](https://www.jianshu.com/p/f82e2b378455"><a href="https://www.jianshu.com/p/f82e2b378455" target="_blank" rel="external">https://www.jianshu.com/p/f82e2b378455</a>
+</a><br>)<br><a href="[https://developer.apple.com/library/archive/documentation/Performance/Conceptual/ManagingMemory/Articles/AboutMemory.html](https://developer.apple.com/library/archive/documentation/Performance/Conceptual/ManagingMemory/Articles/AboutMemory.html"><a href="https://developer.apple.com/library/archive/documentation/Performance/Conceptual/ManagingMemory/Articles/AboutMemory.html" target="_blank" rel="external">https://developer.apple.com/library/archive/documentation/Performance/Conceptual/ManagingMemory/Articles/AboutMemory.html</a>
+</a><br>)</p>
 
       
     </div>
@@ -429,9 +389,9 @@
           
             <a href="/tags/iOS/" rel="tag">#iOS</a>
           
-            <a href="/tags/position/" rel="tag">#position</a>
+            <a href="/tags/虚拟内存/" rel="tag">#虚拟内存</a>
           
-            <a href="/tags/anchorPoint/" rel="tag">#anchorPoint</a>
+            <a href="/tags/VM-region/" rel="tag">#VM region</a>
           
         </div>
       
@@ -440,17 +400,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/05/08/iOS-Font/" rel="next" title="iOS 使用第三方字体">
-                <i class="fa fa-chevron-left"></i> iOS 使用第三方字体
+              <a href="/2020/03/04/iOS-逆向学习/" rel="next" title="iOS 逆向学习">
+                <i class="fa fa-chevron-left"></i> iOS 逆向学习
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/05/08/iOS-Core-Animation/" rel="prev" title="iOS Core Animation(核心动画)">
-                iOS Core Animation(核心动画) <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -623,7 +579,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关系"><span class="nav-number">2.</span> <span class="nav-text">关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#anchorPoint"><span class="nav-number">3.</span> <span class="nav-text">anchorPoint</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#position"><span class="nav-number">4.</span> <span class="nav-text">position</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#anchorPoint、position、frame之间的关系"><span class="nav-number">5.</span> <span class="nav-text">anchorPoint、position、frame之间的关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用"><span class="nav-number">6.</span> <span class="nav-text">应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">7.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number"></span> <span class="nav-text">参考</span></a></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
         </section>
@@ -754,9 +710,9 @@
 
     <script type="text/javascript">
       var disqus_shortname = 'leroyli';
-      var disqus_identifier = '2017/05/08/iOS-position-and-anchorPoint/';
-      var disqus_title = "iOS 理解position和anchorPoint";
-      var disqus_url = 'http://yoursite.com/2017/05/08/iOS-position-and-anchorPoint/';
+      var disqus_identifier = '2020/03/04/iOS-VM-Region/';
+      var disqus_title = "iOS 虚拟内存";
+      var disqus_url = 'http://yoursite.com/2020/03/04/iOS-VM-Region/';
 
       function run_disqus_script(disqus_script){
         var dsq = document.createElement('script');
