@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2020/03/04/iOS-VM-Region/</loc>
+    
+    <lastmod>2020-03-05T02:24:57.280Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2020/03/04/iOSRE-Reveal/</loc>
     
     <lastmod>2020-03-05T02:21:09.663Z</lastmod>
@@ -19,13 +26,6 @@
     <loc>http://yoursite.com/2020/03/04/iOSRE-Hopper/</loc>
     
     <lastmod>2020-03-05T02:15:10.087Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/2020/03/04/iOS-VM-Region/</loc>
-    
-    <lastmod>2020-03-04T13:19:04.039Z</lastmod>
     
   </url>
   
