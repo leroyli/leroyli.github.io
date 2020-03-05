@@ -30,7 +30,7 @@
 <p>开启某个APP后要重启springboard</p>
 <h3 id="Mac安装Reveal"><a href="#Mac安装Reveal" class="headerlink" title="Mac安装Reveal"></a>Mac安装Reveal</h3><p>去<a href="[https://revealapp.com/](https://revealapp.com/">Reveal</a>官网下载。可以填写邮件获得14天的试用</p>
 <h3 id="复制Mac上framework到越狱设备"><a href="#复制Mac上framework到越狱设备" class="headerlink" title="复制Mac上framework到越狱设备"></a>复制Mac上framework到越狱设备</h3><p>执行<code>scp -r /Users/[your dir]/Library/Application\ Support/Reveal/RevealServer/iOS/RevealServer.framework root@172.20.10.10:/Library/Frameworks</code>命令把Mac上的reveal framework复制到越狱设备</p>
-<p>然后就可以调试目标APP了，下图是微信的UI界面<br><img src="https://upload-images.jianshu.io/upload_images/1719830-bf9a78da03a9b81c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="截屏2020-03-04下午4.02.43.png"></p>
+<p>然后就可以调试目标APP了，下图是微信的UI界面<br><img src="https://i.loli.net/2020/03/05/OQwirzAMak9E452.png" alt="截屏2020-03-04下午4.02.43.png"></p>
 ]]></content>
       <tags>
         <tag>iOS</tag>
