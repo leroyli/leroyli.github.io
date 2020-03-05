@@ -92,15 +92,15 @@
 <meta property="og:site_name" content="Leroy Blog">
 <meta property="og:description" content="前言逆向分析的时候可以用Reveal动态分析目标APP的UI界面来帮助我们更快的找到我们想要分析的位置，本文主要介绍如何让越狱设备能到成功连接Reveal并进行分析">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1719830-584dfd30a8aaca75.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1719830-8a9b11e9962be8b8.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1719830-131b78c1f0ca9166.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://i.loli.net/2020/03/05/iRLJBTvNxcFrjyO.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/03/05/GI8NmhTrHzScMWK.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/03/05/JLv7ckFEUQ8mKfM.jpg">
 <meta property="og:image" content="https://i.loli.net/2020/03/05/OQwirzAMak9E452.png">
-<meta property="og:updated_time" content="2020-03-05T02:03:50.436Z">
+<meta property="og:updated_time" content="2020-03-05T02:21:09.663Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS逆向 Reveal">
 <meta name="twitter:description" content="前言逆向分析的时候可以用Reveal动态分析目标APP的UI界面来帮助我们更快的找到我们想要分析的位置，本文主要介绍如何让越狱设备能到成功连接Reveal并进行分析">
-<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/1719830-584dfd30a8aaca75.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:image" content="https://i.loli.net/2020/03/05/iRLJBTvNxcFrjyO.jpg">
 
 
 
@@ -354,7 +354,7 @@
       
         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>逆向分析的时候可以用Reveal动态分析目标APP的UI界面来帮助我们更快的找到我们想要分析的位置，本文主要介绍如何让越狱设备能到成功连接Reveal并进行分析</p>
 <a id="more"></a>
-<h3 id="越狱设备Reveal2Loader"><a href="#越狱设备Reveal2Loader" class="headerlink" title="越狱设备Reveal2Loader"></a>越狱设备Reveal2Loader</h3><p>通过Cydia安装Reveal2Loader<br><img src="https://upload-images.jianshu.io/upload_images/1719830-584dfd30a8aaca75.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="WechatIMG52.jpeg"><br>安装之后可以设置对哪个APP开启reveal调试<br><img src="https://upload-images.jianshu.io/upload_images/1719830-8a9b11e9962be8b8.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="WechatIMG54.jpeg"><br><img src="https://upload-images.jianshu.io/upload_images/1719830-131b78c1f0ca9166.jpeg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="WechatIMG53.jpeg"></p>
+<h3 id="越狱设备Reveal2Loader"><a href="#越狱设备Reveal2Loader" class="headerlink" title="越狱设备Reveal2Loader"></a>越狱设备Reveal2Loader</h3><p>通过Cydia安装Reveal2Loader<br><img src="https://i.loli.net/2020/03/05/iRLJBTvNxcFrjyO.jpg" alt="WechatIMG52.jpeg"><br>安装之后可以设置对哪个APP开启reveal调试<br><img src="https://i.loli.net/2020/03/05/GI8NmhTrHzScMWK.jpg" alt="WechatIMG54.jpeg"><br><img src="https://i.loli.net/2020/03/05/JLv7ckFEUQ8mKfM.jpg" alt="WechatIMG53.jpeg"></p>
 <p>开启某个APP后要重启springboard</p>
 <h3 id="Mac安装Reveal"><a href="#Mac安装Reveal" class="headerlink" title="Mac安装Reveal"></a>Mac安装Reveal</h3><p>去<a href="[https://revealapp.com/](https://revealapp.com/">Reveal</a>官网下载。可以填写邮件获得14天的试用</p>
 <h3 id="复制Mac上framework到越狱设备"><a href="#复制Mac上framework到越狱设备" class="headerlink" title="复制Mac上framework到越狱设备"></a>复制Mac上framework到越狱设备</h3><p>执行<code>scp -r /Users/[your dir]/Library/Application\ Support/Reveal/RevealServer/iOS/RevealServer.framework root@172.20.10.10:/Library/Frameworks</code>命令把Mac上的reveal framework复制到越狱设备</p>
