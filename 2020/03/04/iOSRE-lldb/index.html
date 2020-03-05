@@ -92,13 +92,13 @@
 <meta property="og:site_name" content="Leroy Blog">
 <meta property="og:description" content="前言使用 lldb 调试需要准备 debugserver。使用 OSX 中的 lldb 远程连接 iOS 上的 debugserver，由 debugserver 作为 lldb 和 iOS 的中转，执行命令和返回结果。在默认情况下，iOS 上并没有安装 debugserver，只有在设备连接过一次 Xcode，安装了开发者插件后，debugserver 才会被 Xcode 安装到iOS的/Dev">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1719830-224868d2558f8c51.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1719830-c815d58a9d2f4685.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2020-03-04T13:43:24.454Z">
+<meta property="og:image" content="https://i.loli.net/2020/03/05/Obl82xfwrvcRNuh.png">
+<meta property="og:image" content="https://i.loli.net/2020/03/05/agibCcmJ5whIHuM.png">
+<meta property="og:updated_time" content="2020-03-05T02:18:58.257Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS逆向 lldb动态调试">
 <meta name="twitter:description" content="前言使用 lldb 调试需要准备 debugserver。使用 OSX 中的 lldb 远程连接 iOS 上的 debugserver，由 debugserver 作为 lldb 和 iOS 的中转，执行命令和返回结果。在默认情况下，iOS 上并没有安装 debugserver，只有在设备连接过一次 Xcode，安装了开发者插件后，debugserver 才会被 Xcode 安装到iOS的/Dev">
-<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/1719830-224868d2558f8c51.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:image" content="https://i.loli.net/2020/03/05/Obl82xfwrvcRNuh.png">
 
 
 
@@ -384,8 +384,8 @@
 <p><code>debugserver 127.0.0.1:1234 -a 693</code>   attach进程</p>
 <p><code>iproxy 1234 1234</code>进行一次端口转发</p>
 <p><code>process connect connect://127.0.0.1:1234</code>  在lldb里执行</p>
-<p>下图是调试微信的例子，lldb附加成功之后就可以根据地址使用<code>b</code>(地址加到b指令之后)指令下断点，地址可以根据hopper分析获取<br><img src="https://upload-images.jianshu.io/upload_images/1719830-224868d2558f8c51.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="截屏2020-03-04下午2.32.14.png"></p>
-<p>下图是使用hopper分析喜马拉雅播放方法的地址，然后使用lldb下断点<br><img src="https://upload-images.jianshu.io/upload_images/1719830-c815d58a9d2f4685.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<p>下图是调试微信的例子，lldb附加成功之后就可以根据地址使用<code>b</code>(地址加到b指令之后)指令下断点，地址可以根据hopper分析获取<br><img src="https://i.loli.net/2020/03/05/Obl82xfwrvcRNuh.png" alt="截屏2020-03-04下午2.32.14.png"></p>
+<p>下图是使用hopper分析喜马拉雅播放方法的地址，然后使用lldb下断点<br><img src="https://i.loli.net/2020/03/05/agibCcmJ5whIHuM.png" alt="image.png"></p>
 <h3 id="lldb常用命令"><a href="#lldb常用命令" class="headerlink" title="lldb常用命令"></a>lldb常用命令</h3><p>列出所有断点：<code>breakpoint list, br li</code><br>打开、关闭某个断点：<code>breakpoint enable, breakpoint disable, br dis, br del</code><br>打印参数：<code>frame variable, fr v</code><br>打印方法名和行数：<code>frame info</code><br>打印寄存器的值：<code>register read</code><br>修改寄存器的值：<code>register write rax 123</code><br>列出文件加载基地址：<code>image list</code><br>执行地址的加减运算：<code>p/x</code></p>
 <h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="[https://juejin.im/post/5d2b7d3f6fb9a07ebb0562d6](https://juejin.im/post/5d2b7d3f6fb9a07ebb0562d6">iOS 逆向指南：动态分析</a></p>
 
