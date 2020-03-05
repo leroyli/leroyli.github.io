@@ -94,15 +94,15 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1719830-180957c15e834aa8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1719830-0a1bfcf020a8bfe8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1719830-6386956363e96d98.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1719830-002d244b599beb5a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1719830-800c801f80cbc7ff.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1719830-e8fc760cc5febbf2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1719830-0658780b0bc342c7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1719830-11d96655754885b9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1719830-08e82917380a66a0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1719830-50fa1e84a8876ec2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2020-03-04T13:04:06.405Z">
+<meta property="og:image" content="https://i.loli.net/2020/03/05/stZj4pJNiFAUoIC.png">
+<meta property="og:image" content="https://i.loli.net/2020/03/05/nWtBYwqOZuHLTCD.png">
+<meta property="og:image" content="https://i.loli.net/2020/03/05/fxrgQCOFdElw5BP.png">
+<meta property="og:image" content="https://i.loli.net/2020/03/05/f8cMtChE2kAsFB5.png">
+<meta property="og:image" content="https://i.loli.net/2020/03/05/RNFwk6YC1vVEZ5h.png">
+<meta property="og:image" content="https://i.loli.net/2020/03/05/AK32TUL1m4JMsjy.png">
+<meta property="og:image" content="https://i.loli.net/2020/03/05/pewvP4QmWAGBrgC.png">
+<meta property="og:image" content="https://i.loli.net/2020/03/05/M4Su1t2Qga6IEh9.png">
+<meta property="og:updated_time" content="2020-03-05T01:58:54.307Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS逆向 Hopper">
 <meta name="twitter:description" content="前言iOS逆向中使用Hopper可以帮助我们分析目标APP的方法地址来实现动态调试，本文只是简单介绍一个Hopper的基本用法">
@@ -362,11 +362,11 @@
 <a id="more"></a>
 <h3 id="下载Hopper"><a href="#下载Hopper" class="headerlink" title="下载Hopper"></a>下载Hopper</h3><p>Hopper目前在最新的Mac系统上没有破解版，每次可以试用半小时，不过对于一般的分析也是够用了，这里贴一下Hopper的官网<a href="[https://www.hopperapp.com/](https://www.hopperapp.com/">Hopper</a><br>)</p>
 <h3 id="分析目标APP"><a href="#分析目标APP" class="headerlink" title="分析目标APP"></a>分析目标APP</h3><p>这里主要是用自己新建的Demo用来分析，我Demo里就写了两个方法<br><img src="https://upload-images.jianshu.io/upload_images/1719830-180957c15e834aa8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
-<p>工程编译之后把.app文件拖到Hopper的窗口<br><img src="https://upload-images.jianshu.io/upload_images/1719830-0a1bfcf020a8bfe8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br>然后点击OK就行了<br><img src="https://upload-images.jianshu.io/upload_images/1719830-6386956363e96d98.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
-<p>然后就可以进行分析了，我首先是在viewdidload里加了断点<br><img src="https://upload-images.jianshu.io/upload_images/1719830-002d244b599beb5a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br>可以先用image list 打印文件的基地址，由于iOS的ASLR特性，需要用基地址来计算其他地址，上图第一条就是可执行文件加载的基地址<br><img src="https://upload-images.jianshu.io/upload_images/1719830-800c801f80cbc7ff.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
-<p>上图右边Hopper选中的部分是say方法的地址，不过这里自己新建的工程拉到Hopper里面Hopper也有一个基地址0x100000000<br>可以在控制台用<code>p/x</code>指令计算一下say方法的实际地址，计算方法是（可执行文件的基地址+Hopper中方法的偏移-Hoper加载的基地址），计算出结果后用<code>b</code>指令下断点，可以看到已经对say方法下了断点了，这时候让程序继续执行就会断到say方法了<br><img src="https://upload-images.jianshu.io/upload_images/1719830-e8fc760cc5febbf2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="截屏2020-03-04下午5.02.28.png"></p>
-<p>Hopper展示的都是汇编，我们也可以让xcode展示汇编，<img src="https://upload-images.jianshu.io/upload_images/1719830-0658780b0bc342c7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="截屏2020-03-04下午5.11.27.png"><br>选中Always Show Disassembly之后就可以看到汇编代码了<br><img src="https://upload-images.jianshu.io/upload_images/1719830-11d96655754885b9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="截屏2020-03-04下午5.01.41.png"><br>Xcode的汇编代码和Hopper的汇编代码相差的就是基地址了</p>
-<h3 id="Hopper和MachOView"><a href="#Hopper和MachOView" class="headerlink" title="Hopper和MachOView"></a>Hopper和MachOView</h3><p>MachO文件是iOS的可执行文件，里面的地址也可以跟Hopper反汇编出来的对应<br><img src="https://upload-images.jianshu.io/upload_images/1719830-08e82917380a66a0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="截屏2020-03-04下午5.10.07.png"><img src="https://upload-images.jianshu.io/upload_images/1719830-50fa1e84a8876ec2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="截屏2020-03-04下午5.15.02.png"><br>Hopper还有很多用法，我这里只是做个基本的介绍。我是逆向初学者，如果文中有什么不对的地方，欢迎各位提出宝贵意见。</p>
+<p>工程编译之后把.app文件拖到Hopper的窗口<br><img src="https://upload-images.jianshu.io/upload_images/1719830-0a1bfcf020a8bfe8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br>然后点击OK就行了<br><img src="https://i.loli.net/2020/03/05/stZj4pJNiFAUoIC.png" alt="hopper_add"></p>
+<p>然后就可以进行分析了，我首先是在viewdidload里加了断点<br><img src="https://i.loli.net/2020/03/05/nWtBYwqOZuHLTCD.png" alt="b_viewdidload"><br>可以先用image list 打印文件的基地址，由于iOS的ASLR特性，需要用基地址来计算其他地址，上图第一条就是可执行文件加载的基地址<br><img src="https://i.loli.net/2020/03/05/fxrgQCOFdElw5BP.png" alt="image.png"></p>
+<p>上图右边Hopper选中的部分是say方法的地址，不过这里自己新建的工程拉到Hopper里面Hopper也有一个基地址0x100000000<br>可以在控制台用<code>p/x</code>指令计算一下say方法的实际地址，计算方法是（可执行文件的基地址+Hopper中方法的偏移-Hoper加载的基地址），计算出结果后用<code>b</code>指令下断点，可以看到已经对say方法下了断点了，这时候让程序继续执行就会断到say方法了<br><img src="https://i.loli.net/2020/03/05/f8cMtChE2kAsFB5.png" alt="截屏2020-03-04下午5.02.28.png"></p>
+<p>Hopper展示的都是汇编，我们也可以让xcode展示汇编，<img src="https://i.loli.net/2020/03/05/RNFwk6YC1vVEZ5h.png" alt="xcode_dis"><br>选中Always Show Disassembly之后就可以看到汇编代码了<br><img src="https://i.loli.net/2020/03/05/AK32TUL1m4JMsjy.png" alt="xcode_show_dis"><br>Xcode的汇编代码和Hopper的汇编代码相差的就是基地址了</p>
+<h3 id="Hopper和MachOView"><a href="#Hopper和MachOView" class="headerlink" title="Hopper和MachOView"></a>Hopper和MachOView</h3><p>MachO文件是iOS的可执行文件，里面的地址也可以跟Hopper反汇编出来的对应<br><img src="https://i.loli.net/2020/03/05/pewvP4QmWAGBrgC.png" alt="截屏2020-03-04下午5.10.07.png"><br><img src="https://i.loli.net/2020/03/05/M4Su1t2Qga6IEh9.png" alt="截屏2020-03-04下午5.15.02.png"><br>Hopper还有很多用法，我这里只是做个基本的介绍。我是逆向初学者，如果文中有什么不对的地方，欢迎各位提出宝贵意见。</p>
 
       
     </div>
