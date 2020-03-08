@@ -84,31 +84,31 @@
 
 
 
-<meta name="description" content="简介lldb提供了3种指令来打印变量，分别是po、p、v、今天我们就来看看这3种指令的实现方式和区别。本文连接">
+<meta name="description" content="简介lldb提供了3种指令来打印变量，分别是po、p、v、今天我们就来看看这3种指令的实现方式和区别。本文链接">
 <meta name="keywords" content="LLDB,po指令,p指令,v指令,debug,调试,iOS,Xcode">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LLDB 打印变量指令">
 <meta property="og:url" content="http://yoursite.com/2020/03/08/LLDB-po/index.html">
 <meta property="og:site_name" content="Leroy Blog">
-<meta property="og:description" content="简介lldb提供了3种指令来打印变量，分别是po、p、v、今天我们就来看看这3种指令的实现方式和区别。本文连接">
+<meta property="og:description" content="简介lldb提供了3种指令来打印变量，分别是po、p、v、今天我们就来看看这3种指令的实现方式和区别。本文链接">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://s2.ax1x.com/2020/03/08/3xbe4P.jpg">
 <meta property="og:image" content="https://s2.ax1x.com/2020/03/08/3xb3Hs.jpg">
-<meta property="og:image" content="https://github.com/leroyli/GitPages/blob/master/posts/lldb_po/images/lldb_po/429_lldb_beyond_pocc.jpg">
-<meta property="og:image" content="https://github.com/leroyli/GitPages/blob/master/posts/lldb_po/images/lldb_po/429_lldb_beyond_po.jpg">
-<meta property="og:image" content="https://github.com/leroyli/GitPages/blob/master/posts/lldb_po/images/lldb_po/429_lldb_beyond_por.jpg">
-<meta property="og:image" content="https://github.com/leroyli/GitPages/blob/master/posts/lldb_po/images/lldb_po/429_lldb_beyond_poRRQ.jpg">
-<meta property="og:image" content="https://github.com/leroyli/GitPages/blob/master/posts/lldb_po/images/lldb_po/429_lldb_beyond_p.jpg">
-<meta property="og:image" content="https://github.com/leroyli/GitPages/blob/master/posts/lldb_po/images/lldb_po/429_lldb_beyond_poddd.jpg">
-<meta property="og:image" content="https://github.com/leroyli/GitPages/blob/master/posts/lldb_po/images/lldb_po/429_lldb_beyond_poggg.jpg">
-<meta property="og:image" content="https://github.com/leroyli/GitPages/blob/master/posts/lldb_po/images/lldb_po/429_lldb_beyond_vvvv.jpg">
-<meta property="og:image" content="https://github.com/leroyli/GitPages/blob/master/posts/lldb_po/images/lldb_po/429_lldb_beyond_pojjjjj.jpg">
-<meta property="og:image" content="https://github.com/leroyli/GitPages/blob/master/posts/lldb_po/images/lldb_po/429_lldb_beyond_vvvd.jpg">
-<meta property="og:image" content="https://github.com/leroyli/GitPages/blob/master/posts/lldb_po/images/lldb_po/429_lldb_beyond_pocccc.jpg">
-<meta property="og:updated_time" content="2020-03-08T09:37:24.411Z">
+<meta property="og:image" content="https://s2.ax1x.com/2020/03/08/3xbJNq.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2020/03/08/3xbBDJ.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2020/03/08/3xbWvD.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2020/03/08/3xbL28.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2020/03/08/3xqiGV.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2020/03/08/3xqVr4.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2020/03/08/3xqQG6.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2020/03/08/3xq0Rf.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2020/03/08/3xqssg.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2020/03/08/3xqWiq.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2020/03/08/3xqhWV.jpg">
+<meta property="og:updated_time" content="2020-03-08T09:44:28.351Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LLDB 打印变量指令">
-<meta name="twitter:description" content="简介lldb提供了3种指令来打印变量，分别是po、p、v、今天我们就来看看这3种指令的实现方式和区别。本文连接">
+<meta name="twitter:description" content="简介lldb提供了3种指令来打印变量，分别是po、p、v、今天我们就来看看这3种指令的实现方式和区别。本文链接">
 <meta name="twitter:image" content="https://s2.ax1x.com/2020/03/08/3xbe4P.jpg">
 
 
@@ -361,37 +361,37 @@
       
 
       
-        <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>lldb提供了3种指令来打印变量，分别是po、p、v、今天我们就来看看这3种指令的实现方式和区别。<br><a href="https://github.com/leroyli/GitPages/blob/master/posts/lldb_po/LLDB_PO.md" target="_blank" rel="noopener">本文连接</a></p>
+        <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>lldb提供了3种指令来打印变量，分别是po、p、v、今天我们就来看看这3种指令的实现方式和区别。<br><a href="https://github.com/leroyli/GitPages/blob/master/posts/lldb_po/LLDB_PO.md" target="_blank" rel="noopener">本文链接</a></p>
 <a id="more"></a>
 <h3 id="po指令"><a href="#po指令" class="headerlink" title="po指令"></a>po指令</h3><p><img src="https://s2.ax1x.com/2020/03/08/3xbe4P.jpg" alt="429_lldb_beyond_pox"></p>
 <p>po指令可以看成是打印变量的固定指令，当我们使用po的时候，像上图一样我们得到的是文本形式的对象描述。po不仅仅能打印变量，还能像下图一样拿到对象的名字并计算名字的大写版本。</p>
 <p><img src="https://s2.ax1x.com/2020/03/08/3xb3Hs.jpg" alt="429_lldb_beyond_pos"></p>
 <p>事实上它可以计算任何表达式，其实po只是一个expression表达式的别名，你可以用command alias指令实现自定义的po指令</p>
-<p><img src="https://github.com/leroyli/GitPages/blob/master/posts/lldb_po/images/lldb_po/429_lldb_beyond_pocc.jpg" alt="429_lldb_beyond_pocc"></p>
+<p><img src="https://s2.ax1x.com/2020/03/08/3xbJNq.jpg" alt="429_lldb_beyond_pocc"></p>
 <p>下面我们来看看po的底层是如何工作的</p>
-<p><img src="https://github.com/leroyli/GitPages/blob/master/posts/lldb_po/images/lldb_po/429_lldb_beyond_po.jpg" alt="429_lldb_beyond_po"></p>
+<p><img src="https://s2.ax1x.com/2020/03/08/3xbBDJ.jpg" alt="429_lldb_beyond_po"></p>
 <p>为了提供完整描述，首先它会根据你输入的表达式生成一段代码，然后会在debug程序里编译并执行这段代码来计算表达式的结果，LLDB拿到结果之后会生成另一短代码来格式化结果输出字符串</p>
-<h3 id="p指令"><a href="#p指令" class="headerlink" title="p指令"></a>p指令</h3><p><img src="https://github.com/leroyli/GitPages/blob/master/posts/lldb_po/images/lldb_po/429_lldb_beyond_por.jpg" alt="429_lldb_beyond_por"></p>
+<h3 id="p指令"><a href="#p指令" class="headerlink" title="p指令"></a>p指令</h3><p><img src="https://s2.ax1x.com/2020/03/08/3xbWvD.jpg" alt="429_lldb_beyond_por"></p>
 <p>p指令和po指令打印出来的格式有点不一样，但是内容是一样的。而且返回值被起名为$R0，这是LLDB的一个约定，每个表达式的结果会被赋予一个递增的名字。像$R0, $R1,并且这个被赋予的名字可以用在稍后的表达式中。你可以像使用其他变量一样使用$R0</p>
-<p><img src="https://github.com/leroyli/GitPages/blob/master/posts/lldb_po/images/lldb_po/429_lldb_beyond_poRRQ.jpg" alt="429_lldb_beyond_poRRQ"></p>
+<p><img src="https://s2.ax1x.com/2020/03/08/3xbL28.jpg" alt="429_lldb_beyond_poRRQ"></p>
 <p>下面让我们看看p指令在后台是如何运行的</p>
-<p><img src="https://github.com/leroyli/GitPages/blob/master/posts/lldb_po/images/lldb_po/429_lldb_beyond_p.jpg" alt="429_lldb_beyond_p"></p>
+<p><img src="https://s2.ax1x.com/2020/03/08/3xqiGV.jpg" alt="429_lldb_beyond_p"></p>
 <p>事实上p指令底层的第一部分跟po指令是一样的，会先计算计算表达式的结果，一旦拿到结果LLDB会对结果执行动态类型解析。至于什么是动态类型解析，可以用一个例子说明一下</p>
-<p><img src="https://github.com/leroyli/GitPages/blob/master/posts/lldb_po/images/lldb_po/429_lldb_beyond_poddd.jpg" alt="429_lldb_beyond_poddd"></p>
+<p><img src="https://s2.ax1x.com/2020/03/08/3xqVr4.jpg" alt="429_lldb_beyond_poddd"></p>
 <p>在上面的例子中，Trip遵守了Activity协议，在swift中源码中的静态类型和运行时的动态类型可以是不一样的，像上面的例子一样，可以用协议的类型去声明cruise对象。cruise的静态类型是Acitivity，但是运行时类型是Trip，如果我们打印cruise我们得到的也是Trip类型，因为LLDB会根据元数据展示给定变量的精确类型。这就是动态类型解析</p>
 <p>在p指令下，动态类型解析只会对表达式的结果执行，当我们想打印cruise的name的时候，这时cruise的类型是Activity，没有name属性，所以就会出错，如果要消除错误可以把对象转化为其动态类型</p>
 <p>当对结果执行完动态类型解析，LLDB会把解析的结果传递给格式化子系统来打印出可读的字符串</p>
 <p>如果你想之后没有格式化的时候数据是什么样，可以使用 expression –raw –指令查看</p>
-<p><img src="https://github.com/leroyli/GitPages/blob/master/posts/lldb_po/images/lldb_po/429_lldb_beyond_poggg.jpg" alt="429_lldb_beyond_poggg"></p>
-<h3 id="v指令"><a href="#v指令" class="headerlink" title="v指令"></a>v指令</h3><p><img src="https://github.com/leroyli/GitPages/blob/master/posts/lldb_po/images/lldb_po/429_lldb_beyond_vvvv.jpg" alt=""></p>
+<p><img src="https://s2.ax1x.com/2020/03/08/3xqQG6.jpg" alt="429_lldb_beyond_poggg"></p>
+<h3 id="v指令"><a href="#v指令" class="headerlink" title="v指令"></a>v指令</h3><p><img src="https://s2.ax1x.com/2020/03/08/3xq0Rf.jpg" alt=""></p>
 <p>v指令的输出也是依赖LLDB的格式化子系统，v指令是在xcode10才引入的，不像其他两个指令，v不会编译和执行代码，所以v的执行更快速。v指令有自己的语法，而且它的语法可以跟你在调试的程序的语言的语法不一样。它可以用.和下标去获取变量。</p>
-<p><img src="https://github.com/leroyli/GitPages/blob/master/posts/lldb_po/images/lldb_po/429_lldb_beyond_pojjjjj.jpg" alt="429_lldb_beyond_pojjjjj"></p>
+<p><img src="https://s2.ax1x.com/2020/03/08/3xqssg.jpg" alt="429_lldb_beyond_pojjjjj"></p>
 <p>v指令不能计算表达式，因为计算需要执行代码，如果要执行计算表达式可以使用po或者p</p>
-<p><img src="https://github.com/leroyli/GitPages/blob/master/posts/lldb_po/images/lldb_po/429_lldb_beyond_vvvd.jpg" alt="429_lldb_beyond_vvvd"></p>
+<p><img src="https://s2.ax1x.com/2020/03/08/3xqWiq.jpg" alt="429_lldb_beyond_vvvd"></p>
 <p>v根据程序描述去在内存种定位变量的位置，然后从内存中读取变量，然后对结果执行动态类型解析，当用于想访问子字段，它就对每一个子字段重复执行动态类型解析，一旦完成，就会把结果移交给格式化子系统。</p>
 <p>v可能会执行多次动态类型解析，但是格式化只有一次，只是在最后才格式化</p>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>下面是三种指令的对比</p>
-<p><img src="https://github.com/leroyli/GitPages/blob/master/posts/lldb_po/images/lldb_po/429_lldb_beyond_pocccc.jpg" alt="429_lldb_beyond_pocccc"></p>
+<p><img src="https://s2.ax1x.com/2020/03/08/3xqhWV.jpg" alt="429_lldb_beyond_pocccc"></p>
 <h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://developer.apple.com/videos/play/wwdc2019/429/" target="_blank" rel="noopener">WWDC 2018.LLDB: Beyond “po”</a></p>
 
       
