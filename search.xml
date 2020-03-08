@@ -3,7 +3,7 @@
   <entry>
     <title>LLDB 打印变量指令</title>
     <url>/2020/03/08/LLDB-po/</url>
-    <content><![CDATA[<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>lldb提供了3种指令来打印变量，分别是po、p、v、今天我们就来看看这3种指令的实现方式和区别。</p>
+    <content><![CDATA[<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>lldb提供了3种指令来打印变量，分别是po、p、v、今天我们就来看看这3种指令的实现方式和区别。<br><a href="https://github.com/leroyli/GitPages/blob/master/posts/lldb_po/LLDB_PO.md" target="_blank" rel="noopener">本文连接</a></p>
 <a id="more"></a>
 <h3 id="po指令"><a href="#po指令" class="headerlink" title="po指令"></a>po指令</h3><p><img src="https://github.com/leroyli/GitPages/blob/master/posts/lldb_po/images/lldb_po/429_lldb_beyond_pox.jpg" alt="429_lldb_beyond_pox"></p>
 <p>po指令可以看成是打印变量的固定指令，当我们使用po的时候，像上图一样我们得到的是文本形式的对象描述。po不仅仅能打印变量，还能像下图一样拿到对象的名字并计算名字的大写版本。</p>
@@ -34,7 +34,8 @@
 <p>v可能会执行多次动态类型解析，但是格式化只有一次，只是在最后才格式化</p>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>下面是三种指令的对比</p>
 <p><img src="https://github.com/leroyli/GitPages/blob/master/posts/lldb_po/images/lldb_po/429_lldb_beyond_pocccc.jpg" alt="429_lldb_beyond_pocccc"></p>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><h4 id="WWDC-2018-LLDB-Beyond-“po”"><a href="#WWDC-2018-LLDB-Beyond-“po”" class="headerlink" title="WWDC 2018.LLDB: Beyond “po”"></a><a href="https://developer.apple.com/videos/play/wwdc2019/429/" target="_blank" rel="noopener">WWDC 2018.LLDB: Beyond “po”</a></h4>]]></content>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://developer.apple.com/videos/play/wwdc2019/429/" target="_blank" rel="noopener">WWDC 2018.LLDB: Beyond “po”</a></p>
+]]></content>
       <tags>
         <tag>LLDB</tag>
         <tag>po指令</tag>

@@ -84,13 +84,13 @@
 
 
 
-<meta name="description" content="简介lldb提供了3种指令来打印变量，分别是po、p、v、今天我们就来看看这3种指令的实现方式和区别。">
+<meta name="description" content="简介lldb提供了3种指令来打印变量，分别是po、p、v、今天我们就来看看这3种指令的实现方式和区别。本文连接">
 <meta name="keywords" content="LLDB,po指令,p指令,v指令,debug,调试,iOS,Xcode">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LLDB 打印变量指令">
 <meta property="og:url" content="http://yoursite.com/2020/03/08/LLDB-po/index.html">
 <meta property="og:site_name" content="Leroy Blog">
-<meta property="og:description" content="简介lldb提供了3种指令来打印变量，分别是po、p、v、今天我们就来看看这3种指令的实现方式和区别。">
+<meta property="og:description" content="简介lldb提供了3种指令来打印变量，分别是po、p、v、今天我们就来看看这3种指令的实现方式和区别。本文连接">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://github.com/leroyli/GitPages/blob/master/posts/lldb_po/images/lldb_po/429_lldb_beyond_pox.jpg">
 <meta property="og:image" content="https://github.com/leroyli/GitPages/blob/master/posts/lldb_po/images/lldb_po/429_lldb_beyond_pos.jpg">
@@ -105,10 +105,10 @@
 <meta property="og:image" content="https://github.com/leroyli/GitPages/blob/master/posts/lldb_po/images/lldb_po/429_lldb_beyond_pojjjjj.jpg">
 <meta property="og:image" content="https://github.com/leroyli/GitPages/blob/master/posts/lldb_po/images/lldb_po/429_lldb_beyond_vvvd.jpg">
 <meta property="og:image" content="https://github.com/leroyli/GitPages/blob/master/posts/lldb_po/images/lldb_po/429_lldb_beyond_pocccc.jpg">
-<meta property="og:updated_time" content="2020-03-08T09:09:09.807Z">
+<meta property="og:updated_time" content="2020-03-08T09:17:34.417Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LLDB 打印变量指令">
-<meta name="twitter:description" content="简介lldb提供了3种指令来打印变量，分别是po、p、v、今天我们就来看看这3种指令的实现方式和区别。">
+<meta name="twitter:description" content="简介lldb提供了3种指令来打印变量，分别是po、p、v、今天我们就来看看这3种指令的实现方式和区别。本文连接">
 <meta name="twitter:image" content="https://github.com/leroyli/GitPages/blob/master/posts/lldb_po/images/lldb_po/429_lldb_beyond_pox.jpg">
 
 
@@ -361,7 +361,7 @@
       
 
       
-        <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>lldb提供了3种指令来打印变量，分别是po、p、v、今天我们就来看看这3种指令的实现方式和区别。</p>
+        <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>lldb提供了3种指令来打印变量，分别是po、p、v、今天我们就来看看这3种指令的实现方式和区别。<br><a href="https://github.com/leroyli/GitPages/blob/master/posts/lldb_po/LLDB_PO.md" target="_blank" rel="noopener">本文连接</a></p>
 <a id="more"></a>
 <h3 id="po指令"><a href="#po指令" class="headerlink" title="po指令"></a>po指令</h3><p><img src="https://github.com/leroyli/GitPages/blob/master/posts/lldb_po/images/lldb_po/429_lldb_beyond_pox.jpg" alt="429_lldb_beyond_pox"></p>
 <p>po指令可以看成是打印变量的固定指令，当我们使用po的时候，像上图一样我们得到的是文本形式的对象描述。po不仅仅能打印变量，还能像下图一样拿到对象的名字并计算名字的大写版本。</p>
@@ -392,7 +392,8 @@
 <p>v可能会执行多次动态类型解析，但是格式化只有一次，只是在最后才格式化</p>
 <h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>下面是三种指令的对比</p>
 <p><img src="https://github.com/leroyli/GitPages/blob/master/posts/lldb_po/images/lldb_po/429_lldb_beyond_pocccc.jpg" alt="429_lldb_beyond_pocccc"></p>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><h4 id="WWDC-2018-LLDB-Beyond-“po”"><a href="#WWDC-2018-LLDB-Beyond-“po”" class="headerlink" title="WWDC 2018.LLDB: Beyond “po”"></a><a href="https://developer.apple.com/videos/play/wwdc2019/429/" target="_blank" rel="noopener">WWDC 2018.LLDB: Beyond “po”</a></h4>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://developer.apple.com/videos/play/wwdc2019/429/" target="_blank" rel="noopener">WWDC 2018.LLDB: Beyond “po”</a></p>
+
       
     </div>
 
@@ -616,7 +617,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#po指令"><span class="nav-number">2.</span> <span class="nav-text">po指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#p指令"><span class="nav-number">3.</span> <span class="nav-text">p指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#v指令"><span class="nav-number">4.</span> <span class="nav-text">v指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考"><span class="nav-number">6.</span> <span class="nav-text">参考</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#WWDC-2018-LLDB-Beyond-“po”"><span class="nav-number">6.1.</span> <span class="nav-text">WWDC 2018.LLDB: Beyond “po”</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#po指令"><span class="nav-number">2.</span> <span class="nav-text">po指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#p指令"><span class="nav-number">3.</span> <span class="nav-text">p指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#v指令"><span class="nav-number">4.</span> <span class="nav-text">v指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考"><span class="nav-number">6.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
           </div>
         </section>
