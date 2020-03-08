@@ -92,8 +92,8 @@
 <meta property="og:site_name" content="Leroy Blog">
 <meta property="og:description" content="简介lldb提供了3种指令来打印变量，分别是po、p、v、今天我们就来看看这3种指令的实现方式和区别。本文连接">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://github.com/leroyli/GitPages/blob/master/posts/lldb_po/images/lldb_po/429_lldb_beyond_pox.jpg">
-<meta property="og:image" content="https://github.com/leroyli/GitPages/blob/master/posts/lldb_po/images/lldb_po/429_lldb_beyond_pos.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2020/03/08/3xbe4P.jpg">
+<meta property="og:image" content="https://s2.ax1x.com/2020/03/08/3xb3Hs.jpg">
 <meta property="og:image" content="https://github.com/leroyli/GitPages/blob/master/posts/lldb_po/images/lldb_po/429_lldb_beyond_pocc.jpg">
 <meta property="og:image" content="https://github.com/leroyli/GitPages/blob/master/posts/lldb_po/images/lldb_po/429_lldb_beyond_po.jpg">
 <meta property="og:image" content="https://github.com/leroyli/GitPages/blob/master/posts/lldb_po/images/lldb_po/429_lldb_beyond_por.jpg">
@@ -105,11 +105,11 @@
 <meta property="og:image" content="https://github.com/leroyli/GitPages/blob/master/posts/lldb_po/images/lldb_po/429_lldb_beyond_pojjjjj.jpg">
 <meta property="og:image" content="https://github.com/leroyli/GitPages/blob/master/posts/lldb_po/images/lldb_po/429_lldb_beyond_vvvd.jpg">
 <meta property="og:image" content="https://github.com/leroyli/GitPages/blob/master/posts/lldb_po/images/lldb_po/429_lldb_beyond_pocccc.jpg">
-<meta property="og:updated_time" content="2020-03-08T09:17:34.417Z">
+<meta property="og:updated_time" content="2020-03-08T09:37:24.411Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LLDB 打印变量指令">
 <meta name="twitter:description" content="简介lldb提供了3种指令来打印变量，分别是po、p、v、今天我们就来看看这3种指令的实现方式和区别。本文连接">
-<meta name="twitter:image" content="https://github.com/leroyli/GitPages/blob/master/posts/lldb_po/images/lldb_po/429_lldb_beyond_pox.jpg">
+<meta name="twitter:image" content="https://s2.ax1x.com/2020/03/08/3xbe4P.jpg">
 
 
 
@@ -363,9 +363,9 @@
       
         <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>lldb提供了3种指令来打印变量，分别是po、p、v、今天我们就来看看这3种指令的实现方式和区别。<br><a href="https://github.com/leroyli/GitPages/blob/master/posts/lldb_po/LLDB_PO.md" target="_blank" rel="noopener">本文连接</a></p>
 <a id="more"></a>
-<h3 id="po指令"><a href="#po指令" class="headerlink" title="po指令"></a>po指令</h3><p><img src="https://github.com/leroyli/GitPages/blob/master/posts/lldb_po/images/lldb_po/429_lldb_beyond_pox.jpg" alt="429_lldb_beyond_pox"></p>
+<h3 id="po指令"><a href="#po指令" class="headerlink" title="po指令"></a>po指令</h3><p><img src="https://s2.ax1x.com/2020/03/08/3xbe4P.jpg" alt="429_lldb_beyond_pox"></p>
 <p>po指令可以看成是打印变量的固定指令，当我们使用po的时候，像上图一样我们得到的是文本形式的对象描述。po不仅仅能打印变量，还能像下图一样拿到对象的名字并计算名字的大写版本。</p>
-<p><img src="https://github.com/leroyli/GitPages/blob/master/posts/lldb_po/images/lldb_po/429_lldb_beyond_pos.jpg" alt="429_lldb_beyond_pos"></p>
+<p><img src="https://s2.ax1x.com/2020/03/08/3xb3Hs.jpg" alt="429_lldb_beyond_pos"></p>
 <p>事实上它可以计算任何表达式，其实po只是一个expression表达式的别名，你可以用command alias指令实现自定义的po指令</p>
 <p><img src="https://github.com/leroyli/GitPages/blob/master/posts/lldb_po/images/lldb_po/429_lldb_beyond_pocc.jpg" alt="429_lldb_beyond_pocc"></p>
 <p>下面我们来看看po的底层是如何工作的</p>
