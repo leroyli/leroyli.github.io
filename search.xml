@@ -3,7 +3,7 @@
   <entry>
     <title>LLDB 打印变量指令</title>
     <url>/2020/03/08/LLDB-po/</url>
-    <content><![CDATA[<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>lldb提供了3种指令来打印变量，分别是po、p、v、今天我们就来看看这3种指令的实现方式和区别。<br><a href="https://github.com/leroyli/GitPages/blob/master/posts/lldb_po/LLDB_PO.md" target="_blank" rel="noopener">本文链接</a></p>
+    <content><![CDATA[<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>lldb提供了3种指令来打印变量，分别是po、p、v、今天我们就来看看这3种指令的实现方式和区别。</p>
 <a id="more"></a>
 <h3 id="po指令"><a href="#po指令" class="headerlink" title="po指令"></a>po指令</h3><p><img src="https://s2.ax1x.com/2020/03/08/3xbe4P.jpg" alt="429_lldb_beyond_pox"></p>
 <p>po指令可以看成是打印变量的固定指令，当我们使用po的时候，像上图一样我们得到的是文本形式的对象描述。po不仅仅能打印变量，还能像下图一样拿到对象的名字并计算名字的大写版本。</p>
